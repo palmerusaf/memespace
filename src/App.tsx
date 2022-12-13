@@ -1,12 +1,13 @@
 import { Logo } from "./logo/Logo";
+import { MemeMaker } from "./mememaker/MemeMaker";
 
 function App() {
   return (
-    <div className="flex flex-col bg-blue-800 justify-center items-center w-screen h-screen">
+    <div className="flex flex-col bg-blue-800">
       <div className="mx-7">
         <Logo />
+        <MemeMaker />
       </div>
-      <div className="text-white font-extrabold text-xl">Coming soon...</div>
     </div>
   );
 }
