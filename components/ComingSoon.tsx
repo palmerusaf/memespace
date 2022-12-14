@@ -7,7 +7,7 @@ interface Props {
 function ComingSoon({ page }: Props) {
   return (
     <div className="flex flex-col bg-blue-800 justify-center items-center w-full h-full">
-      <img src={LogoPic} alt="Logo" className="mx-2" />
+      <img src={LogoPic.src} alt="Logo" className="mx-2" />
       <div className="text-white font-extrabold text-xl">{page} Page Coming soon...</div>
     </div>
   );

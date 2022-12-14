@@ -6,7 +6,7 @@ export default function NavBarWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col md:flex-row-reverse h-screen">
+    <div className="flex flex-col md:flex-row-reverse h-screen mt-14 md:mt-16">
       <div className="overflow-scroll h-screen mb-16 md:mb-0 md:ml-48 md:w-full">
         {children}
       </div>
