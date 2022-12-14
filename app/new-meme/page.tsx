@@ -1,5 +1,7 @@
+import ComingSoon from "../../components/ComingSoon";
+
 function NewMemePage() {
-  return <div>New Meme Page Coming Soon...</div>;
+  return <ComingSoon page="New Meme" />;
 }
 
 export default NewMemePage;

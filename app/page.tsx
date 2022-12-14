@@ -1,5 +1,5 @@
+import ComingSoon from "../components/ComingSoon";
+
 export default function HomePage() {
-  return (
-    <div>Home Page Coming Soon...</div>
-  );
+  return <ComingSoon page="Home" />;
 }
