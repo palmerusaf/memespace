@@ -2,7 +2,7 @@ import ComingSoon from "../../components/ComingSoon";
 
 function NewMemePage() {
   return (
-    <div>new memepage</div>
+    <div>page content</div>
   )
 }
 
