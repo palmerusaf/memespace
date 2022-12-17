@@ -1,13 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "tailwindcss ./app/globals.css --output ./app/output.css && next build",
+    "dev": "concurrently \"next dev --turbo\" \"tailwindcss --input app/input.css --output app/output.css --watch\"",
+    "build": "tailwindcss app/input.css --output app/output.css && next build",
     "start": "next start",
     "test": "jest --watch"
   },
   "dependencies": {
-    "concurrently": "^7.6.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -19,6 +18,7 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.13",
+    "concurrently": "^7.6.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "postcss": "^8.4.19",
