@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import LogoPic from "./logo/logo.png";
 
 interface Props {
