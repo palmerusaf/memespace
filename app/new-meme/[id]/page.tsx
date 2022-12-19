@@ -8,6 +8,5 @@ export default function DynamicNewMemePage({ params }: Props) {
   if (!Number.isInteger(params.id) || outOfRange(parseInt(params.id))) {
     return <NotFoundPage />;
   }
-
   return <div className="flex">{params.id}</div>;
 }

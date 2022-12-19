@@ -1,4 +1,4 @@
-import PageNav from "../../components/PageNav";
+import PageNav from "../../components/PageNav/PageNav";
 
 function NewMemeLayout({ children }: { children: React.ReactNode }) {
   // 37 pages and 27 memes per page = 999 memes from apimeme.com
