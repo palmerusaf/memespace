@@ -4,9 +4,10 @@ interface Props {
 }
 
 export default function DynamicNewMemePage({ params }: Props) {
-  const outOfRange = (index: number): boolean => index < 1 || index > 37;
-  if (!Number.isInteger(params.id) || outOfRange(parseInt(params.id))) {
-    return <NotFoundPage />;
-  }
+  const pageOutOfRange = (index: number): boolean => index < 1 || index > 37;
+  const isInvalidPage =
+    Number.isNaN(parseInt(params.id)) || pageOutOfRange(parseInt(params.id));
+  if (isInvalidPage) return <NotFoundPage />;
+
   return <div className="flex">{params.id}</div>;
 }
