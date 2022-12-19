@@ -1,3 +1,4 @@
+const MEMES_PER_PAGE = 27;
 const LAST_PAGE = 37;
 const FIST_PAGE = 1;
 
@@ -24,4 +25,15 @@ export function getNavIndexes(index: number): number[] {
     result.push(i);
   }
   return result;
+}
+
+interface MemeEndPoints {
+  start: number;
+  end: number;
+}
+
+export function getMemeEndPoints(pageNum: number): MemeEndPoints {
+  const end = pageNum * MEMES_PER_PAGE;
+  const start = end - MEMES_PER_PAGE;
+  return { start, end };
 }
