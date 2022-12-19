@@ -1,13 +1,14 @@
 import NotFoundPage from "../page";
+import memeList from "../../../components/memelist.json";
+import { isInvalidPage } from "../../../components/PageNav/PageUtils";
 interface Props {
   params: { id: string };
 }
 
 export default function DynamicNewMemePage({ params }: Props) {
-  const pageOutOfRange = (index: number): boolean => index < 1 || index > 37;
-  const isInvalidPage =
-    Number.isNaN(parseInt(params.id)) || pageOutOfRange(parseInt(params.id));
-  if (isInvalidPage) return <NotFoundPage />;
+  if (isInvalidPage(params.id)) return <NotFoundPage />;
 
   return <div className="flex">{params.id}</div>;
 }
+
+function getMemeSegment(params: type) {}

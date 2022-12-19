@@ -1,16 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import getNavIndexes from "./getNavIndexes";
+import { getNavIndexes, isInvalidPage } from "./PageUtils";
 
 export default function PageNav() {
-  let segment = useSelectedLayoutSegment() || "1";
-
-  const pageOutOfRange = (index: number): boolean => index < 1 || index > 37;
-  const isInvalidPage =
-    Number.isNaN(parseInt(segment)) || pageOutOfRange(parseInt(segment));
-
-  let activeIndex = isInvalidPage ? 1 : parseInt(segment);
+  let segment = useSelectedLayoutSegment();
+  let activeIndex = isInvalidPage(segment) ? 1 : parseInt(segment);
 
   return (
     <nav className="flex text-gray-900 gap-1 font-bold">
