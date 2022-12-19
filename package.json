@@ -1,15 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev --turbo\" \"tailwindcss --input app/input.css --output app/output.css --watch\"",
-    "build": "tailwindcss app/input.css --output app/output.css && next build",
+    "dev": "concurrently \"next dev --turbo\" \"tailwindcss --input ./app/input.css --output ./app/output.css --watch\"",
+    "build": "tailwindcss ./app/input.css --output ./app/output.css && next build",
     "start": "next start",
     "test": "jest --watch"
   },
   "dependencies": {
     "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

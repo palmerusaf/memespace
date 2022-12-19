@@ -5,7 +5,8 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 function NavLink({ href, children }: { href: string; children: any }) {
   let segment = useSelectedLayoutSegment();
-  let active = href === `/${segment}`;
+  let active = href.startsWith(`/${segment}`);
+
   return (
     <li className="flex-1">
       <Link

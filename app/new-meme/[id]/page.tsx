@@ -1,14 +1,13 @@
-import { FunctionComponent } from "react";
-
-interface DynamicNewMemePageProps {
-  [x: string]: any;
-  props: any;
+import NotFoundPage from "../page";
+interface Props {
+  params: { id: string };
 }
 
-const DynamicNewMemePage: FunctionComponent<DynamicNewMemePageProps> = ({
-  params,
-}) => {
-  return <div>index = {params.id}</div>;
-};
+export default function DynamicNewMemePage({ params }: Props) {
+  const outOfRange = (index: number): boolean => index < 1 || index > 37;
+  if (!Number.isInteger(params.id) || outOfRange(parseInt(params.id))) {
+    return <NotFoundPage />;
+  }
 
-export default DynamicNewMemePage;
+  return <div className="flex">{params.id}</div>;
+}
