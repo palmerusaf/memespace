@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import LogoPic from "../../components/logo/logo.png";
+import LogoPic from "../../../components/logo/logo.png";
 
 function NotFoundPage() {
   return (
