@@ -1,11 +1,12 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
+import { LoadingHorse, ErrorHorse } from "../../../imgs/gifs";
 import NotFoundPage from "./NotFound";
 import memeList from "../../../components/memelist.json";
 import withMemeModal, {
   WithModalProps,
 } from "../../../components/EditMemeModal";
-import LoadingHorse from "../../../imgs/loading-horse.gif";
 import {
   isInvalidPage,
   getMemeEndPoints,
@@ -13,6 +14,25 @@ import {
 
 interface PageProps extends WithModalProps {
   props: { params: { pageId: string } };
+}
+
+function ImageWithErrorHandle(props: { title: string; meme: string }) {
+  const pImgSrc = `https://apimeme.com/thumbnail?name=${props.meme}`;
+  const [imgSrc, setImgSrc] = useState(pImgSrc);
+  return (
+    <Image
+      src={imgSrc}
+      alt={props.title}
+      className="w-full rounded-md shadow-lg my-2"
+      width={100}
+      height={100}
+      placeholder="blur"
+      blurDataURL={LoadingHorse.src}
+      onError={() => {
+        setImgSrc(ErrorHorse.src);
+      }}
+    />
+  );
 }
 
 const DynamicNewMemePage = ({ props, ModalButton }: PageProps) => {
@@ -38,15 +58,7 @@ const DynamicNewMemePage = ({ props, ModalButton }: PageProps) => {
               <h2 className="text-ellipsis overflow-hidden text-center font-medium underline">
                 {title}
               </h2>
-              <Image
-                src={`https://apimeme.com/thumbnail?name=${meme}`}
-                alt={title}
-                className="w-full rounded-md shadow-lg my-2"
-                width={100}
-                height={100}
-                placeholder="blur"
-                blurDataURL={LoadingHorse.src}
-              />
+              <ImageWithErrorHandle title={title} meme={meme} />
               <ModalButton
                 memeId={meme}
                 className="px-3 py-1  text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500 font-medium"
