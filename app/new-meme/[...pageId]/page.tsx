@@ -3,7 +3,7 @@ import Image from "next/image";
 import NotFoundPage from "./NotFound";
 import memeList from "../../../components/memelist.json";
 import withMemeModal, {
-  WithModalPageProps,
+  WithModalProps,
 } from "../../../components/EditMemeModal";
 import LoadingHorse from "../../../imgs/loading-horse.gif";
 import {
@@ -11,7 +11,11 @@ import {
   getMemeEndPoints,
 } from "../../../components/PageNav/PageUtils";
 
-const DynamicNewMemePage = ({ ModalButton, props }: WithModalPageProps) => {
+interface PageProps extends WithModalProps {
+  props: { params: { pageId: string } };
+}
+
+const DynamicNewMemePage = ({ props, ModalButton }: PageProps) => {
   const { pageId } = props.params;
 
   if (isInvalidPage(pageId)) return <NotFoundPage />;

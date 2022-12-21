@@ -6,20 +6,16 @@ type ModalButtonProps = {
   memeId: string;
 } & JSX.IntrinsicElements["button"];
 
-type ModalButtonType = React.FC<ModalButtonProps>;
-
-export interface WithModalPageProps {
-  ModalButton: ModalButtonType;
+export interface WithModalProps {
+  ModalButton: React.FC<ModalButtonProps>;
   props: any;
 }
 
-export default function withMemeModal(
-  WrappedComponent: React.FC<WithModalPageProps>
-) {
-  return (props: any) => {
+const withMemeModal =
+  (WrappedComponent: React.FC<WithModalProps>) => (incomingProps: any) => {
     const [meme, setMeme] = useState<null | string>(null);
 
-    const ModalButton: ModalButtonType = (pProps) => {
+    const ModalButton = (pProps: ModalButtonProps) => {
       const { memeId, ...props } = pProps;
       props.onClick = () => setMeme(memeId);
       return <button {...props}></button>;
@@ -47,8 +43,9 @@ export default function withMemeModal(
     return (
       <>
         {meme && <MemeModal />}
-        <WrappedComponent ModalButton={ModalButton} props={props} />
+        <WrappedComponent ModalButton={ModalButton} props={incomingProps} />
       </>
     );
   };
-}
+
+export default withMemeModal;
