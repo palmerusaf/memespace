@@ -35,7 +35,7 @@ function ThumbNail(props: { title: string; id: string }) {
   );
 }
 
-const DynamicNewMemePage = ({ props, openModal }: PageProps) => {
+const DynamicNewMemePage = ({ props, openModalWith }: PageProps) => {
   const { pageId } = props.params;
 
   if (isInvalidPage(pageId)) return <NotFoundPage />;
@@ -55,13 +55,13 @@ const DynamicNewMemePage = ({ props, openModal }: PageProps) => {
               key={id}
               className="flex justify-between bg-white flex-col m-2 rounded-lg p-2 shadow-md"
             >
-              <h2 className="text-ellipsis overflow-hidden text-center font-medium underline">
-                {title}
-              </h2>
+              <h2 className="w-full text-center font-medium ">{title}</h2>
               <ThumbNail title={title} id={id} />
               <button
-                onClick={() => openModal({ id })}
-                className="px-3 py-1  text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500 font-medium"
+                onClick={() => openModalWith({ id })}
+                className={
+                  "px-3 py-1  text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500 font-medium"
+                }
               >
                 Select
               </button>
@@ -73,4 +73,14 @@ const DynamicNewMemePage = ({ props, openModal }: PageProps) => {
   );
 };
 
-export default withMemeModal(DynamicNewMemePage);
+// export default withMemeModal(DynamicNewMemePage);
+export default withMemeModal(({ openModalWith, props }: PageProps) => (
+  <button
+    onClick={() => {
+      openModalWith({ id: "10-Guy" });
+    }}
+  >
+    open
+    {props.params.pageId}
+  </button>
+));
