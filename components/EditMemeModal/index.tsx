@@ -14,13 +14,13 @@ export interface WithModalProps {
 
 const withMemeModal =
   (WrappedComponent: React.FC<WithModalProps>) => (incomingProps: any) => {
-    const [meme, setMeme] = useState<EditMemeProps>({ id: null });
+    const [meme, setMeme] = useState<EditMemeProps>({ id: "yo" });
 
     const MemeModal = () => {
       const close = () => setMeme({ id: null });
       return (
         <div
-          className="flex absolute top-0 left-0 z-50 w-screen h-screen justify-center items-center transition-opacity  bg-opacity-40 bg-black"
+          className="flex absolute top-0 left-0 z-50 w-screen h-screen justify-center items-center    bg-blend-overlay backdrop-blur-sm"
           onClick={close}
         >
           <div
