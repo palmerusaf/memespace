@@ -2,27 +2,22 @@
 import React, { useState } from "react";
 import styles from "./EditMemeModal.module.css";
 
-type ModalButtonProps = {
-  memeId: string;
-} & JSX.IntrinsicElements["button"];
-
+interface EditMemeProps {
+  id: string | null;
+  topText?: string;
+  bottomText?: string;
+}
 export interface WithModalProps {
-  ModalButton: React.FC<ModalButtonProps>;
+  openModal: ({}: EditMemeProps) => void;
   props: any;
 }
 
 const withMemeModal =
   (WrappedComponent: React.FC<WithModalProps>) => (incomingProps: any) => {
-    const [meme, setMeme] = useState<null | string>(null);
-
-    const ModalButton = (pProps: ModalButtonProps) => {
-      const { memeId, ...props } = pProps;
-      props.onClick = () => setMeme(memeId);
-      return <button {...props}></button>;
-    };
+    const [meme, setMeme] = useState<EditMemeProps>({ id: null });
 
     const MemeModal = () => {
-      const close = () => setMeme(null);
+      const close = () => setMeme({ id: null });
       return (
         <div
           className="flex absolute top-0 left-0 z-50 w-screen h-screen justify-center items-center transition-opacity  bg-opacity-40 bg-black"
@@ -34,7 +29,7 @@ const withMemeModal =
             }}
             className={"w-1/2 h-1/2 text-black bg-white " + styles.popIn}
           >
-            {meme}
+            {meme.id}
           </div>
         </div>
       );
@@ -42,8 +37,8 @@ const withMemeModal =
 
     return (
       <>
-        {meme && <MemeModal />}
-        <WrappedComponent ModalButton={ModalButton} props={incomingProps} />
+        {meme.id && <MemeModal />}
+        <WrappedComponent openModal={setMeme} props={incomingProps} />
       </>
     );
   };
