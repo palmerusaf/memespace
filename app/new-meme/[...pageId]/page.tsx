@@ -1,16 +1,12 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { LoadingHorse, ErrorHorse } from "../../../imgs/gifs";
+import ErrorHorse from "@imgs/gifs/error-horse.gif";
+import LoadingHorse from "@imgs/gifs/loading-horse.gif";
 import NotFoundPage from "./NotFound";
-import memeList from "../../../components/memelist.json";
-import withMemeModal, {
-  WithModalProps,
-} from "../../../components/EditMemeModal";
-import {
-  isInvalidPage,
-  getMemeEndPoints,
-} from "../../../components/PageNav/PageUtils";
+import memeList from "@ui/memelist.json";
+import withMemeModal, { WithModalProps } from "@ui/EditMemeModal";
+import { isInvalidPage, getMemeEndPoints } from "@ui/PageNav/PageUtils";
 
 interface PageProps extends WithModalProps {
   props: { params: { pageId: string } };
@@ -73,14 +69,14 @@ const DynamicNewMemePage = ({ props, openModalWith }: PageProps) => {
   );
 };
 
-// export default withMemeModal(DynamicNewMemePage);
-export default withMemeModal(({ openModalWith, props }: PageProps) => (
-  <button
-    onClick={() => {
-      openModalWith({ id: "10-Guy" });
-    }}
-  >
-    open
-    {props.params.pageId}
-  </button>
-));
+export default withMemeModal(DynamicNewMemePage);
+// export default withMemeModal(({ openModalWith, props }: PageProps) => (
+//   <button
+//     onClick={() => {
+//       openModalWith({ id: "10-Guy" });
+//     }}
+//   >
+//     open
+//     {props.params.pageId}
+//   </button>
+// ));

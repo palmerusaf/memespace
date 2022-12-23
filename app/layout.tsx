@@ -1,7 +1,7 @@
 import Image from "next/image";
 import "./globals.css";
-import NavBarWrapper from "../components/NavBarWrapper";
-import Logo from "../components/logo/logo.png";
+import NavBarWrapper from "@ui/NavBarWrapper";
+import Logo from "@ui/logo/logo.png";
 
 export default function RootLayout({
   children,

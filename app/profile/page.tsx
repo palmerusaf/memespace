@@ -1,4 +1,4 @@
-import ComingSoon from "../../components/ComingSoon";
+import ComingSoon from "@ui/ComingSoon";
 
 function ProfilePage() {
   return <ComingSoon page="Profile" />;

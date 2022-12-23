@@ -14,8 +14,8 @@ export interface WithModalProps {
 
 const withMemeModal =
   (WrappedComponent: React.FC<WithModalProps>) => (incomingProps: any) => {
-    // const [meme, setMeme] = useState<EditMemeProps | null>(null);
-    const [meme, setMeme] = useState<EditMemeProps | null>({ id: "10-Guy" });
+    const [meme, setMeme] = useState<EditMemeProps | null>(null);
+    // const [meme, setMeme] = useState<EditMemeProps | null>({ id: "10-Guy" });
 
     const MemeModal = () => {
       if (!meme) return <></>;

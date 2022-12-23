@@ -1,4 +1,4 @@
-import ComingSoon from "../../components/ComingSoon";
+import ComingSoon from "@ui/ComingSoon";
 
 function FriendsListPage() {
   return <ComingSoon page="Friends List" />;
