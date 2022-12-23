@@ -44,13 +44,39 @@ Solution: Prefer local(close to where its used) code over centralized abstract c
 
 ## Root Dir
 
+Rule: root dir should have the following directories and files:
+
+- app
+- components
+- public
+- config files/folders
+- license
+- README.md
+- CONVENTIONS.md
+
+Rule: root dir should not have:
+
+- specialized dirs for imgs styles etc...
+
+Reason: grouping files that are used together is easier to reason than files that are simply the same type
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## App Dir
 
+Rule: only keep files here that are part of the next 13 app [file convention](https://beta.nextjs.org/docs/routing/fundamentals#the-app-directory)
+
+Reason: Keeping related components here requires the use of '()' surrounding folders which is awkward and causes route bugs if omitted. Also, keeping app pages/routes concerns separate from components concerns is a good balance of abstraction and makes layout, and pages easier to find.
+
+Rule: Keep nesting at two levels ie app/foo/bar
+
+Reason: More than two levels of nesting is harder to reason about.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Components Dir
+
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
