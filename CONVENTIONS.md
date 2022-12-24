@@ -140,6 +140,10 @@ Rule: Branches should be major features that merge into main, sub-branches shoul
 
 Reason: Having long running sub-branches is more complex than it needs to be
 
+Rule: Branch names should be separated by dashes('-')
+
+Reason: To be consistent with file/folder names so less thing is involved across the project
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
