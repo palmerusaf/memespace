@@ -1,0 +1,28 @@
+{
+  "Function Component": {
+    "prefix": "fc",
+    "body": [
+      "interface Props {",
+      "\t$2",
+      "}",
+      " ",
+      "const ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} = ({$3}:Props) => {",
+      "\treturn (\n \t$0 \n\t);",
+      "}",
+      " ",
+      "export default ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};"
+    ],
+    "description": "Function Component"
+  },
+  "Import { useState }": {
+    "prefix": "ims",
+    "body": ["import { useState } from 'react';\n"],
+    "description": "Import React, { useState }"
+  },
+
+  "Import { useState, useEffect }": {
+    "prefix": "imse",
+    "body": ["import { useState, useEffect } from 'react';\n"],
+    "description": "Import { useState, useEffect }"
+  }
+}

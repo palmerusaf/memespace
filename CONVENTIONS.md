@@ -57,6 +57,7 @@ Rule: root dir should have the following directories and files:
 - app
 - components
 - public
+- project-snippets
 - config files/folders
 - license
 - README.md
