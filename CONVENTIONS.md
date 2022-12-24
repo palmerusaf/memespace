@@ -7,6 +7,7 @@
   <summary>Table of Contents</summary>
 
   1. [Overall Philosophy](#overall-philosophy)
+  1. [Folder and File Name](#folder-and-file-names)
   1. [Root Dir](#root-dir)
   1. [App Dir](#app-dir)
   1. [Components Dir](#components-dir)
@@ -39,6 +40,14 @@ Reason for Abstraction: As a codebase becomes large it becomes complex and needs
 Problem: As things get broken down it becomes difficult to remember what does what or what goes where. Naming and organization also gets out of hand. Shared abstractions must be extended to be customized leading to more complexly
 
 Solution: Prefer local(close to where its used) code over centralized abstract code. Local code has more context, is easier reason about, and is easier to find
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Folder and File Names
+
+Rule: Folder and File names will be all lower case with a dash('-') used as a space
+
+Reason: Casing is to avoid a bug on windows, dash convention insures route folders and other folders are uniform
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Root Dir
@@ -135,12 +144,10 @@ Reason: Having long running sub-branches is more complex than it needs to be
 
 ## Coding Conventions
 
-Rule: Components Props should just be named Props
+Rule: Use [simple react snippets](https://github.com/burkeholland/simple-react-snippets) and snippet overrides in project-snippets folder see README.md inside folder for instructions
 
-Rule: Use single quotes
+Rule: For component stories use [storybook helper](https://github.com/riccardo-forina/storybook-vscode-helper)
 
-Reason: Its easier to type and if you need to use and apostrophe you can use template literal
-
-Rule: Use snippets that come with project
+Reason: Saves time and ensures uniform boilerplate
 
 <p align="right">(<a href="#top">back to top</a>)</p>
