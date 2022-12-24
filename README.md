@@ -58,6 +58,7 @@
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#project-conventions">Project Conventions</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -108,6 +109,13 @@ See the [open issues](https://github.com/palmerusaf/memespace/issues) for a full
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Project Conventions
+
+See convention link [here](https://github.com/palmerusaf/memespace/blob/master/CONVENTIONS.md) for a list of all the projects file/coding conventions.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -122,7 +130,6 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 <!-- LICENSE -->
 
 ## Licenses
