@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import LogoPic from "./logo/logo.png";
+import LogoPic from "@ui/shared/logo.png";
 
 interface Props {
   page: string;

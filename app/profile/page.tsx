@@ -1,7 +1,9 @@
-import ComingSoon from "@ui/ComingSoon";
+import ComingSoon from '@ui/shared/coming-soon';
 
-function ProfilePage() {
-  return <ComingSoon page="Profile" />;
-}
+interface Props {}
 
-export default ProfilePage;
+const Page = ({}: Props) => {
+  return <ComingSoon page='Profile' />;
+};
+
+export default Page;

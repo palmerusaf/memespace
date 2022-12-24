@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./EditMemeModal.module.css";
+import styles from "./index.module.css";
 
 interface EditMemeProps {
   id: string;
