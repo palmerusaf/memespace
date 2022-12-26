@@ -16,5 +16,8 @@ const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 export const TenGuy = Template.bind({});
 TenGuy.args = { modalId: '10-Guy' };
 
+export const OverflowScreen = Template.bind({});
+OverflowScreen.args = { modalId: 'American-Chopper-Argument' };
+
 export const Blank = Template.bind({});
 Blank.args = { modalId: '', link: 'test' };

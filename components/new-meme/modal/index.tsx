@@ -49,7 +49,7 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
           src={imgSrc}
           width={300}
           height={300}
-          className='rounded-md shadow-lg shadow-gray-400'
+          className='rounded-md shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96'
           alt={modalId.replaceAll('-', ' ')}
         />
         <Input ref={topRef} label='Top Text'></Input>
