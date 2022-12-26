@@ -19,5 +19,8 @@ TenGuy.args = { modalId: '10-Guy' };
 export const OverflowScreen = Template.bind({});
 OverflowScreen.args = { modalId: 'American-Chopper-Argument' };
 
+export const Narrow = Template.bind({});
+Narrow.args = { modalId: 'Criana' };
+
 export const Blank = Template.bind({});
 Blank.args = { modalId: '', link: 'test' };

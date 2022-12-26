@@ -1,8 +1,8 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import Image from 'next/image';
 import styles from './index.module.css';
 import Input from './input';
+import NextImage  from './NextImage';
 
 interface Props {
   modalId: string | null;
@@ -44,17 +44,11 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
           styles.popIn
         }
       >
-        <h1 className='font-bold'>{modalId.replaceAll('-', ' ')}</h1>
-        <Image
-          src={imgSrc}
-          width={300}
-          height={300}
-          className='rounded-md shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96'
-          alt={modalId.replaceAll('-', ' ')}
-        />
+        <h1 className='font-bold text-xl'>{modalId.replaceAll('-', ' ')}</h1>
+        <NextImage imgSrc={imgSrc} modalId={modalId} />
         <Input ref={topRef} label='Top Text'></Input>
         <Input ref={bottomRef} label='Bottom Text'></Input>
-        <span className='flex justify-evenly w-full'>
+        <span className='flex justify-between gap-1 w-full'>
           <button
             className={
               'px-2 py-0.5 text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-0.5 duration-300 font-medium shadow-md shadow-stone-400'
@@ -77,6 +71,14 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
             Lookup Origin
           </a>
         </span>
+        <button
+          className={
+            'px-2 py-0.5 text-center w-full bg-red-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-0.5 duration-300 font-medium shadow-md shadow-stone-400'
+          }
+          onClick={closeModal}
+        >
+          Close
+        </button>
       </div>
     </div>
   );
