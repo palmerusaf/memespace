@@ -13,5 +13,8 @@ export default {
 
 const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 
-export const Story = Template.bind({});
-Story.args = { modalId: '10-Guy' };
+export const TenGuy = Template.bind({});
+TenGuy.args = { modalId: '10-Guy' };
+
+export const Blank = Template.bind({});
+Blank.args = { modalId: '', link: 'test' };

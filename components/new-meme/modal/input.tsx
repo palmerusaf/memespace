@@ -1,16 +1,18 @@
+import { ForwardedRef, forwardRef } from 'react';
+
 interface Props {
   label: string;
   value?: string;
 }
-
-const Input = ({ label, value }: Props) => {
+const Input = ({ label, value }: Props, ref: ForwardedRef<unknown>) => {
   return (
-    <div className='relative w-full h-8 bg-gray-300 border-white border-2 rounded-full shadow-xl'>
+    <div className='relative w-full h-8 shrink-0 bg-gray-300 border-white border-2 rounded-full shadow-xl'>
       <input
         id={label}
         required
         className='px-2 absolute text-center h-8 peer w-full bg-transparent focus-visible:outline-none'
         value={value}
+        ref={ref}
         type='text'
         placeholder=' '
       />
@@ -32,4 +34,4 @@ const Input = ({ label, value }: Props) => {
   );
 };
 
-export default Input;
+export default forwardRef(Input);

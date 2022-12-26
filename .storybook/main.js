@@ -12,6 +12,7 @@ module.exports = {
     '@storybook/addon-postcss',
     'storybook-addon-next',
     'storybook-addon-pseudo-states',
+    '@storybook/addon-viewport',
   ],
   framework: '@storybook/react',
   core: {

@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import MemeList from '@ui/new-meme/meme-list.json';
 import { isInvalidPage, getMemeEndPoints } from '@ui/new-meme/nav/page-utils';
-import ThumbNail from '@ui/new-meme/page-id/ThumbNail';
-import Modal from '@ui/new-meme/page-id/modal';
+import ThumbNail from '@ui/new-meme/ThumbNail';
+import Modal from '@ui/new-meme/modal';
 
 interface Props {
   params: { pageId: string };
 }
 
-const DynamicNewMemePage = ({ params }: Props) => {
+const Page = ({ params }: Props) => {
   const { pageId } = params;
 
   if (isInvalidPage(pageId)) return notFound();
@@ -25,7 +25,7 @@ const DynamicNewMemePage = ({ params }: Props) => {
 
   return (
     <>
-      {modalId && <Modal modalId={modalId} />}
+      {modalId && <Modal setModalId={setModalId} modalId={modalId} />}
       <div className='overflow-scroll h-full'>
         <h1 className='text-center font-bold text-lg m-2'>Select Your Meme</h1>
         <div className='w-full h-full grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
@@ -56,4 +56,4 @@ const DynamicNewMemePage = ({ params }: Props) => {
   );
 };
 
-export default DynamicNewMemePage;
+export default Page;
