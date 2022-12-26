@@ -4,7 +4,7 @@ import React from 'react';
 import Modal from './index';
 
 export default {
-  title: 'Components/modal',
+  title: 'Components/New-Meme/Modal',
   component: Modal,
   args: {
     modalId: 'string',
@@ -14,4 +14,4 @@ export default {
 const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 
 export const Story = Template.bind({});
-Story.args = {};
+Story.args = { modalId: '10-Guy' };

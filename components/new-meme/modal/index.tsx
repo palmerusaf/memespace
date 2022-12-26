@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import styles from './index.module.css';
+import Input from './input';
 
 interface Props {
   modalId: string;
@@ -23,7 +24,7 @@ const Modal = ({ modalId }: Props) => {
           e.stopPropagation();
         }}
         className={
-          'flex flex-col items-center shadow-2xl w-full mx-2 p-4 h-3/4 bg-white rounded-lg' +
+          'flex flex-col gap-3 items-center shadow-2xl w-full mx-2 p-4 h-3/4 bg-white rounded-lg' +
           ' ' +
           styles.popIn
         }
@@ -39,7 +40,10 @@ const Modal = ({ modalId }: Props) => {
             Preview
           </button>
           <a
-            href={`https://knowyourmeme.com/search?context=entries&sort=relevance&q=${meme.replaceAll('-', ' ')}}`}
+            href={`https://knowyourmeme.com/search?context=entries&sort=relevance&q=${meme.replaceAll(
+              '-',
+              ' '
+            )}`}
             target='_blank'
             rel='noreferrer noopener'
             className={
@@ -49,6 +53,8 @@ const Modal = ({ modalId }: Props) => {
             Origin Story
           </a>
         </span>
+        <Input label='Top Text'></Input>
+        <Input label='Bottom Text'></Input>
       </div>
     </div>
   );
