@@ -9,8 +9,8 @@ interface Props {
 
 const Modal = ({ modalId }: Props) => {
   const [meme, setMeme] = useState(modalId);
-  const [bottomText, setBottomText] = useState('Bottom Text');
-  const [topText, setTopText] = useState('Top Text');
+  const [bottomText, setBottomText] = useState('');
+  const [topText, setTopText] = useState('');
 
   return (
     <div
@@ -34,7 +34,7 @@ const Modal = ({ modalId }: Props) => {
         <span className='flex justify-evenly w-full'>
           <button
             className={
-              'px-2 py-0.5  text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-0.5 duration-300 shadow-md hover:shadow-slate-500 font-medium'
+              'px-2 py-0.5  text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-0.5 duration-300 shadow-lg hover:shadow-slate-500 font-medium'
             }
           >
             Preview

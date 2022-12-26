@@ -21,8 +21,8 @@ const Input = ({ label, value }: Props) => {
         htmlFor={label}
         className={
           'px-2 ' +
-          'absolute shadow-lg translate-y-3/4 bg-gray-300 rounded-full ' +
-          'peer-placeholder-shown:translate-y-0 peer-placeholder-shown:left-11 duration-300 peer-placeholder-shown:shadow-none' +
+          'absolute shadow-lg translate-y-3/4 bg-gray-300 rounded-full outline outline-1  outline-white ' +
+          'peer-placeholder-shown:translate-y-0 peer-placeholder-shown:outline-none peer-placeholder-shown:left-11 duration-300 peer-placeholder-shown:shadow-none' +
           ' peer-focus-visible:translate-y-full peer-focus-visible:left-0 peer-focus-visible:shadow-lg'
         }
       >
