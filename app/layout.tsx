@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import './globals.css';
+import './tailwind.css';
 import NavWrapper from '@ui/app/nav-wrapper';
 import Logo from '@ui/shared/logo.png';
 

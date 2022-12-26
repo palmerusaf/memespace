@@ -25,7 +25,7 @@ const Modal = ({ modalId }: Props) => {
         className={
           'flex flex-col items-center shadow-2xl w-full mx-2 p-4 h-3/4 bg-white rounded-lg' +
           ' ' +
-          styles.ppIn
+          styles.popIn
         }
       >
         <h1 className='font-bold'>{meme.replaceAll('-', ' ')}</h1>
@@ -39,7 +39,7 @@ const Modal = ({ modalId }: Props) => {
             Preview
           </button>
           <a
-            href={`https://knowyourmeme.com/search?context=entries&sort=relevance&q=${title}`}
+            href={`https://knowyourmeme.com/search?context=entries&sort=relevance&q=${meme.replaceAll('-', ' ')}}`}
             target='_blank'
             rel='noreferrer noopener'
             className={
