@@ -26,7 +26,10 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
       `https://apimeme.com/meme?meme=${modalId}&top=${topText}&bottom=${bottomText}`
     );
   };
+
   const closeModal = () => setModalId(null);
+
+  const title = modalId.replaceAll('-', ' ');
 
   return (
     <div
@@ -45,8 +48,9 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
           styles.popIn
         }
       >
-        <h1 className='font-bold text-xl'>{modalId.replaceAll('-', ' ')}</h1>
-        <NextImage imgSrc={imgSrc} modalId={modalId} />
+        <h1 className='font-bold text-xl'>{title}</h1>
+        <p className="-mt-6">Right Click or Long Tap Image to Download</p>
+        <NextImage imgSrc={imgSrc} alt={title} />
         <Input ref={topRef} label='Top Text'></Input>
         <Input ref={bottomRef} label='Bottom Text'></Input>
         <span className='flex justify-between gap-1 w-full'>
@@ -59,10 +63,7 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
             Create Meme
           </button>
           <a
-            href={`https://knowyourmeme.com/search?context=entries&sort=relevance&q=${modalId.replaceAll(
-              '-',
-              ' '
-            )}`}
+            href={`https://knowyourmeme.com/search?context=entries&sort=relevance&q=${title}`}
             target='_blank'
             rel='noreferrer noopener'
             className={

@@ -6,10 +6,10 @@ import ErrorHorse from '@ui/new-meme/error-horse.gif';
 
 interface Props {
   imgSrc: string;
-  modalId: string;
+  alt: string;
 }
 
-const NextImage = ({ imgSrc, modalId }: Props) => {
+const NextImage = ({ imgSrc, alt: modalId }: Props) => {
   const [errorImg, setErrorImg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
