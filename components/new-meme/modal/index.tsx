@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './index.module.css';
 import Input from './input';
-import NextImage from './NextImage';
+import PreviewImage from './preview-image';
 
 interface Props {
   modalId: string | null;
@@ -43,15 +43,18 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
           e.stopPropagation();
         }}
         className={
-          'flex flex-col gap-4 items-center shadow-lg w-auto px-6 py-4 h-auto min-h-fit bg-white rounded-lg' +
+          'flex flex-col gap-4 items-center shadow-lg w-auto px-6 py-4 h-auto  bg-white rounded-lg' +
           ' ' +
           styles.popIn
         }
       >
         <h1 className='font-bold text-xl'>{title}</h1>
-        <p className='-mt-6'>Right Click or Long Tap Image to Download</p>
-        <NextImage imgSrc={imgSrc} alt={title} />
-        <form onSubmit={(e) => e.preventDefault()} className='flex flex-col gap-4 items-center w-full'>
+        <p className='-mt-4'>Right Click or Long Tap Image to Download</p>
+        <PreviewImage imgSrc={imgSrc} alt={title} />
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className='flex flex-col gap-4 items-center w-full'
+        >
           <Input ref={topRef} label='Top Text'></Input>
           <Input ref={bottomRef} label='Bottom Text'></Input>
           <span className='flex justify-between gap-1 w-full'>
