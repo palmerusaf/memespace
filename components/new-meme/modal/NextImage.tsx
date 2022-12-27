@@ -11,7 +11,10 @@ interface Props {
 
 const NextImage = ({ imgSrc, modalId }: Props) => {
   const [errorImg, setErrorImg] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+  }, [imgSrc]);
   return (
     <>
       {loading && (
@@ -33,7 +36,9 @@ const NextImage = ({ imgSrc, modalId }: Props) => {
           setLoading(false);
         }}
         onLoad={() => setLoading(false)}
-        className={`rounded-md shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96 `}
+        className={`rounded-md shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96 ${
+          loading && 'h-0'
+        }`}
         alt={modalId.replaceAll('-', ' ')}
       />
     </>
