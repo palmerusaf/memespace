@@ -10,34 +10,31 @@ interface Props {
 }
 
 const NextImage = ({ imgSrc, modalId }: Props) => {
-  const [img, setImg] = useState(imgSrc);
+  const [errorImg, setErrorImg] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const setErrorImg = () => {
-    setImg(ErrorHorse.src);
-    setLoading(false);
-  };
-  useEffect(() => {}, [loading]);
   return (
     <>
+      {loading && (
+        <Image
+          src={LoadingHorse.src}
+          alt='Loading Horse'
+          width={300}
+          height={300}
+          className={`rounded-md animate-pulse shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96
+        `}
+        />
+      )}
       <Image
-        src={LoadingHorse.src}
-        alt='Loading Horse'
+        src={errorImg || imgSrc}
         width={300}
         height={300}
-        className={` rounded-md animate-pulse shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96 ${
-          !loading && 'h-0'
-        }`}
-      />
-      <Image
-        src={img}
-        width={300}
-        height={300}
-        onError={setErrorImg}
+        onError={() => {
+          setErrorImg(ErrorHorse.src);
+          setLoading(false);
+        }}
         onLoad={() => setLoading(false)}
         className={`rounded-md shadow-lg shadow-gray-400 aspect-auto w-auto max-h-96 `}
         alt={modalId.replaceAll('-', ' ')}
-        placeholder='blur'
-        blurDataURL={LoadingHorse.src}
       />
     </>
   );

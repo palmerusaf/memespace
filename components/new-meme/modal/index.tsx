@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './index.module.css';
 import Input from './input';
-import NextImage  from './NextImage';
+import NextImage from './NextImage';
 
 interface Props {
   modalId: string | null;
@@ -21,6 +21,7 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
   const updateImgSrc = () => {
     const topText = encodeURIComponent(topRef.current.value);
     const bottomText = encodeURIComponent(bottomRef.current.value);
+
     setImgSrc(
       `https://apimeme.com/meme?meme=${modalId}&top=${topText}&bottom=${bottomText}`
     );
