@@ -14,7 +14,7 @@ const Nav = ({}: Props) => {
       <div className='w-7'>
         {activeIndex !== 1 && (
           <Link aria-label='Next Page' href={`/new-meme/${activeIndex - 1}`}>
-            <div className='w-7 text-center bg-blue-600 text-white rounded-full border-2 border-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500'>{`<`}</div>
+            <div className='select-none w-7 text-center bg-blue-600 text-white rounded-full border-2 border-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500'>{`<`}</div>
           </Link>
         )}
       </div>
@@ -24,7 +24,7 @@ const Nav = ({}: Props) => {
             <li key={index}>
               <Link aria-label={`Page ${index}`} href={`/new-meme/${index}`}>
                 <div
-                  className={`w-7 bg-blue-600 text-center rounded-full border-2 border-white ${
+                  className={`select-none w-7 bg-blue-600 text-center rounded-full border-2 border-white ${
                     index === activeIndex
                       ? '-translate-y-1 shadow-md text-white shadow-slate-500 text'
                       : 'md:hover:-translate-y-1 md:hover:text-white duration-300 shadow-md hover:shadow-slate-500'
@@ -41,7 +41,7 @@ const Nav = ({}: Props) => {
         {activeIndex !== 37 && (
           <Link href={`/new-meme/${activeIndex + 1}`}>
             <div
-              className='w-7 text-center bg-blue-600 text-white rounded-full border-2 border-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500'
+              className='select-none w-7 text-center bg-blue-600 text-white rounded-full border-2 border-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500'
               ariea-label='Previous Page'
             >{`>`}</div>
           </Link>

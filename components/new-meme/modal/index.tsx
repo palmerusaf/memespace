@@ -29,7 +29,7 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
 
   const closeModal = () => setModalId(null);
 
-  const title = modalId.replaceAll('-', ' ');
+  const title = modalId.replace(/-/g, ' ');
 
   return (
     <div

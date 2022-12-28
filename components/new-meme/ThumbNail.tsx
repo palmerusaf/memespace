@@ -17,7 +17,7 @@ const ThumbNail = ({ id }: Props) => {
   return (
     <Image
       src={imgSrc}
-      alt={id.replaceAll('-', ' ')}
+      alt={id.replace(/-/g, ' ')}
       className='w-full aspect-square object-cover rounded-md shadow-lg my-2'
       width={100}
       height={100}

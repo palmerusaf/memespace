@@ -13,7 +13,7 @@ const NavLink = ({ href, children }: Props) => {
   let active = href.startsWith(`/${segment}`);
 
   return (
-    <li className='flex-1'>
+    <li className='select-none flex-1'>
       <Link
         href={href}
         className={`block md:py-3 border-b-2 border-white border-opacity-0 ${
