@@ -10,7 +10,7 @@ const Input = ({ label, value }: Props, ref: ForwardedRef<unknown>) => {
       <input
         id={label}
         required
-        className='px-2 absolute text-center h-8 peer w-full bg-transparent focus-visible:outline-none'
+        className='px-2 absolute text-center h-full peer w-full bg-transparent focus-visible:outline-none'
         value={value}
         ref={ref}
         type='text'
