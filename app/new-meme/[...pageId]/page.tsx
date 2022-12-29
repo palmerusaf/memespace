@@ -28,7 +28,7 @@ const Page = ({ params }: Props) => {
     <>
       {memeId && <Modal setModalId={setMemeId} modalId={memeId} />}
       <div className='overflow-scroll h-full relative'>
-        <h1 className='text-center font-bold text-lg m-2'>Select Your Meme</h1>
+        <h1 className='text-center w-full font-bold text-lg m-2'>Select Your Meme</h1>
         <div className='w-full sticky top-1 flex justify-center'>
           <DropDown
             optionValues={MemeList}
