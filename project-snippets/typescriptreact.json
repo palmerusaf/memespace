@@ -3,14 +3,15 @@
     "prefix": "fc",
     "body": [
       "interface Props {",
-      "\t$2",
+      "\t$1",
       "}",
       " ",
-      "const ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} = ({$3}:Props) => {",
+      "const ${2:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}} = ({$3}:Props) => {",
+      "\t$4",
       "\treturn (\n \t$0 \n\t);",
       "}",
       " ",
-      "export default ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};"
+      "export default ${2:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}};"
     ],
     "description": "Function Component"
   },
@@ -24,5 +25,29 @@
     "prefix": "imse",
     "body": ["import { useState, useEffect } from 'react';\n"],
     "description": "Import { useState, useEffect }"
+  },
+  "Create a Storybook story (ts)": {
+    "prefix": "story",
+    "body": [
+      "import { ComponentStory, ComponentMeta } from '@storybook/react';",
+      "import React from 'react';",
+      "",
+      "import  ${1:${TM_FILENAME/(.*).stories.tsx?/${1:/pascalcase}/g}}  from './${2:${TM_FILENAME/(.*).stories.tsx?/${1}/}}';",
+      "",
+      "export default {",
+      "  title: '${3:Components}/${4:${TM_FILENAME/(.*).stories.tsx?/${1}/}}',",
+      "  component: ${1:${TM_FILENAME/(.*).stories.tsx?/${1}/}},",
+      "  args: {},",
+      "} as ComponentMeta<typeof ${1:${TM_FILENAME/(.*).stories.tsx?/${1}/}}>;",
+      "",
+      "const Template: ComponentStory<typeof ${1:${TM_FILENAME/(.*).stories.tsx?/${1}/}}> = (args) => (",
+      "  <${1:${TM_FILENAME/(.*).stories.tsx?/${1}/}} {...args} />",
+      ");",
+      "",
+      "export const ${5:Story} = Template.bind({});",
+      "$5.args = {};",
+      "$0"
+    ],
+    "description": "Create a Storybook story"
   }
 }

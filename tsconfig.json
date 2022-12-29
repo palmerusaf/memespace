@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "es5",
     "lib": [
       "dom",
@@ -22,7 +23,10 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@ui/*":["./components/*"],
+  }
   },
   "include": [
     "next-env.d.ts",

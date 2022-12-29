@@ -4,7 +4,7 @@
 *** that would make this better, please fork the repo and create a pull request
 *** or simply open an issue with the tag "enhancement".
 
-*** Thanks again! Now go create something AMAZING! :D
+\*\*\* Thanks again! Now go create something AMAZING! :D
 -->
 
 <!-- PROJECT SHIELDS -->
@@ -72,7 +72,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://palmerusaf.github.io/memespace)
 
-A social media app exclusively for memes. 
+A social media app exclusively for memes.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -114,7 +114,6 @@ See the [open issues](https://github.com/palmerusaf/memespace/issues) for a full
 See convention link [here](https://github.com/palmerusaf/memespace/blob/master/CONVENTIONS.md) for a list of all the projects file/coding conventions.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- CONTRIBUTING -->
 
@@ -172,4 +171,4 @@ Project Link: [https://github.com/palmerusaf/memespace](https://github.com/palme
 [license-url]: https://github.com/palmerusaf/memespace/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/branden-palmer-968765120
-[product-screenshot]: ./src/imgs/screen-shot.png
+[product-screenshot]: ./screen-shot.png
