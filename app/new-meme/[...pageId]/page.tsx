@@ -28,7 +28,9 @@ const Page = ({ params }: Props) => {
     <>
       {memeId && <Modal setModalId={setMemeId} modalId={memeId} />}
       <div className='overflow-scroll h-full relative'>
-        <h1 className='text-center w-full font-bold text-lg m-2'>Select Your Meme</h1>
+        <h1 className='text-center w-full font-bold text-lg m-2'>
+          Select Your Meme
+        </h1>
         <div className='w-full sticky top-1 flex justify-center'>
           <DropDown
             optionValues={MemeList}
@@ -66,3 +68,17 @@ const Page = ({ params }: Props) => {
 };
 
 export default Page;
+
+export async function generateStaticParams() {
+  return getAllValidPaths();
+
+  function getAllValidPaths() {
+    const paths = [];
+    const LAST_PAGE = 37;
+    const FIRST_PAGE = 1;
+    for (let i = FIRST_PAGE; i <= LAST_PAGE; i++) {
+      paths.push({ params: { pageId: [`${i}`] } });
+    }
+    return paths;
+  }
+}
