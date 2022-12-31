@@ -38,7 +38,7 @@
     <a href="https://github.com/palmerusaf/memespace"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://palmerusaf.github.io/memespace">View Demo</a>
+    <a href="https://memespace.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/palmerusaf/memespace/issues">Report Bug</a>
     ·
@@ -70,7 +70,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://palmerusaf.github.io/memespace)
+[![Product Name Screen Shot][product-screenshot]](https://memespace.vercel.app/)
 
 A social media app exclusively for memes.
 
