@@ -78,13 +78,13 @@ A social media app exclusively for memes.
 
 ### Built With
 
-- [React.js](https://reactjs.org/)
-- [useContext Hook](https://reactjs.org/docs/context.html)
-- [Jest](https://jestjs.io/)
-- [Firebase](https://firebase.google.com/)
-- [Rules Unit Testing](https://www.npmjs.com/package/@firebase/rules-unit-testing)
-- [tailwindcss](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [![jest]](https://jestjs.io/)
+- [![nextjs]](https://nextjs.org/)
+- [![react]](https://reactjs.org/)
+- [![firebase]](https://firebase.google.com/)
+- [![storybook]](https://storybook.js.org/)
+- [![typescript]](https://www.typescriptlang.org/)
+- [![tailwindcss]](https://tailwindcss.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -96,7 +96,7 @@ The purpose of this project is to serve as a capstone project to show off everyt
 
 ## Roadmap
 
-- [ ] Add meme creator
+- [x] Add meme creator
 - [ ] Add user login
 - [ ] Add friends list
 - [ ] Add comment system
@@ -152,6 +152,7 @@ Project Link: [https://github.com/palmerusaf/memespace](https://github.com/palme
 ## Acknowledgments
 
 - [The Odin Project](https://www.theodinproject.com/)
+- [APIMeme Generator](https://apimeme.com)
 - [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -172,3 +173,13 @@ Project Link: [https://github.com/palmerusaf/memespace](https://github.com/palme
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/branden-palmer-968765120
 [product-screenshot]: ./screen-shot.png
+
+<!-- Badges -->
+
+[tailwindcss]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
+[react]: https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
+[jest]: https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white
+[typescript]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+[storybook]: https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white
+[nextjs]: https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white
+[firebase]: https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase
