@@ -5,7 +5,7 @@ import Input from './input';
 import PreviewImage from './preview-image';
 
 interface Props {
-  modalId: string | null;
+  modalId: string;
   setModalId: React.Dispatch<React.SetStateAction<string | null>>;
   link?: string;
 }
@@ -15,10 +15,12 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
     link ||
       `https://apimeme.com/meme?meme=${modalId}&top=top+text&bottom=bottom+text`
   );
-  const topRef = useRef(null);
-  const bottomRef = useRef(null);
+  const topRef = useRef<HTMLInputElement>(null);
+  const bottomRef = useRef<HTMLInputElement>(null);
 
   const updateImgSrc = () => {
+    if (!(topRef && topRef.current)) return;
+    if (!(bottomRef && bottomRef.current)) return;
     const topText = encodeURIComponent(topRef.current.value);
     const bottomText = encodeURIComponent(bottomRef.current.value);
 

@@ -14,15 +14,15 @@ interface Props {
 const Page = ({ params }: Props) => {
   const { pageId } = params;
 
+  // set meme for modal and drop down
+  const [memeId, setMemeId] = useState<null | string>(null);
+
   if (isInvalidPage(pageId)) return notFound();
 
   // define sub-list to display based on page number
   const pageNum: number = parseInt(pageId);
   const endPoints = getMemeEndPoints(pageNum);
   const memeSubList = MemeList.slice(endPoints.start, endPoints.end);
-
-  // set meme for modal and drop down
-  const [memeId, setMemeId] = useState<null | string>(null);
 
   return (
     <>

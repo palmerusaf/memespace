@@ -4,7 +4,10 @@ interface Props {
   label: string;
   value?: string;
 }
-const Input = ({ label, value }: Props, ref: ForwardedRef<unknown>) => {
+const Input = (
+  { label, value }: Props,
+  ref: React.ForwardedRef<HTMLInputElement>
+) => {
   return (
     <div className='relative w-full h-8 shrink-0 bg-gray-300 border-white border-2 rounded-full shadow-xl'>
       <input

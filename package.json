@@ -7,7 +7,8 @@
     "test": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "next lint"
+    "check-types": "tsc --noemit",
+    "lint": "npm run check-types && next lint --dir ."
   },
   "dependencies": {
     "next": "latest",

@@ -7,7 +7,7 @@ interface Props {}
 
 const Nav = ({}: Props) => {
   let segment = useSelectedLayoutSegment();
-  let activeIndex = isInvalidPage(segment) ? 1 : parseInt(segment);
+  let activeIndex = isInvalidPage(segment) ? 1 : parseInt(segment || '1');
 
   return (
     <nav className='flex text-gray-900 gap-1 font-bold'>

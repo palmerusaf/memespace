@@ -31,7 +31,7 @@ const DropDown = ({
         >
           <option value=''>{placeholder}</option>
           {optionValues.map((value) => (
-            <Option value={value} />
+            <Option key={value} value={value} />
           ))}
         </select>
       </div>
