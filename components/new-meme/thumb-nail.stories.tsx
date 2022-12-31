@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import ThumbNail from './ThumbNail';
+import ThumbNail from './thumb-nail';
 
 export default {
   title: 'Components/New-Meme/ThumbNail',

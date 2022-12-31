@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import MemeList from '@ui/new-meme/meme-list.json';
 import { isInvalidPage, getMemeEndPoints } from '@ui/new-meme/nav/page-utils';
-import ThumbNail from '@ui/new-meme/ThumbNail';
+import ThumbNail from '@ui/new-meme/thumb-nail';
 import Modal from '@ui/new-meme/modal';
 import DropDown from '@ui/new-meme/drop-down';
 
