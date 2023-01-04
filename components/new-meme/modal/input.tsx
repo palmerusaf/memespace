@@ -9,9 +9,9 @@ const Input = (
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
   const notEmpty =
-    'absolute shadow-lg translate-y-3/4 bg-gray-300 rounded-full scale-75 outline outline-1 outline-white left-1/2 -translate-x-1/2';
+    'absolute shadow-lg translate-y-3/4 bg-gray-300 rounded-full scale-75 border border-1 border-white left-1/2 -translate-x-1/2';
   const empty =
-    'peer-placeholder-shown:translate-y-0 peer-placeholder-shown:translate-x-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:outline-none peer-placeholder-shown:left-11 duration-300 peer-placeholder-shown:shadow-none';
+    'peer-placeholder-shown:translate-y-0 peer-placeholder-shown:translate-x-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:border-none peer-placeholder-shown:left-11 duration-300 peer-placeholder-shown:shadow-none';
   const focused =
     'peer-focus-visible:translate-y-full peer-focus-visible:scale-75 peer-focus-visible:left-1/2 peer-focus-visible:-translate-x-1/2 peer-focus-visible:shadow-lg';
   return (
