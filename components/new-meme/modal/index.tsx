@@ -57,7 +57,7 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
           src={imgSrc}
           width={300}
           height={300}
-          className={`rounded-md shadow-lg shadow-gray-400  max-w-[300px] w-auto max-h-96 `}
+          className={`rounded-md shadow-lg shadow-gray-400 max-h-96`}
         />
         <form
           onSubmit={(e) => e.preventDefault()}
