@@ -11,9 +11,11 @@
     "lint": "npm run check-types && next lint --dir ."
   },
   "dependencies": {
+    "firebase": "^9.15.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "storybook-addon-next": "^1.7.1"
   },
   "devDependencies": {
