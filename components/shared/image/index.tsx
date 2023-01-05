@@ -22,8 +22,11 @@ const ImageWithLoadState = ({
   alt,
 }: Props) => {
   const [imgSrc, setImgSrc] = useState(src);
-  const setToErrorImg = () => setImgSrc(ErrorHorse.src);
+  const setErrorImg = () => setImgSrc(ErrorHorse.src);
 
+  const [loadStyle, setLoadStyle] = useState('animate-pulse');
+  const removeLoadStyle = () => setLoadStyle('');
+;
   useEffect(() => {
     setImgSrc(src);
   }, [src]);
@@ -33,7 +36,6 @@ const ImageWithLoadState = ({
       src={imgSrc}
       key={imgSrc}
       alt={alt}
-      className={className}
       width={width}
       height={height}
       fill={fill}
@@ -41,7 +43,12 @@ const ImageWithLoadState = ({
         background: `url(${LoadingHorse.src})`,
         backgroundSize: 'cover',
       }}
-      onError={setToErrorImg}
+      onError={() => {
+        removeLoadStyle();
+        setErrorImg();
+      }}
+      onLoad={removeLoadStyle}
+      className={`${className} ${loadStyle}`}
     />
   );
 };
