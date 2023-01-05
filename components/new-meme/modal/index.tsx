@@ -1,8 +1,8 @@
 'use client';
+import ImageWithLoadState from '@ui/shared/image';
 import React, { useRef, useState } from 'react';
 import styles from './index.module.css';
 import Input from './input';
-import PreviewImage from './preview-image';
 
 interface Props {
   modalId: string;
@@ -52,7 +52,13 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
       >
         <h1 className='font-bold text-xl'>{title}</h1>
         <p className='-mt-4'>Right Click or Long Tap Image to Download</p>
-        <PreviewImage imgSrc={imgSrc} alt={title} />
+        <ImageWithLoadState
+          alt={title}
+          src={imgSrc}
+          width={300}
+          height={300}
+          className={`rounded-md shadow-lg shadow-gray-400  max-w-[300px] w-auto max-h-96 `}
+        />
         <form
           onSubmit={(e) => e.preventDefault()}
           className='flex flex-col gap-4 items-center w-full'

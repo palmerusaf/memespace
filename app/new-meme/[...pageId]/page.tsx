@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import MemeList from '@ui/new-meme/meme-list.json';
 import { isInvalidPage, getMemeEndPoints } from '@ui/new-meme/nav/page-utils';
-import ThumbNail from '@ui/new-meme/thumb-nail';
 import Modal from '@ui/new-meme/modal';
 import DropDown from '@ui/new-meme/drop-down';
+import ImageWithLoadState from '@ui/shared/image';
 
 interface Props {
   params: { pageId: string };
@@ -51,7 +51,13 @@ const Page = ({ params }: Props) => {
                 <h2 className='w-full text-center font-medium '>
                   {id.replace(/-/g, ' ')}
                 </h2>
-                <ThumbNail id={id} />
+                <ImageWithLoadState
+                  src={`https://apimeme.com/thumbnail?name=${id}`}
+                  alt={id.replace(/-/g, ' ')}
+                  className='w-full aspect-square object-cover rounded-md shadow-lg my-2'
+                  width={100}
+                  height={100}
+                />
                 <button
                   onClick={() => setMemeId(id)}
                   className={
