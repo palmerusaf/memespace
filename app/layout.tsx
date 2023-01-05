@@ -13,7 +13,7 @@ const Layout = ({ children }: Props) => {
       <head />
       <body>
         <header className='fixed top-0 h-14 md:h-16 md:z-50 bg-blue-700 w-full flex justify-center'>
-          <Image src={Logo} width={350} alt='logo' />
+          <Image src={Logo} fill={true} alt='logo' />
         </header>
         <NavWrapper>{children}</NavWrapper>
       </body>
