@@ -19,5 +19,8 @@ PageOne.args = { params: { pageId: '1' } };
 export const LastPage = Template.bind({});
 LastPage.args = { params: { pageId: '37' } };
 
+export const Overflow = Template.bind({});
+Overflow.args = { params: { pageId: '11' } };
+
 export const NotFound = Template.bind({});
 NotFound.args = { params: { pageId: 's' } };

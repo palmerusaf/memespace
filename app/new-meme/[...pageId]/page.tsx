@@ -48,7 +48,7 @@ const Page = ({ params }: Props) => {
                 key={id}
                 className='flex justify-between bg-white flex-col m-2 rounded-lg p-2 shadow-md'
               >
-                <h2 className='w-full text-center font-medium '>
+                <h2 className='w-full text-center font-medium overflow-ellipsis overflow-hidden'>
                   {id.replace(/-/g, ' ')}
                 </h2>
                 <ImageWithLoadState
