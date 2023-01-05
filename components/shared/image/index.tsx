@@ -26,7 +26,6 @@ const ImageWithLoadState = ({
 
   const [loadStyle, setLoadStyle] = useState('animate-pulse');
   const removeLoadStyle = () => setLoadStyle('');
-;
   useEffect(() => {
     setImgSrc(src);
   }, [src]);
