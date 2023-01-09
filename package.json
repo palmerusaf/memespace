@@ -9,8 +9,8 @@
     "build-storybook": "build-storybook",
     "check-types": "tsc --noemit",
     "lint": "npm run check-types && next lint --dir .",
-    "format": "prettier --write .",
-    "format:staged": "pretty-quick --staged",
+    "format": "prettier --ignore-path .gitignore --write .",
+    "format:staged": "pretty-quick --staged --ignore-path .gitignore",
     "prepare": "husky install"
   },
   "dependencies": {
