@@ -22,15 +22,15 @@ function withAuth(WithAuthComponent: AuthComponent) {
 function LoggedOut() {
   const Divider = ({ label }: { label: string }) => {
     return (
-      <h2 className='grid grid-cols-[auto,_1fr] w-full items-center'>
-        {/* <span className='h-0 border-b border-black mx-2'></span> */}
-        <span className='font-bold ml-2'>{label}</span>
+      <h2 className='grid grid-cols-[auto,auto,_1fr] w-full items-center'>
+        <span className='h-0 border-b border-black mx-2 w-4'></span>
+        <span className='font-bold'>{label}</span>
         <span className='h-0 border-b border-black mx-2'></span>
       </h2>
     );
   };
   return (
-    <div className='flex flex-col h-full w-full px-2'>
+    <div className='flex flex-col justify-center h-full w-full px-2'>
       <h1 className='w-full text-center font-extrabold text-xl my-4 underline'>
         Login Below
       </h1>
