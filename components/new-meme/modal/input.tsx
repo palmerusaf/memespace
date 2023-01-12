@@ -25,11 +25,14 @@ const Input = (
         type='text'
         placeholder=' '
       />
-      <span className='opacity-0 peer-placeholder-shown:opacity-100 peer-focus-within:opacity-0 ml-2 absolute z-10 duration-300'>
-        Enter
+      <span className='opacity-0 peer-placeholder-shown:opacity-100 peer-focus-within:opacity-0 ml-3 absolute z-10 duration-300 flex h-full items-center'>
+        <span>Enter</span>
       </span>
-      <label htmlFor={label} className={`px-2 ${notEmpty} ${empty} ${focused}`}>
-        {label}
+      <label
+        htmlFor={label}
+        className={`flex h-full items-center px-3 ${notEmpty} ${empty} ${focused}`}
+      >
+        <span>{label}</span>
       </label>
     </div>
   );
