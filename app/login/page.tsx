@@ -1,4 +1,5 @@
 import CenteredWithLogo from '@ui/shared/centered-with-logo';
+import Input from '@ui/login/input';
 
 interface AuthProps {
   isAuth: boolean;
@@ -20,14 +21,16 @@ function withAuth(WithAuthComponent: AuthComponent) {
 
 function LoggedOut() {
   return (
-    <div className='flex flex-col h-full w-full justify-center items-center px-2 gap-2'>
-      <button className='bg-red-700 py-1 rounded-2xl border-2 w-full border-gray-700 text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'>
-        Continue with Google
+    <form className='flex flex-col h-full w-full justify-center items-center px-2 gap-2'>
+      <h1 className=''>New Use</h1>
+      <Input label='User Name' />
+      <button className='bg-red-700 py-1 rounded-2xl border-2 w-full border-gray-700 text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl mt-4'>
+        Sign in with Google
       </button>
       <button className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-gray-700 text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'>
-        Continue with Facebook
+        Sign in with Facebook
       </button>
-    </div>
+    </form>
   );
 }
 
