@@ -1,4 +1,4 @@
-import moduleName from 'module';
+import ComingSoon from '@ui/shared/coming-soon';
 
 interface Props {}
 
