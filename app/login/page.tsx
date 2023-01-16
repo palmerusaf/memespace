@@ -1,25 +1,37 @@
-import CenteredWithLogo from '@ui/shared/centered-with-logo';
+'use client';
 import Input from '@ui/login/input';
+import {
+  connectAuthEmulator,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithRedirect,
+  onAuthStateChanged,
+  getAuth,
+} from 'firebase/auth';
+import { app } from '@ui/shared/firebase';
+const auth = getAuth(app);
+connectAuthEmulator(auth, 'http://localhost:9099');
 
-interface AuthProps {
-  isAuth: boolean;
-  otherProps: any;
-}
-
-const Page = ({ isAuth }: AuthProps) => (isAuth ? <LoggedIn /> : <LoggedOut />);
+const Page = () => {
+  onAuthStateChanged(auth, console.log);
+  if (auth.currentUser) {
+    return <div>you are signed in as {auth.currentUser.displayName}</div>;
+  } else {
+    return <LoggedOut />;
+  }
+};
 
 export default Page;
 
-type AuthComponent = ({ isAuth, otherProps }: AuthProps) => JSX.Element;
-
-function withAuth(WithAuthComponent: AuthComponent) {
-  return function Component(otherProps: any) {
-    const isAuth = false;
-    return <WithAuthComponent isAuth={isAuth} otherProps={otherProps} />;
-  };
-}
-
 function LoggedOut() {
+  const handleGoogleSignUp = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+  };
+  const handleFacebookSignUp = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithRedirect(auth, provider);
+  };
   const Divider = ({ label }: { label: string }) => {
     return (
       <h2 className='grid grid-cols-[auto,auto,_1fr] w-full items-center'>
@@ -38,10 +50,16 @@ function LoggedOut() {
         <form className='flex flex-col w-full justify-center items-center gap-2'>
           <Divider label='New User' />
           <Input label='User Name' />
-          <button className='bg-red-700 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl mt-4'>
+          <button
+            onClick={handleGoogleSignUp}
+            className='bg-red-700 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl mt-4'
+          >
             Sign up with Google
           </button>
-          <button className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'>
+          <button
+            onClick={handleFacebookSignUp}
+            className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'
+          >
             Sign up with Facebook
           </button>
         </form>
@@ -57,8 +75,4 @@ function LoggedOut() {
       </div>
     </div>
   );
-}
-
-function LoggedIn() {
-  return <div>you logged in</div>;
 }
