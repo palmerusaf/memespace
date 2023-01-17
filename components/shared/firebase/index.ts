@@ -1,5 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useState } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,3 +14,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+console.log(app);
+
+export const useLoggedIn = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  onAuthStateChanged(auth, (user) => setLoggedIn(user !== null));
+  return { loggedIn };
+};
