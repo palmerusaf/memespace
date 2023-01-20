@@ -7,7 +7,8 @@ import {
   signInWithRedirect,
   getAuth,
 } from 'firebase/auth';
-import { app, useLoggedIn } from '@ui/shared/firebase';
+import { app, db, useLoggedIn } from '@ui/shared/firebase-utils';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 const auth = getAuth(app);
 connectAuthEmulator(auth, 'http://localhost:9099');
 
@@ -46,7 +47,10 @@ function LoggedOut() {
         <h1 className='w-full text-center font-extrabold text-xl my-4 underline'>
           Login Below
         </h1>
-        <form className='flex flex-col w-full justify-center items-center gap-2'>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className='flex flex-col w-full justify-center items-center gap-2'
+        >
           <Divider label='New User' />
           <Input label='User Name' />
           <button

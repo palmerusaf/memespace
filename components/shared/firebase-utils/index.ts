@@ -20,10 +20,10 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-connectAuthEmulator(auth, 'https://localhost:9099', { disableWarnings: true });
+connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
 
 export const db = getFirestore(app);
-connectFirestoreEmulator(db, 'https://localhost', 8080);
+connectFirestoreEmulator(db, 'localhost', 9100);
 
 export const useLoggedIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);
