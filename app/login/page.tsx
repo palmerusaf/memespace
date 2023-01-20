@@ -5,17 +5,16 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithRedirect,
-  onAuthStateChanged,
   getAuth,
 } from 'firebase/auth';
-import { app } from '@ui/shared/firebase';
+import { app, useLoggedIn } from '@ui/shared/firebase';
 const auth = getAuth(app);
 connectAuthEmulator(auth, 'http://localhost:9099');
 
 const Page = () => {
-  onAuthStateChanged(auth, console.log);
-  if (auth.currentUser) {
-    return <div>you are signed in as {auth.currentUser.displayName}</div>;
+  const { loggedIn } = useLoggedIn();
+  if (loggedIn) {
+    return <div>you are signed in</div>;
   } else {
     return <LoggedOut />;
   }

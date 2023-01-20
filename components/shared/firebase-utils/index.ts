@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  connectAuthEmulator,
+} from 'firebase/auth';
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { useState } from 'react';
 
 const firebaseConfig = {
@@ -15,7 +20,10 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-console.log(app);
+connectAuthEmulator(auth, 'https://localhost:9099', { disableWarnings: true });
+
+export const db = getFirestore(app);
+connectFirestoreEmulator(db, 'https://localhost', 8080);
 
 export const useLoggedIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);
