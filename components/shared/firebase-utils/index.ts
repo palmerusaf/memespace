@@ -5,7 +5,7 @@ import {
   connectAuthEmulator,
 } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -27,6 +27,8 @@ connectFirestoreEmulator(db, 'localhost', 9100);
 
 export const useLoggedIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  onAuthStateChanged(auth, (user) => setLoggedIn(user !== null));
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => setLoggedIn(user !== null));
+  }, []);
   return { loggedIn };
 };

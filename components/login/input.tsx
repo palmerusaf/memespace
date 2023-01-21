@@ -4,7 +4,7 @@ interface Props {
   label: string;
   value?: string;
 }
-const Input = (
+const input = (
   { label, value }: Props,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
@@ -38,4 +38,4 @@ const Input = (
   );
 };
 
-export default forwardRef(Input);
+export const Input = forwardRef(input);
