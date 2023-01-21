@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
@@ -15,7 +16,7 @@
   },
   "dependencies": {
     "firebase": "^9.15.0",
-    "next": "latest",
+    "next": "13.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "storybook-addon-next": "^1.7.1"

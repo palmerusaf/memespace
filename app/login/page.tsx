@@ -1,13 +1,13 @@
 'use client';
-import { Divider } from '@ui/login';
+import { Divider, Input, PageWrapper } from '@ui/login';
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithRedirect,
 } from 'firebase/auth';
 import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
-import { doc, getDoc } from 'firebase/firestore';
-import { use } from 'react';
+import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import React, { use, useRef } from 'react';
 
 async function getUserName() {
   if (!auth.currentUser) return null;
@@ -16,6 +16,7 @@ async function getUserName() {
   return res.data().userName;
 }
 const Page = () => {
+  return <SetUserNameForm />;
   const { loggedIn } = useLoggedIn();
   if (!loggedIn) return <SignInForm />;
 
@@ -29,30 +30,61 @@ export default Page;
 
 function SignInForm() {
   return (
-    <div className='flex flex-col items-center w-full h-full'>
-      <div className='flex flex-col justify-center h-full w-full px-2 max-w-xl'>
-        <div className='flex flex-col w-full justify-center items-center gap-2'>
-          <Divider label='Sign In Below' />
-          <button
-            onClick={() => signInWithRedirect(auth, new GoogleAuthProvider())}
-            className='bg-red-700 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl mt-4'
-          >
-            Continue with Google
-          </button>
-          <button
-            onClick={() => signInWithRedirect(auth, new FacebookAuthProvider())}
-            className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'
-          >
-            Continue with Facebook
-          </button>
-        </div>
+    <PageWrapper>
+      <div className='flex flex-col w-full justify-center items-center gap-2'>
+        <Divider label='Sign In Below' />
+        <button
+          onClick={() => signInWithRedirect(auth, new GoogleAuthProvider())}
+          className='bg-red-700 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl mt-4'
+        >
+          Continue with Google
+        </button>
+        <button
+          onClick={() => signInWithRedirect(auth, new FacebookAuthProvider())}
+          className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'
+        >
+          Continue with Facebook
+        </button>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
-function SetUserNameForm() {
-  return <div>set username</div>;
+
+export function SetUserNameForm() {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const setUserNameInDB = (userName: string) => {
+    if (!auth.currentUser) return;
+    setDoc(doc(db, 'users', auth.currentUser?.uid), {
+      userName,
+      createdDate: serverTimestamp(),
+    });
+  };
+  return (
+    <PageWrapper>
+      <Divider label='Set Your User Name' />
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className='flex flex-col gap-3'
+      >
+        <Input ref={inputRef} label='User Name' />
+        <button
+          onClick={() => {
+            if (!inputRef || !inputRef.current) return;
+            setUserNameInDB(inputRef.current.value);
+          }}
+          className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'
+        >
+          Continue
+        </button>
+      </form>
+    </PageWrapper>
+  );
 }
+
 function PostSignInOptions({ userName }: { userName: string }) {
-  return <div>signed In as {userName}</div>;
+  return (
+    <PageWrapper>
+      <div>signed In as {userName}</div>
+    </PageWrapper>
+  );
 }
