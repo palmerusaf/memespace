@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export * from './input';
 
 export function PageWrapper({ children }: { children: React.ReactNode }) {
@@ -13,15 +15,19 @@ export function PageWrapper({ children }: { children: React.ReactNode }) {
 interface ButtonProps {
   className?: string;
   onClick?: (any: any) => void;
+  href?: string;
   children: React.ReactNode;
 }
 
-export const Button = ({ onClick, className, children }: ButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl ${className}`}
-    >
+export const Button = ({ onClick, className, children, href }: ButtonProps) => {
+  const buttonStyle = `py-1 rounded-2xl text-center border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl bg-blue-600 ${className}`;
+
+  return href ? (
+    <Link onClick={onClick} className={buttonStyle} href={href}>
+      {children}
+    </Link>
+  ) : (
+    <button onClick={onClick} className={buttonStyle}>
       {children}
     </button>
   );

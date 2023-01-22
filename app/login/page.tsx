@@ -40,7 +40,6 @@ function SignInForm() {
         </Button>
         <Button
           onClick={() => signInWithRedirect(auth, new FacebookAuthProvider())}
-          className='bg-blue-600'
         >
           Continue with Facebook
         </Button>
@@ -83,7 +82,11 @@ export function SetUserNameForm() {
 function PostSignInOptions({ userName }: { userName: string }) {
   return (
     <PageWrapper>
-      <div>signed In as {userName}</div>
+      <div className='flex flex-col gap-2'>
+        <Divider label={`Logged In as ${userName}`} />
+        <Button>Sign Out</Button>
+        <Button href='/profile'>Go To Profile</Button>
+      </div>
     </PageWrapper>
   );
 }
