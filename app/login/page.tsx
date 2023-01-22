@@ -1,5 +1,5 @@
 'use client';
-import { Divider, Input, PageWrapper } from '@ui/login';
+import { Button, Divider, Input, PageWrapper } from '@ui/login';
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
@@ -16,7 +16,6 @@ async function getUserName() {
   return res.data().userName;
 }
 const Page = () => {
-  return <SetUserNameForm />;
   const { loggedIn } = useLoggedIn();
   if (!loggedIn) return <SignInForm />;
 
@@ -33,18 +32,18 @@ function SignInForm() {
     <PageWrapper>
       <div className='flex flex-col w-full justify-center items-center gap-2'>
         <Divider label='Sign In Below' />
-        <button
+        <Button
           onClick={() => signInWithRedirect(auth, new GoogleAuthProvider())}
-          className='bg-red-700 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl mt-4'
+          className='bg-red-700 mt-4'
         >
           Continue with Google
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => signInWithRedirect(auth, new FacebookAuthProvider())}
-          className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'
+          className='bg-blue-600'
         >
           Continue with Facebook
-        </button>
+        </Button>
       </div>
     </PageWrapper>
   );
@@ -64,18 +63,18 @@ export function SetUserNameForm() {
       <Divider label='Set Your User Name' />
       <form
         onSubmit={(e) => e.preventDefault()}
-        className='flex flex-col gap-3'
+        className='flex flex-col gap-6 mt-4'
       >
         <Input ref={inputRef} label='User Name' />
-        <button
+        <Button
           onClick={() => {
             if (!inputRef || !inputRef.current) return;
             setUserNameInDB(inputRef.current.value);
           }}
-          className='bg-blue-600 py-1 rounded-2xl border-2 w-full border-black text-white hover:text-white hover:-translate-y-1 duration-300 hover:shadow-gray-900 shadow-md font-bold text-xl'
+          className='bg-blue-600'
         >
           Continue
-        </button>
+        </Button>
       </form>
     </PageWrapper>
   );
