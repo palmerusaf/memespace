@@ -7,7 +7,8 @@ import {
 } from 'firebase/auth';
 import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-import React, { use, useRef } from 'react';
+import React, { use, useRef, useState } from 'react';
+import { LoadingPage } from '@ui/shared/loading-page';
 
 async function getUserName() {
   if (!auth.currentUser) return null;
@@ -50,13 +51,22 @@ function SignInForm() {
 
 export function SetUserNameForm() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const setUserNameInDB = (userName: string) => {
+  const [isSending, setIsSending] = useState(false);
+  const [userName, setUserName] = useState<null | string>(null);
+  const setUserNameInDB = (pUserName: string) => {
     if (!auth.currentUser) return;
+    setIsSending(true);
     setDoc(doc(db, 'users', auth.currentUser?.uid), {
-      userName,
+      userName: pUserName,
       createdDate: serverTimestamp(),
+    }).then(() => {
+      setIsSending(false);
+      setUserName(pUserName);
     });
   };
+
+  if (isSending) return <LoadingPage loadingMsg='Sending User Name Data' />;
+  if (userName) return <PostSignInOptions userName={userName} />;
   return (
     <PageWrapper>
       <Divider label='Set Your User Name' />

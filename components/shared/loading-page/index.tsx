@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Spinner from './mad-bro.png';
 interface Props {
-  loadingMsg: string;
+  loadingMsg?: string;
 }
 export const LoadingPage = ({ loadingMsg }: Props) => {
   return (
