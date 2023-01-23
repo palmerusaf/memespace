@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-import React, { use, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { LoadingPage } from '@ui/shared/loading-page';
 import { signOut } from 'firebase/auth';
 
@@ -20,27 +20,24 @@ async function getUserName() {
 }
 const Page = () => {
   const { loggedIn } = useLoggedIn();
-  if (!loggedIn) return <SignInForm />;
 
-  const userName = use(getUserName());
+  const [userName, setUserName] = useState<null | string>(null);
+  useEffect(() => {
+    if (!loggedIn) return;
+    getUserName().then(setUserName);
+  }, [loggedIn]);
+
+  if (!loggedIn) return <LoginForm />;
   if (!userName) return <SetUserNameForm />;
-
-  return <PostSignInOptions userName={userName} />;
+  else return <PostLoginOptions userName={userName} />;
 };
 
 export default Page;
 
-function SignInForm() {
-  const [isAuthenticating, setIsAuthenticating] = useState(false);
+function LoginForm() {
   const authWith = (provider: AuthProvider) => {
-    setIsAuthenticating(true);
-    signInWithRedirect(auth, provider).then(() => {
-      setIsAuthenticating(false);
-    });
+    signInWithRedirect(auth, provider);
   };
-
-  if (isAuthenticating)
-    return <LoadingPage loadingMsg='Authenticating with database.' />;
 
   return (
     <PageWrapper>
@@ -62,22 +59,16 @@ function SignInForm() {
 
 function SetUserNameForm() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isSending, setIsSending] = useState(false);
   const [userName, setUserName] = useState<null | string>(null);
   const setUserNameInDB = (pUserName: string) => {
     if (!auth.currentUser) return;
-    setIsSending(true);
     setDoc(doc(db, 'users', auth.currentUser?.uid), {
       userName: pUserName,
       createdDate: serverTimestamp(),
-    }).then(() => {
-      setIsSending(false);
-      setUserName(pUserName);
     });
   };
 
-  if (isSending) return <LoadingPage loadingMsg='Sending User Name Data' />;
-  if (userName) return <PostSignInOptions userName={userName} />;
+  if (userName) return <PostLoginOptions userName={userName} />;
   return (
     <PageWrapper>
       <Divider label='Set Your User Name' />
@@ -100,7 +91,7 @@ function SetUserNameForm() {
   );
 }
 
-function PostSignInOptions({ userName }: { userName: string }) {
+function PostLoginOptions({ userName }: { userName: string }) {
   return (
     <PageWrapper>
       <div className='flex flex-col gap-2'>
