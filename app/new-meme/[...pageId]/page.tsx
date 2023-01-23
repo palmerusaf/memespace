@@ -77,16 +77,16 @@ const Page = ({ params }: Props) => {
 
 export default Page;
 
-export async function generateStaticParams() {
-  return getAllValidPaths();
+// export async function generateStaticParams() {
+//   return getAllValidPaths();
 
-  function getAllValidPaths() {
-    const paths = [];
-    const LAST_PAGE = 37;
-    const FIRST_PAGE = 1;
-    for (let i = FIRST_PAGE; i <= LAST_PAGE; i++) {
-      paths.push({ params: { pageId: [`${i}`] } });
-    }
-    return paths;
-  }
-}
+//   function getAllValidPaths() {
+//     const paths = [];
+//     const LAST_PAGE = 37;
+//     const FIRST_PAGE = 1;
+//     for (let i = FIRST_PAGE; i <= LAST_PAGE; i++) {
+//       paths.push({ params: { pageId: [`${i}`] } });
+//     }
+//     return paths;
+//   }
+// }
