@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithRedirect,
+  AuthProvider,
 } from 'firebase/auth';
 import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
@@ -29,19 +30,28 @@ const Page = () => {
 export default Page;
 
 function SignInForm() {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const authWith = (provider: AuthProvider) => {
+    setIsAuthenticating(true);
+    signInWithRedirect(auth, provider).then(() => {
+      setIsAuthenticating(false);
+    });
+  };
+
+  if (isAuthenticating)
+    return <LoadingPage loadingMsg='Authenticating with database.' />;
+
   return (
     <PageWrapper>
       <div className='flex flex-col w-full justify-center items-center gap-2'>
         <Divider label='Sign In Below' />
         <Button
-          onClick={() => signInWithRedirect(auth, new GoogleAuthProvider())}
+          onClick={() => authWith(new GoogleAuthProvider())}
           className='bg-red-700 mt-4'
         >
           Continue with Google
         </Button>
-        <Button
-          onClick={() => signInWithRedirect(auth, new FacebookAuthProvider())}
-        >
+        <Button onClick={() => authWith(new FacebookAuthProvider())}>
           Continue with Facebook
         </Button>
       </div>
