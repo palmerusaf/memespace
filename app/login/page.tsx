@@ -10,6 +10,7 @@ import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import React, { use, useRef, useState } from 'react';
 import { LoadingPage } from '@ui/shared/loading-page';
+import { signOut } from 'firebase/auth';
 
 async function getUserName() {
   if (!auth.currentUser) return null;
@@ -44,7 +45,7 @@ function SignInForm() {
   return (
     <PageWrapper>
       <div className='flex flex-col w-full justify-center items-center gap-2'>
-        <Divider label='Sign In Below' />
+        <Divider label='Login Below' />
         <Button
           onClick={() => authWith(new GoogleAuthProvider())}
           className='bg-red-700 mt-4'
@@ -59,7 +60,7 @@ function SignInForm() {
   );
 }
 
-export function SetUserNameForm() {
+function SetUserNameForm() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isSending, setIsSending] = useState(false);
   const [userName, setUserName] = useState<null | string>(null);
@@ -104,7 +105,13 @@ function PostSignInOptions({ userName }: { userName: string }) {
     <PageWrapper>
       <div className='flex flex-col gap-2'>
         <Divider label={`Logged In as ${userName}`} />
-        <Button>Sign Out</Button>
+        <Button
+          onClick={() => {
+            signOut(auth);
+          }}
+        >
+          Logout
+        </Button>
         <Button href='/profile'>Go To Profile</Button>
       </div>
     </PageWrapper>
