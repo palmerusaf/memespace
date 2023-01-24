@@ -3,6 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
+    "dev:firebase": "firebase emulators:start",
+    "deploy:rules": "firebase deploy --only firestore:rules",
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
