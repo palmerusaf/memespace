@@ -5,25 +5,18 @@ import { useRef, useState } from 'react';
 import { PageWrapper, Divider, Button } from '..';
 import { Input } from '../input';
 
-export function SetUserNameForm({ pErrorMsg = '' }: { pErrorMsg: string }) {
+function SetUserNameForm() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [errorMsg, setErrorMsg] = useState(pErrorMsg);
-  const [isSending, setIsSending] = useState(false);
   const [userName, setUserName] = useState<null | string>(null);
   const setUserNameInDB = (pUserName: string) => {
     if (!auth.currentUser) return;
-    setIsSending(true);
     setDoc(doc(db, 'users', auth.currentUser?.uid), {
       userName: pUserName,
       createdDate: serverTimestamp(),
-    }).then(() => {
-      setIsSending(false);
-      setUserName(pUserName);
     });
   };
 
-  if (isSending) return <LoadingPage loadingMsg='Sending User Name Data' />;
-  if (userName) return <PostSignInOptions userName={userName} />;
+  if (userName) return <PostLoginOptions userName={userName} />;
   return (
     <PageWrapper>
       <Divider label='Set Your User Name' />

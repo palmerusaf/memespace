@@ -28,7 +28,7 @@ const Page = () => {
   }, [loggedIn]);
 
   if (!loggedIn) return <LoginForm />;
-  if (!userName) return <SetUserNameForm />;
+  if (!userName) return <SetUserNameForm setUserName={setUserName} />;
   else return <PostLoginOptions userName={userName} />;
 };
 
@@ -57,18 +57,24 @@ function LoginForm() {
   );
 }
 
-function SetUserNameForm() {
+function SetUserNameForm({
+  setUserName,
+}: {
+  setUserName: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [userName, setUserName] = useState<null | string>(null);
+  const [isSending, setIsSending] = useState(false);
   const setUserNameInDB = (pUserName: string) => {
     if (!auth.currentUser) return;
-    setDoc(doc(db, 'users', auth.currentUser?.uid), {
+    return setDoc(doc(db, 'users', auth.currentUser?.uid), {
       userName: pUserName,
       createdDate: serverTimestamp(),
     });
   };
 
-  if (userName) return <PostLoginOptions userName={userName} />;
+  if (isSending)
+    return <LoadingPage loadingMsg='Setting User Name in Database' />;
+
   return (
     <PageWrapper>
       <Divider label='Set Your User Name' />
@@ -80,7 +86,11 @@ function SetUserNameForm() {
         <Button
           onClick={() => {
             if (!inputRef || !inputRef.current) return;
-            setUserNameInDB(inputRef.current.value);
+            const inputVal = inputRef.current.value;
+            setIsSending(true);
+            setUserNameInDB(inputVal)?.then(() => {
+              setUserName(inputVal);
+            });
           }}
           className='bg-blue-600'
         >
