@@ -10,14 +10,15 @@ interface Props {
 }
 
 export function SetUserNameForm({ setUserName, testValue = '' }: Props) {
+  // hooks
+  const { invalidInput, displayErrorMsg, ErrorBox } = useErrorMsg();
+  const { isSending, setUserNameInDB } = useSetUserNameInDB();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { isSending, setUserNameInDB } = useSetUserNameInDB();
   if (isSending) {
     return <LoadingPage loadingMsg='Setting User Name in Database' />;
   }
-
-  const { invalidInput, displayErrorMsg, ErrorBox } = useErrorMsg();
 
   const handleClick = () => {
     if (!inputRef || !inputRef.current) return;
