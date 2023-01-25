@@ -23,7 +23,11 @@ const Page = () => {
   const [userName, setUserName] = useState<null | string>(null);
   useEffect(() => {
     if (!loggedIn) return;
-    getUserName().then(setUserName);
+    getUserName()
+      .then(setUserName)
+      .catch((e) => {
+        throw e;
+      });
   }, [loggedIn]);
 
   if (!loggedIn) return <LoginForm />;

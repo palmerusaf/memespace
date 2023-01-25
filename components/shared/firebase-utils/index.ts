@@ -23,7 +23,7 @@ export const auth = getAuth(app);
 connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
 
 export const db = getFirestore(app);
-connectFirestoreEmulator(db, 'localhost', 9100);
+connectFirestoreEmulator(db, 'localhost', 910);
 
 export const useLoggedIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);

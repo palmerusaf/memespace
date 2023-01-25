@@ -21,13 +21,13 @@ export const Empty = Template.bind({});
 Empty.args = {};
 
 export const ValidVal = Template.bind({});
-ValidVal.args = { testValue: 'thisIsValid' };
+ValidVal.args = { defaultTestValue: 'thisIsValid' };
 
 export const WithSpace = Template.bind({});
-WithSpace.args = { testValue: 'this Is not Valid' };
+WithSpace.args = { defaultTestValue: 'this Is not Valid' };
 
 export const BadWord = Template.bind({});
-BadWord.args = { testValue: 'bitch' };
+BadWord.args = { defaultTestValue: 'bitch' };
 
 export const Over20 = Template.bind({});
-Over20.args = { testValue: 'aaaaaaaaaaaaaaaaaaaaa' };
+Over20.args = { defaultTestValue: 'aaaaaaaaaaaaaaaaaaaaa' };

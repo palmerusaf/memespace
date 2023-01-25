@@ -6,10 +6,10 @@ import { useSetUserNameInDB, useErrorMsg } from './hooks';
 
 interface Props {
   setUserName: React.Dispatch<React.SetStateAction<string | null>>;
-  testValue?: string;
+  defaultTestValue?: string;
 }
 
-export function SetUserNameForm({ setUserName, testValue = '' }: Props) {
+export function SetUserNameForm({ setUserName, defaultTestValue = '' }: Props) {
   // hooks
   const { invalidInput, displayErrorMsg, ErrorBox } = useErrorMsg();
   const { isSending, setUserNameInDB } = useSetUserNameInDB();
@@ -38,7 +38,11 @@ export function SetUserNameForm({ setUserName, testValue = '' }: Props) {
         onSubmit={(e) => e.preventDefault()}
         className='flex flex-col gap-6 mt-4'
       >
-        <Input ref={inputRef} value={testValue} label='User Name' />
+        <Input
+          ref={inputRef}
+          defaultValue={defaultTestValue}
+          label='User Name'
+        />
         <Button onClick={handleClick} className='bg-blue-600'>
           Continue
         </Button>
