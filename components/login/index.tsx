@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 export * from './input';
+export * from './set-user-name';
 
 export function PageWrapper({ children }: { children: React.ReactNode }) {
   return (

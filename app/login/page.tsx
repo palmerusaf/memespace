@@ -1,5 +1,5 @@
 'use client';
-import { Button, Divider, Input, PageWrapper } from '@ui/login';
+import { Button, Divider, PageWrapper, SetUserNameForm } from '@ui/login';
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
@@ -7,9 +7,8 @@ import {
   AuthProvider,
 } from 'firebase/auth';
 import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-import React, { useEffect, useRef, useState } from 'react';
-import { LoadingPage } from '@ui/shared/loading-page';
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import { signOut } from 'firebase/auth';
 
 async function getUserName() {
@@ -53,50 +52,6 @@ function LoginForm() {
           Continue with Facebook
         </Button>
       </div>
-    </PageWrapper>
-  );
-}
-
-function SetUserNameForm({
-  setUserName,
-}: {
-  setUserName: React.Dispatch<React.SetStateAction<string | null>>;
-}) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [isSending, setIsSending] = useState(false);
-  const setUserNameInDB = (pUserName: string) => {
-    if (!auth.currentUser) return;
-    return setDoc(doc(db, 'users', auth.currentUser?.uid), {
-      userName: pUserName,
-      createdDate: serverTimestamp(),
-    });
-  };
-
-  if (isSending)
-    return <LoadingPage loadingMsg='Setting User Name in Database' />;
-
-  return (
-    <PageWrapper>
-      <Divider label='Set Your User Name' />
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className='flex flex-col gap-6 mt-4'
-      >
-        <Input ref={inputRef} label='User Name' />
-        <Button
-          onClick={() => {
-            if (!inputRef || !inputRef.current) return;
-            const inputVal = inputRef.current.value;
-            setIsSending(true);
-            setUserNameInDB(inputVal)?.then(() => {
-              setUserName(inputVal);
-            });
-          }}
-          className='bg-blue-600'
-        >
-          Continue
-        </Button>
-      </form>
     </PageWrapper>
   );
 }
