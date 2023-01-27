@@ -10,7 +10,7 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   return (
-    <div className='bg-gray-300'>
+    <div className='h-full bg-gray-300'>
       <PageWrapper>
         <div className='flex h-full w-full flex-col items-center justify-center gap-2'>
           <img
