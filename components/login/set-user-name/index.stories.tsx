@@ -4,7 +4,7 @@ import React from 'react';
 import { SetUserNameForm } from './index';
 
 export default {
-  title: 'components/Login/UserName Form',
+  title: 'Login/UserName Form',
   component: SetUserNameForm,
   args: {
     setUserName: (un) => console.info('username set to ', un),
@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof SetUserNameForm>;
 
 const Template: ComponentStory<typeof SetUserNameForm> = (args) => (
-  <div className='w-screen h-screen'>
+  <div className='h-screen w-screen'>
     <SetUserNameForm {...args} />
   </div>
 );

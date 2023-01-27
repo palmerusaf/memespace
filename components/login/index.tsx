@@ -5,8 +5,8 @@ export * from './set-user-name';
 
 export function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className='flex flex-col items-center w-full h-full'>
-      <div className='flex flex-col justify-center h-full w-full px-2 max-w-xl'>
+    <div className='flex h-full w-full flex-col items-center'>
+      <div className='flex h-full w-full max-w-xl flex-col justify-center px-2'>
         {children}
       </div>
     </div>
@@ -36,10 +36,10 @@ export const Button = ({ onClick, className, children, href }: ButtonProps) => {
 
 export const Divider = ({ label }: { label: string }) => {
   return (
-    <h2 className='grid grid-cols-[auto,auto,_1fr] w-full items-center'>
-      <span className='h-0 border-b border-black mx-2 w-4'></span>
+    <h2 className='grid w-full grid-cols-[auto,auto,_1fr] items-center'>
+      <span className='mx-2 h-0 w-4 border-b border-black'></span>
       <span className='font-bold'>{label}</span>
-      <span className='h-0 border-b border-black mx-2'></span>
+      <span className='mx-2 h-0 border-b border-black'></span>
     </h2>
   );
 };

@@ -39,11 +39,11 @@ function LoginForm() {
 
   return (
     <PageWrapper>
-      <div className='flex flex-col w-full justify-center items-center gap-2'>
+      <div className='flex w-full flex-col items-center justify-center gap-2'>
         <Divider label='Login Below' />
         <Button
           onClick={() => authWith(new GoogleAuthProvider())}
-          className='bg-red-700 mt-4'
+          className='mt-4 bg-red-700'
         >
           Continue with Google
         </Button>

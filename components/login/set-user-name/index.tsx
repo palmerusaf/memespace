@@ -36,7 +36,7 @@ export function SetUserNameForm({ setUserName, defaultTestValue = '' }: Props) {
       <Divider label='Set Your User Name' />
       <form
         onSubmit={(e) => e.preventDefault()}
-        className='flex flex-col gap-6 mt-4'
+        className='mt-4 flex flex-col gap-6'
       >
         <Input
           ref={inputRef}

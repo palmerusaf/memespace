@@ -4,7 +4,7 @@ import React from 'react';
 import Input from './input';
 
 export default {
-  title: 'Components/New-Meme/Input',
+  title: 'New-Meme/Input',
   component: Input,
   argTypes: {
     label: { control: 'text' },

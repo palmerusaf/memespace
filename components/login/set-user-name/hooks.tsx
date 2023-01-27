@@ -40,7 +40,7 @@ export const useErrorMsg = () => {
 
   const ErrorBox = () => {
     return (
-      <span className='w-full text-center font-bold h-4 text-lg text-red-600'>
+      <span className='h-4 w-full text-center text-lg font-bold text-red-600'>
         {errorMsg}
       </span>
     );

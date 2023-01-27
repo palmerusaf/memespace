@@ -4,13 +4,13 @@ import React from 'react';
 import { LoadingPage } from './index';
 
 export default {
-  title: 'Components/Shared/Loading-Page',
+  title: 'Shared/Loading-Page',
   component: LoadingPage,
   args: {},
 } as ComponentMeta<typeof LoadingPage>;
 
 const Template: ComponentStory<typeof LoadingPage> = (args) => (
-  <div className='w-screen h-screen'>
+  <div className='h-screen w-screen'>
     <LoadingPage {...args} />
   </div>
 );

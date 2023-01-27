@@ -4,7 +4,7 @@ import React from 'react';
 import Page from './page';
 
 export default {
-  title: 'Pages/New-Meme',
+  title: 'New-Meme/Page',
   component: Page,
   args: {
     params: { pageId: '1' },

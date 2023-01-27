@@ -15,17 +15,17 @@ const Input = (
   const focused =
     'peer-focus-visible:translate-y-full peer-focus-visible:scale-75 peer-focus-visible:left-1/2 peer-focus-visible:-translate-x-1/2 peer-focus-visible:shadow-lg';
   return (
-    <div className='relative w-full h-8 shrink-0 bg-gray-300 border-white border-2 rounded-full shadow-xl'>
+    <div className='relative h-8 w-full shrink-0 rounded-full border-2 border-white bg-gray-300 shadow-xl'>
       <input
         id={label}
         required
-        className='px-2 absolute text-center h-full peer w-full bg-transparent focus-visible:outline-none'
+        className='peer absolute h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
         value={value}
         ref={ref}
         type='text'
         placeholder=' '
       />
-      <span className='opacity-0 peer-placeholder-shown:opacity-100 peer-focus-within:opacity-0 ml-3 absolute z-10 duration-300 flex h-full items-center'>
+      <span className='absolute z-10 ml-3 flex h-full items-center opacity-0 duration-300 peer-placeholder-shown:opacity-100 peer-focus-within:opacity-0'>
         <span>Enter</span>
       </span>
       <label

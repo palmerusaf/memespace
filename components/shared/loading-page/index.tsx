@@ -8,17 +8,17 @@ export const LoadingPage = ({ loadingMsg, className }: Props) => {
   return (
     <div>
       <div
-        className={`flex flex-col w-full h-full items-center justify-center bg-blue-600 text-white ${className}`}
+        className={`flex h-full w-full flex-col items-center justify-center bg-blue-600 text-white ${className}`}
       >
         <Image
           src={Spinner}
           alt='loading spinner'
           height={100}
           width={123}
-          className='w-auto h-auto animate-spin'
+          className='h-auto w-auto animate-spin'
         />
 
-        <h1 className='animate-pulse text-lg font-bold mt-3 md:text-2xl md:mt-5'>
+        <h1 className='mt-3 animate-pulse text-lg font-bold md:mt-5 md:text-2xl'>
           Loading...
         </h1>
         <h2 className='md:text-xl'>{loadingMsg}</h2>

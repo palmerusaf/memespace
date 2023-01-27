@@ -7,13 +7,13 @@ interface Props {
 
 const NavWrapper = ({ children }: Props) => {
   return (
-    <div className='flex flex-col h-full md:grid md:grid-cols-[160px,auto]'>
+    <div className='flex h-full flex-col md:grid md:grid-cols-[160px,auto]'>
       <div
-        className={`overflow-scroll h-full mb-16 md:mb-0 md:w-full md:col-start-2 md:row-start-1 ${style.padChild}`}
+        className={`mb-16 h-full overflow-scroll md:col-start-2 md:row-start-1 md:mb-0 md:w-full ${style.padChild}`}
       >
         {children}
       </div>
-      <div className='shadow-xl fixed bottom-0 w-screen h-16 md:static md:w-full md:h-full md:col-start-1 md:row-start-1'>
+      <div className='fixed bottom-0 h-16 w-screen shadow-xl md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
         <NavBar />
       </div>
     </div>

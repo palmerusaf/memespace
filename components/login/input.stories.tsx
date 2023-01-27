@@ -4,7 +4,7 @@ import React from 'react';
 import { Input } from './input';
 
 export default {
-  title: 'components/Login/input',
+  title: 'Login/input',
   component: Input,
   argTypes: {
     label: { control: 'text' },
