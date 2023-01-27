@@ -12,7 +12,7 @@ export default {
   },
   args: {
     label: 'string',
-    value: '',
+    defaultValue: '',
   },
 } as ComponentMeta<typeof Input>;
 
@@ -22,4 +22,4 @@ export const UserNameEmpty = Template.bind({});
 UserNameEmpty.args = { label: 'User Name' };
 
 export const UserNameFilled = Template.bind({});
-UserNameFilled.args = { label: 'User Name', value: 'leetusrName' };
+UserNameFilled.args = { label: 'User Name', defaultValue: 'leetusrName' };
