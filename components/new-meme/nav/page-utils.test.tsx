@@ -1,4 +1,4 @@
-import { getNavIndexes, getMemeEndPoints } from './page-utils';
+import { getMemeEndPoints, getNavIndexes } from './page-utils';
 
 describe('getNavIndexes tests', () => {
   it('index = 1 through 6', () => {

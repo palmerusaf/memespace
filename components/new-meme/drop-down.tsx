@@ -1,5 +1,5 @@
 'use client';
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
   optionValues: string[];

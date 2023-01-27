@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import LogoPic from '@ui/shared/logo.png';
+import Image from 'next/image';
 import { ReactNode } from 'react';
 
 interface Props {

@@ -1,6 +1,6 @@
+import LogoPic from '@ui/shared/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import LogoPic from '@ui/shared/logo.png';
 
 interface Props {}
 

@@ -1,12 +1,12 @@
 'use client';
-import { useState } from 'react';
-import { notFound } from 'next/navigation';
-import MemeList from '@ui/new-meme/meme-list.json';
-import { isInvalidPage, getMemeEndPoints } from '@ui/new-meme/nav/page-utils';
-import Modal from '@ui/new-meme/modal';
 import DropDown from '@ui/new-meme/drop-down';
-import ImageWithLoadState from '@ui/shared/image';
+import MemeList from '@ui/new-meme/meme-list.json';
+import Modal from '@ui/new-meme/modal';
+import { getMemeEndPoints, isInvalidPage } from '@ui/new-meme/nav/page-utils';
 import { getThumbnail } from '@ui/shared/api-meme';
+import ImageWithLoadState from '@ui/shared/image';
+import { notFound } from 'next/navigation';
+import { useState } from 'react';
 
 interface Props {
   params: { pageId: string };

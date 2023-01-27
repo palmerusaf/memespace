@@ -1,11 +1,11 @@
 import { auth } from '@ui/shared/firebase-utils';
 import {
   AuthProvider,
-  signInWithRedirect,
-  GoogleAuthProvider,
   FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithRedirect,
 } from 'firebase/auth';
-import { PageWrapper, Divider, Button } from '.';
+import { Button, Divider, PageWrapper } from '.';
 
 export function LoginForm() {
   const authWith = (provider: AuthProvider) => {

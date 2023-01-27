@@ -1,9 +1,9 @@
 'use client';
+import { getMeme } from '@ui/shared/api-meme';
 import ImageWithLoadState from '@ui/shared/image';
 import React, { useRef, useState } from 'react';
 import styles from './index.module.css';
 import Input from './input';
-import { getMeme } from '@ui/shared/api-meme';
 
 interface Props {
   modalId: string;

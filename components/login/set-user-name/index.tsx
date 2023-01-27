@@ -1,8 +1,8 @@
 import { LoadingPage } from '@ui/shared/loading-page';
 import { useRef } from 'react';
-import { PageWrapper, Divider, Button } from '..';
+import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
-import { useSetUserNameInDB, useErrorMsg } from './hooks';
+import { useErrorMsg, useSetUserNameInDB } from './hooks';
 
 interface Props {
   setUserName: React.Dispatch<React.SetStateAction<string | null>>;

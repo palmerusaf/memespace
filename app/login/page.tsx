@@ -1,8 +1,8 @@
 'use client';
-import { LoginForm, SetUserNameForm, PostLoginOptions } from '@ui/login';
-import { useLoggedIn, auth, db } from '@ui/shared/firebase-utils';
+import { LoginForm, PostLoginOptions, SetUserNameForm } from '@ui/login';
+import { auth, db, useLoggedIn } from '@ui/shared/firebase-utils';
 import { doc, getDoc } from 'firebase/firestore';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 async function getUserName() {
   if (!auth.currentUser) return null;

@@ -1,5 +1,5 @@
 import { auth, db } from '@ui/shared/firebase-utils';
-import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 const Filter = require('bad-words');
 const wordFilter = new Filter();

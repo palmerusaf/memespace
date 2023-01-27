@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import './tailwind.css';
 import NavWrapper from '@ui/app/nav-wrapper';
 import Logo from '@ui/shared/logo.png';
+import Image from 'next/image';
+import './tailwind.css';
 
 interface Props {
   children: React.ReactNode;

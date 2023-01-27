@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import ErrorHorse from './error-horse.gif';
 import LoadingHorse from './loading-horse.gif';
 

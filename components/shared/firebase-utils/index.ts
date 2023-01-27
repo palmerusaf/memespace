@@ -1,10 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import {
+  connectAuthEmulator,
   getAuth,
   onAuthStateChanged,
-  connectAuthEmulator,
 } from 'firebase/auth';
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 const firebaseConfig = {
