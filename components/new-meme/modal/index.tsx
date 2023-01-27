@@ -3,6 +3,7 @@ import ImageWithLoadState from '@ui/shared/image';
 import React, { useRef, useState } from 'react';
 import styles from './index.module.css';
 import Input from './input';
+import { getMeme } from '@ui/shared/api-meme';
 
 interface Props {
   modalId: string;
@@ -10,10 +11,9 @@ interface Props {
   link?: string;
 }
 
-const Modal = ({ modalId, link, setModalId }: Props) => {
+const Modal = ({ modalId, setModalId }: Props) => {
   const [imgSrc, setImgSrc] = useState(
-    link ||
-      `https://apimeme.com/meme?meme=${modalId}&top=top+text&bottom=bottom+text`
+    getMeme({ id: modalId, topText: 'top text', bottomText: 'bottom text' })
   );
   const topRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLInputElement>(null);
@@ -21,11 +21,13 @@ const Modal = ({ modalId, link, setModalId }: Props) => {
   const updateImgSrc = () => {
     if (!(topRef && topRef.current)) return;
     if (!(bottomRef && bottomRef.current)) return;
-    const topText = encodeURIComponent(topRef.current.value);
-    const bottomText = encodeURIComponent(bottomRef.current.value);
 
     setImgSrc(
-      `https://apimeme.com/meme?meme=${modalId}&top=${topText}&bottom=${bottomText}`
+      getMeme({
+        id: modalId,
+        topText: topRef.current.value,
+        bottomText: bottomRef.current.value,
+      })
     );
   };
 

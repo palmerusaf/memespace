@@ -6,6 +6,7 @@ import { isInvalidPage, getMemeEndPoints } from '@ui/new-meme/nav/page-utils';
 import Modal from '@ui/new-meme/modal';
 import DropDown from '@ui/new-meme/drop-down';
 import ImageWithLoadState from '@ui/shared/image';
+import { getThumbnail } from '@ui/shared/api-meme';
 
 interface Props {
   params: { pageId: string };
@@ -52,7 +53,7 @@ const Page = ({ params }: Props) => {
                   {id.replace(/-/g, ' ')}
                 </h2>
                 <ImageWithLoadState
-                  src={`https://apimeme.com/thumbnail?name=${id}`}
+                  src={getThumbnail(id)}
                   alt={id.replace(/-/g, ' ')}
                   className='w-full aspect-square object-cover rounded-md shadow-lg my-2'
                   width={100}
@@ -76,17 +77,3 @@ const Page = ({ params }: Props) => {
 };
 
 export default Page;
-
-// export async function generateStaticParams() {
-//   return getAllValidPaths();
-
-//   function getAllValidPaths() {
-//     const paths = [];
-//     const LAST_PAGE = 37;
-//     const FIRST_PAGE = 1;
-//     for (let i = FIRST_PAGE; i <= LAST_PAGE; i++) {
-//       paths.push({ params: { pageId: [`${i}`] } });
-//     }
-//     return paths;
-//   }
-// }

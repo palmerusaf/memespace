@@ -21,6 +21,3 @@ OverflowScreen.args = { modalId: 'American-Chopper-Argument' };
 
 export const Narrow = Template.bind({});
 Narrow.args = { modalId: 'Criana' };
-
-export const Blank = Template.bind({});
-Blank.args = { modalId: '', link: 'test' };
