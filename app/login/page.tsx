@@ -19,18 +19,13 @@ async function getUserName() {
 }
 const Page = () => {
   const { loggedIn } = useLoggedIn();
-
   const [userName, setUserName] = useState<null | string>(null);
-  useEffect(() => {
-    if (!loggedIn) return;
-    getUserName()
-      .then(setUserName)
-      .catch((e) => {
-        throw e;
-      });
-  }, [loggedIn]);
+  const [errorStatus, setErrorStatus] = useState<null | Error>(null);
 
   if (!loggedIn) return <LoginForm />;
+
+  getUserName().then(setUserName).catch(setErrorStatus);
+  if (errorStatus) return errorStatus;
   if (!userName) return <SetUserNameForm setUserName={setUserName} />;
   else return <PostLoginOptions userName={userName} />;
 };
