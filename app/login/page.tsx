@@ -20,7 +20,7 @@ const Page = () => {
   getUserName().then(setUserName).catch(setErrorStatus);
   if (errorStatus) throw errorStatus;
   if (!userName) return <SetUserNameForm setUserName={setUserName} />;
-  else return <PostLoginOptions userName={userName} />;
+  if (userName !== null) return <PostLoginOptions userName={userName} />;
 };
 
 export default Page;
