@@ -10,10 +10,15 @@ export const useSetUserNameInDB = () => {
   const setUserNameInDB = (pUserName: string) => {
     if (!auth.currentUser) return;
     setIsSending(true);
-    return setDoc(doc(db, 'users', auth.currentUser?.uid), {
-      userName: pUserName,
-      createdDate: serverTimestamp(),
-    });
+    return Promise.race([
+      setDoc(doc(db, 'users', auth.currentUser?.uid), {
+        userName: pUserName,
+        createdDate: serverTimestamp(),
+      }),
+      new Promise((_, reject) => {
+        return setTimeout(reject, 10000, new Error('DB write timed out'));
+      }),
+    ]);
   };
   return { setUserNameInDB, isSending };
 };
