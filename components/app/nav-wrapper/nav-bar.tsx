@@ -10,7 +10,7 @@ export function NavBar() {
         <ul className='flex flex-row px-1 text-center text-sm font-bold text-gray-900 md:flex-col md:px-3 md:text-base'>
           {loggedIn && <NavLink href='/profile'>Profile</NavLink>}
           {!loggedIn && <NavLink href='/login'>Login</NavLink>}
-          <NavLink href='/new-meme/1'>New Meme</NavLink>
+          <NavLink href='/find-memes/1'>Find Memes</NavLink>
           {loggedIn && <NavLink href='/friends-list'>Friends List</NavLink>}
         </ul>
       </nav>

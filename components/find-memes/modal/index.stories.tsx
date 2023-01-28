@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Modal from './index';
 
 export default {
-  title: 'New-Meme/Modal',
+  title: 'find-memes/Modal',
   component: Modal,
   args: {
     modalId: 'string',

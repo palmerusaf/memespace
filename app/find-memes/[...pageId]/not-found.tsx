@@ -11,7 +11,7 @@ const NotFound = ({}: Props) => {
       <div className='text-xl font-extrabold text-white'>Page Not Found</div>
       <Link
         className='mt-2 rounded-full border-2 border-white bg-blue-600 px-3 py-1 text-center text-white shadow-md duration-300 hover:-translate-y-1 hover:shadow-slate-500'
-        href='/new-meme/1'
+        href='/find-memes/1'
       >
         Go To Beginning
       </Link>

@@ -1,4 +1,4 @@
-import PageNav from '@ui/new-meme/nav';
+import PageNav from '@ui/find-memes/nav';
 
 interface Props {
   children: React.ReactNode;

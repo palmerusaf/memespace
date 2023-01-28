@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Input from './input';
 
 export default {
-  title: 'New-Meme/Input',
+  title: 'find-memes/Input',
   component: Input,
   argTypes: {
     label: { control: 'text' },
