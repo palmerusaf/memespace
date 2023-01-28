@@ -11,7 +11,7 @@ export function NavBar() {
           {loggedIn && <NavLink href='/profile'>Profile</NavLink>}
           {!loggedIn && <NavLink href='/login'>Login</NavLink>}
           <NavLink href='/find-memes/1'>Find Memes</NavLink>
-          {loggedIn && <NavLink href='/friends-list'>Friends List</NavLink>}
+          {loggedIn && <NavLink href='/find-friends'>Find Friends</NavLink>}
         </ul>
       </nav>
     </div>
