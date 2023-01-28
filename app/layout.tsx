@@ -12,7 +12,7 @@ const Layout = ({ children }: Props) => {
   return (
     <html>
       <head />
-      <body className='overflow-clip'>
+      <body className='h-screen w-screen overflow-clip'>
         <Link href={'/'}>
           <header className='flex h-14 w-full justify-center bg-blue-600 md:z-50 md:h-16'>
             <Image src={Logo} width={300} height={56} alt='logo' />
