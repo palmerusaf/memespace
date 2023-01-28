@@ -1,11 +1,12 @@
 'use client';
-import { useState } from 'react';
-import { notFound } from 'next/navigation';
-import MemeList from '@ui/new-meme/meme-list.json';
-import { isInvalidPage, getMemeEndPoints } from '@ui/new-meme/nav/page-utils';
-import Modal from '@ui/new-meme/modal';
 import DropDown from '@ui/new-meme/drop-down';
+import MemeList from '@ui/new-meme/meme-list.json';
+import Modal from '@ui/new-meme/modal';
+import { getMemeEndPoints, isInvalidPage } from '@ui/new-meme/nav/page-utils';
+import { getThumbnail } from '@ui/shared/api-meme';
 import ImageWithLoadState from '@ui/shared/image';
+import { notFound } from 'next/navigation';
+import { useState } from 'react';
 
 interface Props {
   params: { pageId: string };
@@ -27,13 +28,13 @@ const Page = ({ params }: Props) => {
   return (
     <>
       {memeId && <Modal setModalId={setMemeId} modalId={memeId} />}
-      <div className='overflow-scroll h-full relative'>
+      <div className='relative h-full overflow-scroll'>
         <div className='flex w-full items-center justify-center'>
-          <h1 className='w-full overflow-hidden text-center font-bold text-lg'>
+          <h1 className='w-full overflow-hidden text-center text-lg font-bold'>
             Select Your Meme
           </h1>
         </div>
-        <div className='w-full sticky top-1 flex justify-center'>
+        <div className='sticky top-1 flex w-full justify-center'>
           <DropDown
             optionValues={MemeList}
             selectedOption={memeId}
@@ -41,27 +42,27 @@ const Page = ({ params }: Props) => {
             placeholder='Select from DropDown'
           />
         </div>
-        <div className='w-full h-full grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
+        <div className='grid h-full w-full grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
           {memeSubList.map((id) => {
             return (
               <div
                 key={id}
-                className='flex justify-between bg-white flex-col m-2 rounded-lg p-2 shadow-md'
+                className='m-2 flex flex-col justify-between rounded-lg bg-white p-2 shadow-md'
               >
-                <h2 className='w-full text-center font-medium overflow-ellipsis overflow-hidden'>
+                <h2 className='w-full overflow-hidden overflow-ellipsis text-center font-medium'>
                   {id.replace(/-/g, ' ')}
                 </h2>
                 <ImageWithLoadState
-                  src={`https://apimeme.com/thumbnail?name=${id}`}
+                  src={getThumbnail(id)}
                   alt={id.replace(/-/g, ' ')}
-                  className='w-full aspect-square object-cover rounded-md shadow-lg my-2'
+                  className='my-2 aspect-square w-full rounded-md object-cover shadow-lg'
                   width={100}
                   height={100}
                 />
                 <button
                   onClick={() => setMemeId(id)}
                   className={
-                    'px-3 py-1  text-center bg-blue-600 rounded-full border-2 border-black text-black hover:text-white hover:-translate-y-1 duration-300 shadow-md hover:shadow-slate-500 font-medium'
+                    'rounded-full border-2  border-black bg-blue-600 px-3 py-1 text-center font-medium text-black shadow-md duration-300 hover:-translate-y-1 hover:text-white hover:shadow-slate-500'
                   }
                 >
                   Select
@@ -76,17 +77,3 @@ const Page = ({ params }: Props) => {
 };
 
 export default Page;
-
-export async function generateStaticParams() {
-  return getAllValidPaths();
-
-  function getAllValidPaths() {
-    const paths = [];
-    const LAST_PAGE = 37;
-    const FIRST_PAGE = 1;
-    for (let i = FIRST_PAGE; i <= LAST_PAGE; i++) {
-      paths.push({ params: { pageId: [`${i}`] } });
-    }
-    return paths;
-  }
-}

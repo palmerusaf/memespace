@@ -1,11 +1,10 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import MemeList from './meme-list.json';
 
 import DropDown from './drop-down';
 
 export default {
-  title: 'Components/New-Meme/Drop-Down',
+  title: 'New-Meme/Drop-Down',
   component: DropDown,
   args: { optionValues: MemeList, placeholder: 'Select from Drop-Down' },
 } as ComponentMeta<typeof DropDown>;

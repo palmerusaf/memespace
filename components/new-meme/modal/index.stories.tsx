@@ -1,10 +1,9 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Modal from './index';
 
 export default {
-  title: 'Components/New-Meme/Modal',
+  title: 'New-Meme/Modal',
   component: Modal,
   args: {
     modalId: 'string',
@@ -21,6 +20,3 @@ OverflowScreen.args = { modalId: 'American-Chopper-Argument' };
 
 export const Narrow = Template.bind({});
 Narrow.args = { modalId: 'Criana' };
-
-export const Blank = Template.bind({});
-Blank.args = { modalId: '', link: 'test' };

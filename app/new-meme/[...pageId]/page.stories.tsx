@@ -1,10 +1,9 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Page from './page';
 
 export default {
-  title: 'Pages/New-Meme',
+  title: 'New-Meme/Page',
   component: Page,
   args: {
     params: { pageId: '1' },

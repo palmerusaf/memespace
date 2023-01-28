@@ -1,7 +1,8 @@
-import Image from 'next/image';
-import './tailwind.css';
 import NavWrapper from '@ui/app/nav-wrapper';
 import Logo from '@ui/shared/logo.png';
+import Image from 'next/image';
+import Link from 'next/link';
+import './tailwind.css';
 
 interface Props {
   children: React.ReactNode;
@@ -11,10 +12,12 @@ const Layout = ({ children }: Props) => {
   return (
     <html>
       <head />
-      <body>
-        <header className='fixed top-0 h-14 md:h-16 md:z-50 bg-blue-700 w-full flex justify-center'>
-          <Image src={Logo} width={350} alt='logo' />
-        </header>
+      <body className='overflow-clip'>
+        <Link href={'/'}>
+          <header className='flex h-14 w-full justify-center bg-blue-600 md:z-50 md:h-16'>
+            <Image src={Logo} width={300} height={56} alt='logo' />
+          </header>
+        </Link>
         <NavWrapper>{children}</NavWrapper>
       </body>
     </html>

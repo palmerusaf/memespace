@@ -1,10 +1,9 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Input from './input';
 
 export default {
-  title: 'Components/New-Meme/Modal/Input',
+  title: 'New-Meme/Input',
   component: Input,
   argTypes: {
     label: { control: 'text' },
