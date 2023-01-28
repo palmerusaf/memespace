@@ -1,15 +1,15 @@
-import ComingSoon from '@ui/shared/coming-soon';
-import Link from 'next/link';
+'use client';
+import { auth } from '@ui/shared/firebase-utils';
+import { redirect } from 'next/navigation';
 
 interface Props {}
 
 const Page = ({}: Props) => {
-  return (
-    <>
-      <Link href={'./login'}>login</Link>
-      <ComingSoon page='home' />
-    </>
-  );
+  if (auth.currentUser) {
+    redirect('/profile');
+  } else {
+    redirect('/login');
+  }
 };
 
 export default Page;
