@@ -4,15 +4,20 @@ import { useState } from 'react';
 const Filter = require('bad-words');
 const wordFilter = new Filter();
 
-export const useSetUserNameInDB = () => {
+export const useSetUserData = () => {
   const [isSending, setIsSending] = useState(false);
 
-  const setUserNameInDB = (pUserName: string) => {
+  interface Props {
+    pUserName: string;
+    pProfileMeme?: string;
+  }
+  const setUserData = ({ pProfileMeme = '', pUserName }: Props) => {
     if (!auth.currentUser) return;
     setIsSending(true);
     return Promise.race([
       setDoc(doc(db, 'users', auth.currentUser?.uid), {
         userName: pUserName,
+        profileMeme: pProfileMeme,
         createdDate: serverTimestamp(),
       }),
       new Promise((_, reject) => {
@@ -20,7 +25,7 @@ export const useSetUserNameInDB = () => {
       }),
     ]);
   };
-  return { setUserNameInDB, isSending };
+  return { setUserData, isSending };
 };
 
 export const useErrorMsg = () => {

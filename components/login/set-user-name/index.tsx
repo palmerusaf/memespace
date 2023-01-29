@@ -2,7 +2,7 @@ import { LoadingPage } from '@ui/shared/loading-page';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
-import { useErrorMsg, useSetUserNameInDB } from './hooks';
+import { useErrorMsg, useSetUserData } from './hooks';
 
 interface Props {
   setUserName: React.Dispatch<React.SetStateAction<string | null>>;
@@ -17,7 +17,7 @@ export function SetUserNameForm({
 }: Props) {
   // hooks
   const { invalidInput, displayErrorMsg, ErrorBox } = useErrorMsg();
-  const { isSending, setUserNameInDB } = useSetUserNameInDB();
+  const { isSending, setUserData } = useSetUserData();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +31,7 @@ export function SetUserNameForm({
 
     if (invalidInput(inputVal)) return displayErrorMsg(inputVal);
 
-    setUserNameInDB(inputVal)
+    setUserData({ pUserName: inputVal })
       ?.then(() => {
         setUserName(inputVal);
       })
