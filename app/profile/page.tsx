@@ -1,11 +1,12 @@
 'use client';
 import { auth } from '@ui/shared/firebase-utils';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
-  if (!auth.currentUser) return <></>;
+  const router = useRouter();
+  if (!auth.currentUser) return router.replace('/login');
   const { uid } = auth.currentUser;
-  redirect(`/profile/${uid}`);
+  router.replace(`/profile/${uid}`);
 };
 
 export default Page;

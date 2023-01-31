@@ -5,9 +5,7 @@ import { SetUserNameForm } from './index';
 export default {
   title: 'Login/UserName Form',
   component: SetUserNameForm,
-  args: {
-    setUserName: (un) => console.info('username set to ', un),
-  },
+  args: {},
 } as ComponentMeta<typeof SetUserNameForm>;
 
 const Template: ComponentStory<typeof SetUserNameForm> = (args) => (

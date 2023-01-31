@@ -1,14 +1,15 @@
 'use client';
 import { auth } from '@ui/shared/firebase-utils';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface Props {}
 
 const Page = ({}: Props) => {
+  const router = useRouter();
   if (auth.currentUser) {
-    redirect('/profile');
+    router.replace('/profile');
   } else {
-    redirect('/login');
+    router.replace('/login');
   }
 };
 
