@@ -1,34 +1,8 @@
-import { auth, db } from '@ui/shared/firebase-utils';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 const Filter = require('bad-words');
 const wordFilter = new Filter();
 
-export const useSetUserData = () => {
-  const [isSending, setIsSending] = useState(false);
-
-  interface Props {
-    pUserName: string;
-    pProfileMeme?: string;
-  }
-  const setUserData = ({ pProfileMeme = '', pUserName }: Props) => {
-    if (!auth.currentUser) return;
-    setIsSending(true);
-    return Promise.race([
-      setDoc(doc(db, 'users', auth.currentUser?.uid), {
-        userName: pUserName,
-        profileMeme: pProfileMeme,
-        createdDate: serverTimestamp(),
-      }),
-      new Promise((_, reject) => {
-        return setTimeout(reject, 10000, new Error('DB write timed out'));
-      }),
-    ]);
-  };
-  return { setUserData, isSending };
-};
-
-export const useErrorMsg = () => {
+export const useInputValidator = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const invalidInput = (input: string) => {
@@ -40,7 +14,7 @@ export const useErrorMsg = () => {
     );
   };
 
-  const displayErrorMsg = (input: string) => {
+  const updateMsgBox = (input: string) => {
     if (wordFilter.isProfane(input)) setErrorMsg('Profanity Not Allowed');
     else if (input === '') setErrorMsg("User Name Can't Be Blank");
     else if (input.includes(' ')) setErrorMsg("User Name Can't Have Spaces");
@@ -48,12 +22,12 @@ export const useErrorMsg = () => {
       setErrorMsg("User Name Can't Be Over 20 Characters");
   };
 
-  const ErrorBox = () => {
+  const InvalidMsgBox = () => {
     return (
       <span className='h-4 w-full text-center text-lg font-bold text-red-600'>
         {errorMsg}
       </span>
     );
   };
-  return { ErrorBox, displayErrorMsg, invalidInput };
+  return { InvalidMsgBox, updateMsgBox, invalidInput };
 };

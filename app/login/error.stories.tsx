@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import Error from './error';
+import Error from './ErrorPage';
 
 export default {
   title: 'Login/Error Page',

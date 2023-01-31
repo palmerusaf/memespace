@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth';
 import { Button, Divider, PageWrapper } from '.';
 
-export function LoginForm() {
+export function PreLogin() {
   const authWith = (provider: AuthProvider) => {
     signInWithRedirect(auth, provider);
   };

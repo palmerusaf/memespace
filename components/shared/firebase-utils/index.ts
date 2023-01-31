@@ -5,7 +5,14 @@ import {
   getAuth,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+import {
+  connectFirestoreEmulator,
+  doc,
+  DocumentData,
+  getFirestore,
+  setDoc,
+  WithFieldValue,
+} from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 const firebaseConfig = {
@@ -32,4 +39,18 @@ export const useLoggedIn = () => {
     onAuthStateChanged(auth, (user) => setLoggedIn(user !== null));
   }, []);
   return { loggedIn };
+};
+
+export const setDocWithTimeLimit = (
+  path: string,
+  pathSegments: string[],
+  data: WithFieldValue<DocumentData>,
+  timeLimit = 10000
+) => {
+  return Promise.race([
+    setDoc(doc(db, path, ...pathSegments), data),
+    new Promise((_, reject) => {
+      return setTimeout(reject, timeLimit, new Error('DB write timed out'));
+    }),
+  ]);
 };

@@ -1,15 +1,15 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { LoginForm } from './login-form';
+import { PreLogin } from './pre-login';
 
 export default {
   title: 'login/login-form',
-  component: LoginForm,
-} as ComponentMeta<typeof LoginForm>;
+  component: PreLogin,
+} as ComponentMeta<typeof PreLogin>;
 
-const Template: ComponentStory<typeof LoginForm> = () => (
+const Template: ComponentStory<typeof PreLogin> = () => (
   <div className='h-screen w-screen'>
-    <LoginForm />
+    <PreLogin />
   </div>
 );
 

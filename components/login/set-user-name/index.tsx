@@ -1,41 +1,51 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { auth, setDocWithTimeLimit } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { FieldValue, serverTimestamp } from 'firebase/firestore';
+import { useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
-import { useErrorMsg, useSetUserData } from './hooks';
+import { useInputValidator } from './hooks';
 
-interface Props {
-  setUserName: React.Dispatch<React.SetStateAction<string | null>>;
-  defaultTestValue?: string;
-  setErrorStatus: Dispatch<SetStateAction<Error | null>>;
+async function setProfileData(data: {
+  userName: string;
+  profileMeme: string;
+  createdDate: FieldValue;
+}) {
+  if (!auth.currentUser) return;
+
+  return setDocWithTimeLimit('users', [auth.currentUser?.uid], data);
 }
 
-export function SetUserNameForm({
-  setUserName,
-  defaultTestValue = '',
-  setErrorStatus,
-}: Props) {
+export function SetUserNameForm({ defaultTestValue = '' }) {
   // hooks
-  const { invalidInput, displayErrorMsg, ErrorBox } = useErrorMsg();
-  const { isSending, setUserData } = useSetUserData();
+  const { invalidInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: setProfileData,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['profileData'],
+      });
+    },
+  });
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  if (isSending) {
+  if (mutation.isLoading)
     return <LoadingPage loadingMsg='Setting User Name in Database' />;
-  }
+  if (mutation.isError)
+    throw new Error('Failed to connect to DB while setting profile data!');
 
   const handleClick = () => {
     if (!inputRef || !inputRef.current) return;
-    const inputVal = inputRef.current.value;
-
-    if (invalidInput(inputVal)) return displayErrorMsg(inputVal);
-
-    setUserData({ pUserName: inputVal })
-      ?.then(() => {
-        setUserName(inputVal);
-      })
-      .catch(setErrorStatus);
+    const userName = inputRef.current.value;
+    if (invalidInput(userName)) return updateMsgBox(userName);
+    mutation.mutate({
+      userName,
+      createdDate: serverTimestamp(),
+      profileMeme: '',
+    });
   };
 
   return (
@@ -53,7 +63,7 @@ export function SetUserNameForm({
         <Button onClick={handleClick} className='bg-blue-600'>
           Continue
         </Button>
-        <ErrorBox />
+        <InvalidMsgBox />
       </form>
     </PageWrapper>
   );

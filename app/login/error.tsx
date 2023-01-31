@@ -9,6 +9,8 @@ export default function ErrorPage({
   error: Error;
   reset: () => void;
 }) {
+  console.error(error);
+
   return (
     <div className='h-full bg-gray-300'>
       <PageWrapper>
