@@ -1,23 +1,11 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import { auth, db } from '@ui/shared/firebase-utils';
+import { auth, useMyProfileQuery } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
 import { signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { Button, Divider, PageWrapper, SetUserNameForm } from '.';
 
-async function getProfileData() {
-  if (!auth.currentUser) return null;
-  const res = await getDoc(doc(db, 'users', auth.currentUser.uid));
-  if (!res.exists()) return null;
-  return res.data();
-}
-
 export const AfterLogin = () => {
-  const query = useQuery({
-    queryKey: ['profileData'],
-    queryFn: getProfileData,
-  });
+  const query = useMyProfileQuery();
 
   if (query.isLoading)
     return <LoadingPage loadingMsg='Gathering Profile Data' />;

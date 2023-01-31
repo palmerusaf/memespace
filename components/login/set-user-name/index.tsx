@@ -25,7 +25,7 @@ export function SetUserNameForm({ defaultTestValue = '' }) {
     mutationFn: setProfileData,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['profileData'],
+        queryKey: ['myProfile'],
       });
     },
   });

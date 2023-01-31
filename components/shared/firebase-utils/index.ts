@@ -1,4 +1,5 @@
 'use client';
+import { useQuery } from '@tanstack/react-query';
 import { initializeApp } from 'firebase/app';
 import {
   connectAuthEmulator,
@@ -9,6 +10,7 @@ import {
   connectFirestoreEmulator,
   doc,
   DocumentData,
+  getDoc,
   getFirestore,
   setDoc,
   WithFieldValue,
@@ -53,4 +55,16 @@ export const setDocWithTimeLimit = (
       return setTimeout(reject, timeLimit, new Error('DB write timed out'));
     }),
   ]);
+};
+
+export const useMyProfileQuery = () => {
+  return useQuery({
+    queryKey: ['myProfile'],
+    queryFn: async () => {
+      if (!auth.currentUser) return null;
+      const res = await getDoc(doc(db, 'users', auth.currentUser.uid));
+      if (!res.exists()) return null;
+      return res.data();
+    },
+  });
 };
