@@ -11,6 +11,7 @@ const Page = ({}: Props) => {
   } else {
     router.replace('/login');
   }
+  return <></>;
 };
 
 export default Page;
