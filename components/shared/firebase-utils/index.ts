@@ -57,7 +57,6 @@ export const setDocWithTimeLimit = (
     }),
   ]);
 };
-
 export interface ProfileDataProps {
   userName: string;
   profileMeme: string;
@@ -86,4 +85,20 @@ export const useProfileMutation = (uid: string) => {
       });
     },
   });
+};
+
+export const useMyProfileQuery = () => {
+  if (!auth.currentUser)
+    throw new Error(
+      'useMyProfileQuery called without user being signed in, so uid is unknown'
+    );
+  return useProfileQuery(auth.currentUser.uid);
+};
+
+export const useMyProfileMutation = () => {
+  if (!auth.currentUser)
+    throw new Error(
+      'useMyProfileMutation called without user being signed in, so uid is unknown'
+    );
+  return useProfileMutation(auth.currentUser.uid);
 };

@@ -1,17 +1,17 @@
 'use client';
-import { auth, useProfileQuery } from '@ui/shared/firebase-utils';
+import { auth, useMyProfileQuery } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
 import { signOut } from 'firebase/auth';
 import { Button, Divider, PageWrapper, SetUserNameForm } from '.';
 
-export const AfterLogin = ({ uid }: { uid: string }) => {
-  const query = useProfileQuery(uid);
+export const AfterLogin = () => {
+  const query = useMyProfileQuery();
 
   if (query.isLoading)
     return <LoadingPage loadingMsg='Gathering Profile Data' />;
   if (query.isError)
     throw new Error('Failed to connect to DB while fetching profile data!');
-  if (!query.data) return <SetUserNameForm uid={uid} />;
+  if (!query.data) return <SetUserNameForm />;
   else return <OptionsAfterUserNameSet userName={query.data.userName} />;
 };
 

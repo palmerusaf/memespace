@@ -1,21 +1,29 @@
-import { useProfileMutation } from '@ui/shared/firebase-utils';
+import {
+  auth,
+  setDocWithTimeLimit,
+  useMyProfileMutation,
+} from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
-import { serverTimestamp } from 'firebase/firestore';
+import { FieldValue, serverTimestamp } from 'firebase/firestore';
 import { useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
 import { useInputValidator } from './hooks';
 
-export function SetUserNameForm({
-  defaultTestValue = '',
-  uid,
-}: {
-  defaultTestValue?: string;
-  uid: string;
+async function setProfileData(data: {
+  userName: string;
+  profileMeme: string;
+  createdDate: FieldValue;
 }) {
+  if (!auth.currentUser) return;
+
+  return setDocWithTimeLimit('users', [auth.currentUser?.uid], data);
+}
+
+export function SetUserNameForm({ defaultTestValue = '' }) {
   // hooks
   const { invalidInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
-  const mutation = useProfileMutation(uid);
+  const mutation = useMyProfileMutation();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
