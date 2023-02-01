@@ -1,34 +1,21 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { auth, setDocWithTimeLimit } from '@ui/shared/firebase-utils';
+import { useProfileMutation } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
-import { FieldValue, serverTimestamp } from 'firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
 import { useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
 import { useInputValidator } from './hooks';
 
-async function setProfileData(data: {
-  userName: string;
-  profileMeme: string;
-  createdDate: FieldValue;
+export function SetUserNameForm({
+  defaultTestValue = '',
+  uid,
+}: {
+  defaultTestValue?: string;
+  uid: string;
 }) {
-  if (!auth.currentUser) return;
-
-  return setDocWithTimeLimit('users', [auth.currentUser?.uid], data);
-}
-
-export function SetUserNameForm({ defaultTestValue = '' }) {
   // hooks
   const { invalidInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
-  const queryClient = useQueryClient();
-  const mutation = useMutation({
-    mutationFn: setProfileData,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['myProfile'],
-      });
-    },
-  });
+  const mutation = useProfileMutation(uid);
 
   const inputRef = useRef<HTMLInputElement>(null);
 

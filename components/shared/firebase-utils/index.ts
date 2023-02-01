@@ -1,5 +1,5 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { initializeApp } from 'firebase/app';
 import {
   connectAuthEmulator,
@@ -10,6 +10,7 @@ import {
   connectFirestoreEmulator,
   doc,
   DocumentData,
+  FieldValue,
   getDoc,
   getFirestore,
   setDoc,
@@ -57,14 +58,32 @@ export const setDocWithTimeLimit = (
   ]);
 };
 
-export const useMyProfileQuery = () => {
+export interface ProfileDataProps {
+  userName: string;
+  profileMeme: string;
+  createdDate: FieldValue;
+}
+
+export const useProfileQuery = (uid: string) => {
   return useQuery({
-    queryKey: ['myProfile'],
+    queryKey: [`profile-id-${uid}`],
     queryFn: async () => {
-      if (!auth.currentUser) return null;
-      const res = await getDoc(doc(db, 'users', auth.currentUser.uid));
+      const res = await getDoc(doc(db, 'users', uid));
       if (!res.exists()) return null;
-      return res.data();
+      return res.data() as ProfileDataProps;
+    },
+  });
+};
+
+export const useProfileMutation = (uid: string) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: ProfileDataProps) =>
+      setDocWithTimeLimit('users', [uid], data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`profile-id-${uid}`],
+      });
     },
   });
 };
