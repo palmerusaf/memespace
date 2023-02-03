@@ -6,8 +6,12 @@ import SmallLogo from '@ui/shared/small-logo.png';
 export function ProfileMeme({ data }: { data: { meme: string } | null }) {
   if (!data || data.meme === '') {
     return (
-      <div className='h-20 w-20 rounded-full bg-blue-600 shadow-xl'>
-        <img src={SmallLogo.src} alt='Placeholder Meme' className='h-20 w-20' />
+      <div className='aspect-square w-full rounded-full bg-blue-600 shadow-xl'>
+        <img
+          src={SmallLogo.src}
+          alt='Placeholder Meme'
+          className='aspect-square w-full'
+        />
       </div>
     );
   } else {
@@ -15,9 +19,9 @@ export function ProfileMeme({ data }: { data: { meme: string } | null }) {
       <ImageWithLoadState
         src={getThumbnail(data.meme)}
         alt='Placeholder Meme'
-        width={80}
-        height={80}
-        className='h-20 w-20 rounded-full object-cover shadow-xl'
+        width={150}
+        height={150}
+        className='aspect-square w-full rounded-full object-cover shadow-xl'
       />
     );
   }

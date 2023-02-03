@@ -10,7 +10,9 @@ export default {
 
 const Template: ComponentStory<typeof ProfileMeme> = (args) => (
   <div className='flex h-screen w-screen items-center justify-center'>
-    <ProfileMeme {...args} />
+    <div className='w-16 md:w-36'>
+      <ProfileMeme {...args} />
+    </div>
   </div>
 );
 
