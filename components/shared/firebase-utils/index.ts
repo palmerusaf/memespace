@@ -10,10 +10,10 @@ import {
   connectFirestoreEmulator,
   doc,
   DocumentData,
-  FieldValue,
   getDoc,
   getFirestore,
   setDoc,
+  Timestamp,
   WithFieldValue,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
@@ -60,7 +60,7 @@ export const setDocWithTimeLimit = (
 export interface ProfileDataProps {
   userName: string;
   profileMeme: string;
-  createdDate: FieldValue;
+  createdDate: Timestamp;
 }
 
 export const useProfileQuery = (uid: string) => {
