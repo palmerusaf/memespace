@@ -1,5 +1,5 @@
 'use client';
-import { getMeme } from '@ui/shared/api-meme';
+import { getMeme } from '@ui/shared/api-meme-utils';
 import ImageWithLoadState from '@ui/shared/image';
 import React, { useRef, useState } from 'react';
 import styles from './index.module.css';

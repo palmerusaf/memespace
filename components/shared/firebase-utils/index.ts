@@ -59,7 +59,7 @@ export const setDocWithTimeLimit = (
 };
 export interface ProfileDataProps {
   userName: string;
-  profileMeme: string;
+  meme: string;
   createdDate: Timestamp;
 }
 

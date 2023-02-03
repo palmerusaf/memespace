@@ -12,7 +12,7 @@ import { useInputValidator } from './hooks';
 
 async function setProfileData(data: {
   userName: string;
-  profileMeme: string;
+  meme: string;
   createdDate: FieldValue;
 }) {
   if (!auth.currentUser) return;
@@ -39,7 +39,7 @@ export function SetUserNameForm({ defaultTestValue = '' }) {
     mutation.mutate({
       userName,
       createdDate: serverTimestamp(),
-      profileMeme: '',
+      meme: '',
     });
   };
 
