@@ -1,5 +1,6 @@
 'use client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import assert from 'assert';
 import { initializeApp } from 'firebase/app';
 import {
   connectAuthEmulator,
@@ -10,6 +11,7 @@ import {
   connectFirestoreEmulator,
   doc,
   DocumentData,
+  FieldValue,
   getDoc,
   getFirestore,
   setDoc,
@@ -60,7 +62,7 @@ export const setDocWithTimeLimit = (
 export interface ProfileDataProps {
   userName: string;
   meme: string;
-  createdDate: Timestamp;
+  createdDate?: Timestamp | FieldValue;
 }
 
 export const useProfileQuery = (uid: string) => {
@@ -88,17 +90,11 @@ export const useProfileMutation = (uid: string) => {
 };
 
 export const useMyProfileQuery = () => {
-  if (!auth.currentUser)
-    throw new Error(
-      'useMyProfileQuery called without user being signed in, so uid is unknown'
-    );
+  assert(auth.currentUser);
   return useProfileQuery(auth.currentUser.uid);
 };
 
 export const useMyProfileMutation = () => {
-  if (!auth.currentUser)
-    throw new Error(
-      'useMyProfileMutation called without user being signed in, so uid is unknown'
-    );
+  assert(auth.currentUser);
   return useProfileMutation(auth.currentUser.uid);
 };

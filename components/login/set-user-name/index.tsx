@@ -1,24 +1,10 @@
-import {
-  auth,
-  setDocWithTimeLimit,
-  useMyProfileMutation,
-} from '@ui/shared/firebase-utils';
+import { useMyProfileMutation } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
-import { FieldValue, serverTimestamp } from 'firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
 import { useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
 import { useInputValidator } from './hooks';
-
-async function setProfileData(data: {
-  userName: string;
-  meme: string;
-  createdDate: FieldValue;
-}) {
-  if (!auth.currentUser) return;
-
-  return setDocWithTimeLimit('users', [auth.currentUser?.uid], data);
-}
 
 export function SetUserNameForm({ defaultTestValue = '' }) {
   // hooks

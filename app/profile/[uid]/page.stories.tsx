@@ -1,6 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
 import Page from './page';
+
+const queryClient = new QueryClient();
 
 export default {
   title: 'profile/Page',
@@ -8,7 +14,16 @@ export default {
   args: { params: { uid: '' } },
 } as ComponentMeta<typeof Page>;
 
-const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
+const Template: ComponentStory<typeof Page> = (args) => (
+  <QueryClientProvider client={queryClient}>
+    <Page {...args} />
+  </QueryClientProvider>
+);
 
-export const Story = Template.bind({});
-Story.args = {};
+const useError = (uid: string) =>
+  useQuery({
+    queryFn: async () => Promise.reject(),
+  });
+
+export const Error = Template.bind({});
+Error.args = { pUseProfileQuery: useError };
