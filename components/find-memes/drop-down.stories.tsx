@@ -4,7 +4,7 @@ import MemeList from './meme-list.json';
 import DropDown from './drop-down';
 
 export default {
-  title: 'find-memes/Drop-Down',
+  title: 'find memes/Drop Down',
   component: DropDown,
   args: { optionValues: MemeList, placeholder: 'Select from Drop-Down' },
 } as ComponentMeta<typeof DropDown>;

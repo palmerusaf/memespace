@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Page from './page';
 
 export default {
-  title: 'find-memes/Page',
+  title: 'find memes/Page',
   component: Page,
   args: {
     params: { pageId: '1' },
