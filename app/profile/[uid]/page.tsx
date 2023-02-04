@@ -34,7 +34,7 @@ export default Page;
 
 function AvatarArea({ data }: { data: RecievingProfileData | null }) {
   return (
-    <div className='flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-xl md:justify-start md:px-16 md:pt-6 md:pb-11'>
+    <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-xl md:justify-start md:px-16 md:pt-6 md:pb-11'>
       <div className='w-20 md:w-36'>
         <AvatarMeme data={data} />
       </div>
@@ -47,6 +47,9 @@ function AvatarArea({ data }: { data: RecievingProfileData | null }) {
           {data ? data.createdDate.toDate().toLocaleDateString() : 'Unknown'}
         </div>
       </div>
+      <button className='absolute -bottom-2 -right-1 flex gap-1 rounded-full border-black bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-110 md:bottom-2 md:right-2 md:px-3 md:text-xl'>
+        Edit
+      </button>
     </div>
   );
 }
