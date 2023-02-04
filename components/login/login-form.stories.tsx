@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { PreLogin } from './pre-login';
 
 export default {
-  title: 'login/login-form',
+  title: 'login/Login Form',
   component: PreLogin,
 } as ComponentMeta<typeof PreLogin>;
 

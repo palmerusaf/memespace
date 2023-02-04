@@ -18,7 +18,7 @@ const useTestMutation = (uid: string) => {
 };
 
 export default {
-  title: 'Login/UserName Form',
+  title: 'Login/Username Form',
   component: SetUserNameForm,
   args: { pUseMyProfileMutation: useTestMutation },
 } as ComponentMeta<typeof SetUserNameForm>;
