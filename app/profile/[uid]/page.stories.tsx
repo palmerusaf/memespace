@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 export default {
   title: 'Profile/Page',
   component: Page,
-  args: { params: { uid: '' } },
+  args: { params: { uid: '', pUseIsOwner: (uid) => ({ isOwner: false }) } },
 } as ComponentMeta<typeof Page>;
 
 const Template: ComponentStory<typeof Page> = (args) => (
@@ -36,6 +36,16 @@ export const MemeNotSet = Template.bind({});
 MemeNotSet.args = {
   pUseProfileQuery: setQueryWith({
     meme: '',
+    userName: 'foo',
+    createdDate: Timestamp.now(),
+  }),
+};
+
+export const HasOwnership = Template.bind({});
+HasOwnership.args = {
+  pUseIsOwner: (uid) => ({ isOwner: true }),
+  pUseProfileQuery: setQueryWith({
+    meme: '10-Guy',
     userName: 'foo',
     createdDate: Timestamp.now(),
   }),
