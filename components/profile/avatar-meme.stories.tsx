@@ -1,17 +1,17 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { ProfileMeme } from './profile-meme';
+import { AvatarMeme } from './avatar-meme';
 
 export default {
   title: 'profile/Profile Meme',
-  component: ProfileMeme,
+  component: AvatarMeme,
   args: {},
-} as ComponentMeta<typeof ProfileMeme>;
+} as ComponentMeta<typeof AvatarMeme>;
 
-const Template: ComponentStory<typeof ProfileMeme> = (args) => (
+const Template: ComponentStory<typeof AvatarMeme> = (args) => (
   <div className='flex h-screen w-screen items-center justify-center'>
     <div className='w-16 md:w-36'>
-      <ProfileMeme {...args} />
+      <AvatarMeme {...args} />
     </div>
   </div>
 );

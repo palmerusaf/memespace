@@ -3,7 +3,7 @@ import { getThumbnail } from '@ui/shared/api-meme-utils';
 import ImageWithLoadState from '@ui/shared/image';
 import SmallLogo from '@ui/shared/small-logo.png';
 
-export function ProfileMeme({ data }: { data: { meme: string } | null }) {
+export function AvatarMeme({ data }: { data: { meme: string } | null }) {
   if (!data || data.meme === '') {
     return (
       <div className='aspect-square w-full rounded-full bg-blue-600 shadow-xl'>
