@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-import { ProfileDataProps } from '@ui/shared/firebase-utils';
+import { RecievingProfileData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
 import Page from './page';
 
@@ -23,8 +23,9 @@ const Template: ComponentStory<typeof Page> = (args) => (
   </QueryClientProvider>
 );
 
-const setQueryWith = (testData: ProfileDataProps | null) => (uid: string) =>
+const setQueryWith = (testData: RecievingProfileData | null) => (uid: string) =>
   useQuery({
+    queryKey: ['test-value'],
     queryFn: () => testData,
   });
 
@@ -36,7 +37,7 @@ MemeNotSet.args = {
   pUseProfileQuery: setQueryWith({
     meme: '',
     userName: 'foo',
-    createdDate: new Timestamp(new Date().getSeconds(), 0),
+    createdDate: Timestamp.now(),
   }),
 };
 
@@ -45,7 +46,7 @@ Normal.args = {
   pUseProfileQuery: setQueryWith({
     meme: '10-Guy',
     userName: 'foo',
-    createdDate: new Timestamp(new Date().getSeconds(), 0),
+    createdDate: Timestamp.now(),
   }),
 };
 
@@ -54,7 +55,7 @@ UserName20Chars.args = {
   pUseProfileQuery: setQueryWith({
     meme: '10-Guy',
     userName: 'aaaaaaaaaaaaaaaaaaaa',
-    createdDate: new Timestamp(new Date().getSeconds(), 0),
+    createdDate: Timestamp.now(),
   }),
 };
 
@@ -63,7 +64,7 @@ UserNameWithSpaces.args = {
   pUseProfileQuery: setQueryWith({
     meme: '10-Guy',
     userName: 'username with space',
-    createdDate: new Timestamp(new Date().getSeconds(), 0),
+    createdDate: Timestamp.now(),
   }),
 };
 
@@ -72,7 +73,7 @@ OverFlowMeme.args = {
   pUseProfileQuery: setQueryWith({
     meme: 'American-Chopper-Argument',
     userName: 'foo',
-    createdDate: new Timestamp(new Date().getSeconds(), 0),
+    createdDate: Timestamp.now(),
   }),
 };
 
@@ -81,7 +82,7 @@ NotFoundMeme.args = {
   pUseProfileQuery: setQueryWith({
     meme: 'Always-Has-Been',
     userName: 'foo',
-    createdDate: new Timestamp(new Date().getSeconds(), 0),
+    createdDate: Timestamp.now(),
   }),
 };
 

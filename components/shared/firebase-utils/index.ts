@@ -59,10 +59,16 @@ export const setDocWithTimeLimit = (
     }),
   ]);
 };
-export interface ProfileDataProps {
+export interface RecievingProfileData {
   userName: string;
   meme: string;
-  createdDate?: Timestamp | FieldValue;
+  createdDate: Timestamp;
+}
+
+export interface SendingProfileData {
+  userName: string;
+  meme: string;
+  createdDate?: FieldValue;
 }
 
 export const useProfileQuery = (uid: string) => {
@@ -71,7 +77,7 @@ export const useProfileQuery = (uid: string) => {
     queryFn: async () => {
       const res = await getDoc(doc(db, 'users', uid));
       if (!res.exists()) return null;
-      return res.data() as ProfileDataProps;
+      return res.data() as RecievingProfileData;
     },
   });
 };
@@ -79,7 +85,7 @@ export const useProfileQuery = (uid: string) => {
 export const useProfileMutation = (uid: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: ProfileDataProps) =>
+    mutationFn: (data: SendingProfileData) =>
       setDocWithTimeLimit('users', [uid], data),
     onSuccess: () => {
       queryClient.invalidateQueries({
