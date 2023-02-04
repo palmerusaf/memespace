@@ -6,10 +6,13 @@ import { Button, Divider, PageWrapper } from '..';
 import { Input } from '../input';
 import { useInputValidator } from './hooks';
 
-export function SetUserNameForm({ defaultTestValue = '' }) {
+export function SetUserNameForm({
+  defaultTestValue = '',
+  pUseMyProfileMutation = useMyProfileMutation,
+}) {
   // hooks
   const { invalidInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
-  const mutation = useMyProfileMutation();
+  const mutation = pUseMyProfileMutation();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
