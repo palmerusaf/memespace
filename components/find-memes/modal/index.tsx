@@ -2,7 +2,6 @@
 import { getMeme } from '@ui/shared/api-meme-utils';
 import ImageWithLoadState from '@ui/shared/image';
 import React, { useRef, useState } from 'react';
-import styles from './index.module.css';
 import Input from './input';
 
 interface Props {
@@ -47,9 +46,7 @@ const Modal = ({ modalId, setModalId }: Props) => {
           e.stopPropagation();
         }}
         className={
-          'flex h-auto w-auto flex-col items-center gap-4 rounded-lg bg-white px-6  py-4 shadow-lg' +
-          ' ' +
-          styles.popIn
+          'flex h-auto w-auto flex-col  items-center gap-4 rounded-lg bg-white px-6  py-4 shadow-lg animate-in fade-in zoom-in-50'
         }
       >
         <h1 className='text-xl font-bold'>{title}</h1>
