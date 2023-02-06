@@ -47,7 +47,7 @@ const Page = ({ params }: Props) => {
             return (
               <div
                 key={id}
-                className='m-2 flex flex-col justify-between rounded-lg bg-white p-2 shadow-md'
+                className='m-2 flex flex-col justify-between rounded-lg bg-white p-2 shadow-md animate-in zoom-in-50 spin-in-12'
               >
                 <h2 className='w-full overflow-hidden overflow-ellipsis text-center font-medium'>
                   {id.replace(/-/g, ' ')}
