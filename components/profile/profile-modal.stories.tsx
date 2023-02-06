@@ -1,5 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useMutation } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+} from '@tanstack/react-query';
 import { SendingProfileData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
 
@@ -18,8 +22,11 @@ export default {
   args: { closeModal: console.log, pUseMyProfileMutation: useTestMutation },
 } as ComponentMeta<typeof ProfileModal>;
 
+const queryClient = new QueryClient();
 const Template: ComponentStory<typeof ProfileModal> = (args) => (
-  <ProfileModal {...args} />
+  <QueryClientProvider client={queryClient}>
+    <ProfileModal {...args} />
+  </QueryClientProvider>
 );
 
 export const NoData = Template.bind({});
