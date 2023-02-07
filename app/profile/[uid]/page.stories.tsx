@@ -14,7 +14,9 @@ const queryClient = new QueryClient();
 export default {
   title: 'Profile/Page',
   component: Page,
-  args: { params: { uid: '', pUseIsOwner: (uid) => ({ isOwner: false }) } },
+  args: {
+    params: { uid: '', pUseIsOwner: (uid: string) => ({ isOwner: false }) },
+  },
 } as ComponentMeta<typeof Page>;
 
 const Template: ComponentStory<typeof Page> = (args) => (

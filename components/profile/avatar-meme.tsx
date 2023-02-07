@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { getThumbnail } from '@ui/shared/api-meme-utils';
-import ImageWithLoadState from '@ui/shared/image';
+import ImageWithLoadState from '@ui/shared/next-image';
 import SmallLogo from '@ui/shared/small-logo.png';
 
 export function AvatarMeme({ data }: { data: { meme: string } | null }) {

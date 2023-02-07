@@ -12,8 +12,7 @@ const queryClient = new QueryClient();
 
 const useTestMutation = (uid: string) => {
   return useMutation({
-    mutationFn: (data: SendingProfileData) =>
-      new Promise(data).then(console.log),
+    mutationFn: (data: SendingProfileData) => Promise.resolve(),
   });
 };
 
