@@ -39,3 +39,5 @@ const input = (
 };
 
 export const Input = forwardRef(input);
+
+export * from './hooks';

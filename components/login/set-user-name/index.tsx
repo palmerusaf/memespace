@@ -1,10 +1,9 @@
 import { useMyProfileMutation } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
+import { Input, useInputValidator } from '@ui/shared/username-input';
 import { serverTimestamp } from 'firebase/firestore';
 import { useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
-import { Input } from '../input';
-import { useInputValidator } from './hooks';
 
 export function SetUserNameForm({
   defaultTestValue = '',
