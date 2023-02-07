@@ -5,19 +5,31 @@ import {
 import { useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
-interface Props {
+interface ProfileModalProps {
   data: RecievingProfileData;
-  uid: string;
-  pUseMyProfileMutation: typeof useMyProfileMutation;
+}
+
+export const useModalHook = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalOpen(true);
+  const ProfileModal = (props: ProfileModalProps) => {
+    const modalProps = { closeModal, ...props };
+    return isModalOpen ? <Modal {...modalProps} /> : <></>;
+  };
+  return { openModal, ProfileModal };
+};
+
+interface ModalProps extends ProfileModalProps {
+  pUseMyProfileMutation?: typeof useMyProfileMutation;
   closeModal: () => void;
 }
 
-export const ProfileModal = ({
+export const Modal = ({
   data,
-  uid,
   pUseMyProfileMutation = useMyProfileMutation,
   closeModal,
-}: Props) => {
+}: ModalProps) => {
   const mutation = pUseMyProfileMutation();
   return (
     <div
@@ -34,13 +46,6 @@ export const ProfileModal = ({
       </div>
     </div>
   );
-};
-
-export const useModalHook = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const closeModal = () => setIsModalOpen(false);
-  const openModal = () => setIsModalOpen(true);
-  return { isModalOpen, closeModal, openModal };
 };
 
 function AvatarArea({ data }: { data: RecievingProfileData | null }) {

@@ -7,9 +7,9 @@ import {
 import { SendingProfileData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
 
-import { ProfileModal } from './profile-modal';
+import { Modal } from './profile-modal';
 
-const useTestMutation = (uid: string) => {
+const useTestMutation = () => {
   return useMutation({
     mutationFn: (data: SendingProfileData) => Promise.resolve(),
   });
@@ -17,16 +17,25 @@ const useTestMutation = (uid: string) => {
 
 export default {
   title: 'profile/Profile Modal',
-  component: ProfileModal,
+  component: Modal,
   args: { closeModal: console.log, pUseMyProfileMutation: useTestMutation },
-} as ComponentMeta<typeof ProfileModal>;
+} as ComponentMeta<typeof Modal>;
 
 const queryClient = new QueryClient();
-const Template: ComponentStory<typeof ProfileModal> = (args) => (
+const Template: ComponentStory<typeof Modal> = (args) => (
   <QueryClientProvider client={queryClient}>
-    <ProfileModal {...args} />
+    <Modal {...args} />
   </QueryClientProvider>
 );
+
+export const Normal = Template.bind({});
+Normal.args = {
+  data: {
+    meme: '10-Guy',
+    createdDate: Timestamp.now(),
+    userName: 'foobar',
+  },
+};
 
 export const NoData = Template.bind({});
 NoData.args = {};
@@ -35,6 +44,15 @@ export const BlankMeme = Template.bind({});
 BlankMeme.args = {
   data: {
     meme: '',
+    createdDate: Timestamp.now(),
+    userName: 'foobar',
+  },
+};
+
+export const ImageNotFound = Template.bind({});
+ImageNotFound.args = {
+  data: {
+    meme: 'Always-Has-Been',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },
@@ -49,28 +67,10 @@ Name20Chars.args = {
   },
 };
 
-export const Normal = Template.bind({});
-Normal.args = {
-  data: {
-    meme: '10-Guy',
-    createdDate: Timestamp.now(),
-    userName: 'foobar',
-  },
-};
-
 export const OverFlowMeme = Template.bind({});
 OverFlowMeme.args = {
   data: {
     meme: 'American-Chopper-Argument',
-    createdDate: Timestamp.now(),
-    userName: 'foobar',
-  },
-};
-
-export const ImageNotFound = Template.bind({});
-ImageNotFound.args = {
-  data: {
-    meme: 'Always-Has-Been',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },
