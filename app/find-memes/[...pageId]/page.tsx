@@ -1,9 +1,9 @@
 'use client';
-import DropDown from '@ui/find-memes/drop-down';
-import MemeList from '@ui/find-memes/meme-list.json';
 import Modal from '@ui/find-memes/modal';
 import { getMemeEndPoints, isInvalidPage } from '@ui/find-memes/nav/page-utils';
 import { getThumbnail } from '@ui/shared/api-meme-utils';
+import DropDown from '@ui/shared/drop-down';
+import MemeList from '@ui/shared/meme-list.json';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { notFound } from 'next/navigation';
 import { useState } from 'react';

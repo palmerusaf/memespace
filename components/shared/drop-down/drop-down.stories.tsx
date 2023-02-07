@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import MemeList from './meme-list.json';
+import MemeList from '@ui/shared/meme-list.json';
 
-import DropDown from './drop-down';
+import DropDown from './index';
 
 export default {
   title: 'find memes/Drop Down',
