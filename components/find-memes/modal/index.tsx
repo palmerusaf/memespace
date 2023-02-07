@@ -67,7 +67,7 @@ const Modal = ({ modalId, setModalId }: Props) => {
           <span className='flex w-full justify-between gap-1'>
             <button
               className={
-                'rounded-full border-2 border-black bg-blue-600 px-2 py-0.5 text-center font-medium text-black shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
+                'rounded-full border-2 border-black bg-blue-600 px-2 py-0.5 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
               }
               onClick={updateImgSrc}
             >
@@ -78,7 +78,7 @@ const Modal = ({ modalId, setModalId }: Props) => {
               target='_blank'
               rel='noreferrer noopener'
               className={
-                'rounded-full border-2 border-black bg-blue-600 px-2 py-0.5 text-center font-medium text-black shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
+                'rounded-full border-2 border-black bg-blue-600 px-2 py-0.5 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
               }
             >
               Lookup Origin
@@ -87,7 +87,7 @@ const Modal = ({ modalId, setModalId }: Props) => {
         </form>
         <button
           className={
-            'w-full rounded-full border-2 border-black bg-red-600 px-2 py-0.5 text-center font-medium text-black shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
+            'w-full rounded-full border-2 border-black bg-red-600 px-2 py-0.5 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
           }
           onClick={closeModal}
         >

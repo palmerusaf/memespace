@@ -62,7 +62,7 @@ const Page = ({ params }: Props) => {
                 <button
                   onClick={() => setMemeId(id)}
                   className={
-                    'rounded-full border-2  border-black bg-blue-600 px-3 py-1 text-center font-medium text-black shadow-md duration-300 hover:-translate-y-1 hover:text-white hover:shadow-slate-500'
+                    'rounded-full border-2  border-black bg-blue-600 px-3 py-1 text-center font-medium text-white shadow-md duration-300 hover:-translate-y-1 hover:text-white hover:shadow-slate-500'
                   }
                 >
                   Select
