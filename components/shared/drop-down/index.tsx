@@ -2,7 +2,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
-  optionValues: string[];
+  optionValues: Readonly<string[]>;
   placeholder: string;
   selectedOption: string | null;
   setSelectedOption: Dispatch<SetStateAction<string | null>>;

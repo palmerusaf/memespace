@@ -3,7 +3,7 @@ import Modal from '@ui/find-memes/modal';
 import { getMemeEndPoints, isInvalidPage } from '@ui/find-memes/nav/page-utils';
 import { getThumbnail } from '@ui/shared/api-meme-utils';
 import DropDown from '@ui/shared/drop-down';
-import MemeList from '@ui/shared/meme-list.json';
+import { MEME_LIST } from '@ui/shared/meme-list';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { notFound } from 'next/navigation';
 import { useState } from 'react';
@@ -23,7 +23,7 @@ const Page = ({ params }: Props) => {
   // define sub-list to display based on page number
   const pageNum: number = parseInt(pageId);
   const endPoints = getMemeEndPoints(pageNum);
-  const memeSubList = MemeList.slice(endPoints.start, endPoints.end);
+  const memeSubList = MEME_LIST.slice(endPoints.start, endPoints.end);
 
   return (
     <>
@@ -36,7 +36,7 @@ const Page = ({ params }: Props) => {
         </div>
         <div className='sticky top-1 flex w-full justify-center'>
           <DropDown
-            optionValues={MemeList}
+            optionValues={MEME_LIST}
             selectedOption={memeId}
             setSelectedOption={setMemeId}
             placeholder='Select from DropDown'
