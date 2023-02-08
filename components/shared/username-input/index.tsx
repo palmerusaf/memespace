@@ -18,6 +18,7 @@ const input = (
   return (
     <div className='relative h-10 w-full shrink-0 rounded-2xl border-2 border-white bg-gray-300 shadow-xl'>
       <input
+        autoComplete='off'
         id={label}
         onChange={onChange}
         required

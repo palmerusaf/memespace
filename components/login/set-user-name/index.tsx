@@ -10,7 +10,7 @@ export function SetUserNameForm({
   pUseMyProfileMutation = useMyProfileMutation,
 }) {
   // hooks
-  const { invalidInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
+  const { validInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
   const mutation = pUseMyProfileMutation();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,12 +23,13 @@ export function SetUserNameForm({
   const handleClick = () => {
     if (!inputRef || !inputRef.current) return;
     const userName = inputRef.current.value;
-    if (invalidInput(userName)) return updateMsgBox(userName);
-    mutation.mutate({
-      userName,
-      createdDate: serverTimestamp(),
-      meme: '',
-    });
+    updateMsgBox(userName);
+    if (validInput(userName))
+      mutation.mutate({
+        userName,
+        createdDate: serverTimestamp(),
+        meme: '',
+      });
   };
 
   return (

@@ -17,6 +17,7 @@ const Input = (
   return (
     <div className='relative h-8 w-full shrink-0 rounded-full border-2 border-white bg-gray-300 shadow-xl'>
       <input
+        autoComplete='off'
         id={label}
         required
         className='peer absolute h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
