@@ -1,11 +1,12 @@
-import { forwardRef } from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
 
 interface Props {
   label: string;
   defaultValue?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 const input = (
-  { label, defaultValue }: Props,
+  { label, defaultValue, onChange }: Props,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
   const notEmpty =
@@ -18,6 +19,7 @@ const input = (
     <div className='relative h-10 w-full shrink-0 rounded-2xl border-2 border-white bg-gray-300 shadow-xl'>
       <input
         id={label}
+        onChange={onChange}
         required
         className='peer absolute h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
         defaultValue={defaultValue}
