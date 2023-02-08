@@ -47,7 +47,34 @@ export const Modal = ({
   const handleSaveClick = () => {
     assert(inputRef && inputRef.current);
     const inputVal = inputRef.current.value;
-    if (validInput(inputVal)) console.log('todo save input');
+    if (validInput(inputVal))
+      mutation.mutate({ meme: profilePic || '', userName: inputVal });
+  };
+
+  const SaveButton = () => {
+    if (mutation.isLoading)
+      return (
+        <button className='w-full animate-pulse rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'>
+          Saving...
+        </button>
+      );
+    if (mutation.isError)
+      return (
+        <button
+          onClick={handleSaveClick}
+          className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+        >
+          Failed Try Again
+        </button>
+      );
+    return (
+      <button
+        onClick={handleSaveClick}
+        className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+      >
+        Save
+      </button>
+    );
   };
 
   const handleInputChange = () => {
@@ -87,12 +114,7 @@ export const Modal = ({
           <div className='w-full pt-6  pb-2 text-center'>
             <InvalidMsgBox />
           </div>
-          <button
-            onClick={handleSaveClick}
-            className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
-          >
-            Save
-          </button>
+          <SaveButton />
           <button
             onClick={closeModal}
             className='w-full rounded-full bg-red-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'

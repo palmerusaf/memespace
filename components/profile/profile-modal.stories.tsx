@@ -9,9 +9,21 @@ import { Timestamp } from 'firebase/firestore';
 
 import { Modal } from './profile-modal';
 
+const mock = (success: boolean, timeout = 1000) => {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      if (success) {
+        resolve();
+      } else {
+        reject({ message: 'Error' });
+      }
+    }, timeout);
+  });
+};
+
 const useTestMutation = () => {
   return useMutation({
-    mutationFn: (data: SendingProfileData) => Promise.resolve(),
+    mutationFn: (data: SendingProfileData) => mock(true),
   });
 };
 
