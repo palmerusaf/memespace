@@ -5,7 +5,8 @@ import {
 } from '@ui/shared/firebase-utils';
 import { MEME_LIST } from '@ui/shared/meme-list';
 import { Input, useInputValidator } from '@ui/shared/username-input';
-import { useState } from 'react';
+import assert from 'assert';
+import { useRef, useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
 interface ProfileModalProps {
@@ -38,9 +39,23 @@ export const Modal = ({
   closeModal,
 }: ModalProps) => {
   const mutation = pUseMyProfileMutation();
-  const [profilePic, setProfilePic] = useState(data?.meme || undefined);
-  const [userName, setUserName] = useState(data?.userName || undefined);
-  const { InvalidMsgBox, invalidInput, updateMsgBox } = useInputValidator();
+  const [profilePic, setProfilePic] = useState(data?.meme || null);
+  const [userName, setUserName] = useState(data?.userName || null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { InvalidMsgBox, validInput, updateMsgBox } = useInputValidator();
+
+  const handleSaveClick = () => {
+    assert(inputRef && inputRef.current);
+    const inputVal = inputRef.current.value;
+    if (validInput(inputVal)) console.log('todo save input');
+  };
+
+  const handleInputChange = () => {
+    assert(inputRef && inputRef.current);
+    const inputVal = inputRef.current.value;
+    updateMsgBox(inputVal);
+    if (validInput(inputVal)) setUserName(inputVal);
+  };
 
   return (
     <div
@@ -53,7 +68,10 @@ export const Modal = ({
         onClick={(e) => e.stopPropagation()}
         className='mx-2 flex h-auto w-full max-w-2xl flex-col items-center rounded-lg bg-white p-2 shadow-lg animate-in slide-in-from-top md:p-4'
       >
-        <AvatarArea meme={profilePic} userName={userName} />
+        <AvatarArea
+          meme={profilePic || undefined}
+          userName={userName || undefined}
+        />
         <div className='mt-3 flex w-full max-w-md flex-col items-center gap-2'>
           <DropDown
             optionValues={MEME_LIST}
@@ -62,15 +80,23 @@ export const Modal = ({
             setSelectedOption={setProfilePic}
           />
           <Input
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
+            ref={inputRef}
+            onChange={handleInputChange}
             label='User Name'
           />
-          <button className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'>
+          <div className='w-full pt-6  pb-2 text-center'>
+            <InvalidMsgBox />
+          </div>
+          <button
+            onClick={handleSaveClick}
+            className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+          >
             Save
           </button>
-          <button className='w-full rounded-full bg-red-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'>
+          <button
+            onClick={closeModal}
+            className='w-full rounded-full bg-red-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+          >
             Cancel
           </button>
         </div>
@@ -86,7 +112,7 @@ function AvatarArea({ meme = '', userName = 'No UserName' }) {
         <AvatarMeme data={{ meme }} />
       </div>
       <div className='w-full text-center text-xl md:text-2xl md:font-semibold'>
-        {userName}
+        {userName !== '' ? userName : 'No Username'}
       </div>
     </div>
   );
