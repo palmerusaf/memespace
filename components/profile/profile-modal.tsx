@@ -1,9 +1,11 @@
+import DropDown from '@ui/shared/drop-down';
 import {
   RecievingProfileData,
   useMyProfileMutation,
 } from '@ui/shared/firebase-utils';
-import assert from 'assert';
-import { useRef, useState } from 'react';
+import { MEME_LIST } from '@ui/shared/meme-list';
+import { Input, useInputValidator } from '@ui/shared/username-input';
+import { useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
 interface ProfileModalProps {
@@ -38,7 +40,7 @@ export const Modal = ({
   const mutation = pUseMyProfileMutation();
   const [profilePic, setProfilePic] = useState(data?.meme || undefined);
   const [userName, setUserName] = useState(data?.userName || undefined);
-  const userNameRef = useRef<HTMLInputElement>(null);
+  const { InvalidMsgBox, invalidInput, updateMsgBox } = useInputValidator();
 
   return (
     <div
@@ -52,22 +54,26 @@ export const Modal = ({
         className='mx-2 flex h-auto w-full max-w-2xl flex-col items-center rounded-lg bg-white p-2 shadow-lg animate-in slide-in-from-top md:p-4'
       >
         <AvatarArea meme={profilePic} userName={userName} />
-        <form
-          action=''
-          className=''
-          onSubmit={(e) => {
-            e.preventDefault();
-            assert(userNameRef && userNameRef.current);
-            setUserName(userNameRef.current.value);
-          }}
-        >
-          <input name='user-name' ref={userNameRef} type='text' className='' />
-          <input
-            type='submit'
-            className='rounded-full bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-110 md:px-3 md:text-xl'
-            value='Preview'
+        <div className='mt-3 flex w-full max-w-md flex-col items-center gap-2'>
+          <DropDown
+            optionValues={MEME_LIST}
+            placeholder='Select Profile Meme'
+            selectedOption={profilePic}
+            setSelectedOption={setProfilePic}
           />
-        </form>
+          <Input
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+            label='User Name'
+          />
+          <button className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'>
+            Save
+          </button>
+          <button className='w-full rounded-full bg-red-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'>
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
