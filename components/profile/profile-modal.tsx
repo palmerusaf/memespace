@@ -121,6 +121,7 @@ export const Modal = ({
           />
           <Input
             ref={inputRef}
+            defaultValue={data?.userName}
             onChange={handleInputChange}
             label='User Name'
           />
