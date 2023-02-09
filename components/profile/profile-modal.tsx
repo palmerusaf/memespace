@@ -6,7 +6,7 @@ import {
 import { MEME_LIST } from '@ui/shared/meme-list';
 import { Input, useInputValidator } from '@ui/shared/username-input';
 import assert from 'assert';
-import { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
 interface ProfileModalProps {
@@ -52,29 +52,36 @@ export const Modal = ({
   };
 
   const SaveButton = () => {
-    if (mutation.isLoading)
-      return (
-        <button className='w-full animate-pulse rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'>
-          Saving...
-        </button>
-      );
-    if (mutation.isError)
-      return (
-        <button
-          onClick={handleSaveClick}
-          className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
-        >
-          Failed Try Again
-        </button>
-      );
-    return (
+    interface ButtonProps {
+      onClick?: () => void;
+      className?: string;
+      children: React.ReactNode;
+    }
+
+    const Button = ({ onClick, className, children }: ButtonProps) => (
       <button
-        onClick={handleSaveClick}
-        className='w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+        onClick={onClick}
+        className={`w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl ${className}`}
       >
-        Save
+        {children}
       </button>
     );
+
+    const [inTimeLimit, setInTimeLimit] = useState(false);
+    useEffect(() => {
+      setInTimeLimit(true);
+      setTimeout(() => {
+        setInTimeLimit(false);
+      }, 1000);
+    }, [mutation.isSuccess]);
+
+    if (mutation.isLoading)
+      return <Button className='animate-pulse duration-1000'>Saving...</Button>;
+    if (mutation.isError)
+      return <Button onClick={handleSaveClick}>Failed Try Again</Button>;
+    if (mutation.isSuccess && inTimeLimit)
+      return <Button onClick={handleSaveClick}>Save Successful</Button>;
+    return <Button onClick={handleSaveClick}>Save</Button>;
   };
 
   const handleInputChange = () => {

@@ -9,10 +9,10 @@ import { Timestamp } from 'firebase/firestore';
 
 import { Modal } from './profile-modal';
 
-const mock = (success: boolean, timeout = 1000) => {
+const mock = (willPass: boolean, timeout = 3000) => {
   return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
-      if (success) {
+      if (willPass) {
         resolve();
       } else {
         reject({ message: 'Error' });
@@ -21,7 +21,13 @@ const mock = (success: boolean, timeout = 1000) => {
   });
 };
 
-const useTestMutation = () => {
+const useFailingMutation = () => {
+  return useMutation({
+    mutationFn: (data: SendingProfileData) => mock(true),
+  });
+};
+
+const usePassingMutation = () => {
   return useMutation({
     mutationFn: (data: SendingProfileData) => mock(true),
   });
@@ -30,7 +36,7 @@ const useTestMutation = () => {
 export default {
   title: 'profile/Profile Modal',
   component: Modal,
-  args: { closeModal: console.log, pUseMyProfileMutation: useTestMutation },
+  args: { closeModal: console.log, pUseMyProfileMutation: usePassingMutation },
 } as ComponentMeta<typeof Modal>;
 
 const queryClient = new QueryClient();
@@ -81,6 +87,16 @@ Name20Chars.args = {
 
 export const OverFlowMeme = Template.bind({});
 OverFlowMeme.args = {
+  data: {
+    meme: 'American-Chopper-Argument',
+    createdDate: Timestamp.now(),
+    userName: 'foobar',
+  },
+};
+
+export const SaveWillFail = Template.bind({});
+SaveWillFail.args = {
+  pUseMyProfileMutation: useFailingMutation,
   data: {
     meme: 'American-Chopper-Argument',
     createdDate: Timestamp.now(),
