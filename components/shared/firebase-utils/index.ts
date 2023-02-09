@@ -41,10 +41,10 @@ connectFirestoreEmulator(db, 'localhost', 9100);
 export const useIsOwner = (uid: string) => {
   const [isOwner, setIsOwner] = useState(false);
   useEffect(() => {
-    if (!auth.currentUser) return setIsOwner(false);
-    else setIsOwner(auth.currentUser.uid === uid);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]);
+    onAuthStateChanged(auth, (user) =>
+      setIsOwner(user !== null && user.uid === uid)
+    );
+  }, []);
   return { isOwner };
 };
 

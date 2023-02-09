@@ -49,9 +49,7 @@ const Page = ({
             </div>
             <div>
               Degen Since:{' '}
-              {data
-                ? data.createdDate.toDate().toLocaleDateString()
-                : 'Unknown'}
+              {data?.createdDate?.toDate().toLocaleDateString() ?? 'Unknown'}
             </div>
           </div>
           {isOwner && (
