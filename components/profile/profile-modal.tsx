@@ -40,17 +40,18 @@ export const Modal = ({
   closeModal,
 }: ModalProps) => {
   const mutation = pUseMyProfileMutation();
-  const [profilePic, setProfilePic] = useState(data?.meme || null);
-  const [userName, setUserName] = useState(data?.userName || null);
+  const [profilePic, setProfilePic] = useState(data?.meme ?? '');
+  const [userName, setUserName] = useState(data?.userName ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
   const { InvalidMsgBox, validInput, updateMsgBox } = useInputValidator();
 
   const handleSaveClick = () => {
     assert(inputRef && inputRef.current);
     const inputVal = inputRef.current.value;
+
     if (!validInput(inputVal)) return;
     mutation.mutate({
-      meme: profilePic || '',
+      meme: profilePic,
       userName: inputVal,
       createdDate: data?.createdDate ?? serverTimestamp(),
     });
