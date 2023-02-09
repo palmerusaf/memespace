@@ -99,7 +99,7 @@ export const Modal = ({
   return (
     <div
       className={
-        'absolute top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-blend-overlay backdrop-blur-sm'
+        'absolute top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-gray-400 bg-opacity-20 bg-blend-overlay backdrop-blur-sm'
       }
       onClick={closeModal}
     >
