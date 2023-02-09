@@ -6,6 +6,7 @@ import {
 import { MEME_LIST } from '@ui/shared/meme-list';
 import { Input, useInputValidator } from '@ui/shared/username-input';
 import assert from 'assert';
+import { serverTimestamp } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
@@ -47,8 +48,12 @@ export const Modal = ({
   const handleSaveClick = () => {
     assert(inputRef && inputRef.current);
     const inputVal = inputRef.current.value;
-    if (validInput(inputVal))
-      mutation.mutate({ meme: profilePic || '', userName: inputVal });
+    if (!validInput(inputVal)) return;
+    mutation.mutate({
+      meme: profilePic || '',
+      userName: inputVal,
+      createdDate: data?.createdDate ?? serverTimestamp(),
+    });
   };
 
   const SaveButton = () => {
