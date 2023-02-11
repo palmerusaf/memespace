@@ -4,14 +4,14 @@ import { Dispatch, SetStateAction } from 'react';
 interface Props {
   optionValues: Readonly<string[]>;
   placeholder: string;
-  selectedOption: string | null;
-  setSelectedOption: Dispatch<SetStateAction<string | null>>;
+  selectedOption: string;
+  setSelectedOption: Dispatch<SetStateAction<string>>;
 }
 
 const DropDown = ({
   optionValues,
   placeholder,
-  selectedOption,
+  selectedOption = '',
   setSelectedOption,
 }: Props) => {
   return (
@@ -27,7 +27,7 @@ const DropDown = ({
           onChange={({ target }) => {
             setSelectedOption(target.value);
           }}
-          value={selectedOption || ''}
+          value={selectedOption}
         >
           <option value=''>{placeholder}</option>
           {optionValues.map((value) => (

@@ -16,7 +16,7 @@ const Page = ({ params }: Props) => {
   const { pageId } = params;
 
   // set meme for modal and drop down
-  const [memeId, setMemeId] = useState<null | string>(null);
+  const [memeId, setMemeId] = useState('');
 
   if (isInvalidPage(pageId)) return notFound();
 
@@ -27,7 +27,7 @@ const Page = ({ params }: Props) => {
 
   return (
     <>
-      {memeId && <Modal setModalId={setMemeId} modalId={memeId} />}
+      {memeId !== '' && <Modal setModalId={setMemeId} modalId={memeId} />}
       <div className='relative h-full overflow-scroll'>
         <div className='flex w-full items-center justify-center'>
           <h1 className='w-full overflow-hidden text-center text-lg font-bold'>

@@ -36,6 +36,7 @@ const Page = ({
 
   function AvatarArea({ data }: { data: RecievingProfileData | null }) {
     const { openModal, ProfileModal } = useModalHook();
+
     return (
       <>
         <ProfileModal data={data} />

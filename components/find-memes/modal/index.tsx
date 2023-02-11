@@ -6,7 +6,7 @@ import Input from './input';
 
 interface Props {
   modalId: string;
-  setModalId: React.Dispatch<React.SetStateAction<string | null>>;
+  setModalId: React.Dispatch<React.SetStateAction<string>>;
   link?: string;
 }
 
@@ -30,7 +30,7 @@ const Modal = ({ modalId, setModalId }: Props) => {
     );
   };
 
-  const closeModal = () => setModalId(null);
+  const closeModal = () => setModalId('');
 
   const title = modalId.replace(/-/g, ' ');
 
