@@ -10,7 +10,13 @@ interface Props {
   children: React.ReactNode;
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const Layout = ({ children }: Props) => {
   return (
