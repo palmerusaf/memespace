@@ -107,7 +107,7 @@ export const Modal = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className='mx-2 flex h-auto w-full max-w-2xl flex-col items-center rounded-lg bg-white p-2 shadow-lg animate-in slide-in-from-top md:p-4'
+        className='mx-2 flex h-auto w-full max-w-2xl flex-col items-center rounded-lg bg-white p-2 shadow-lg animate-in fade-in md:p-4'
       >
         <h1 className='my-2 text-xl font-bold md:text-2xl'>Preview</h1>
         <AvatarArea
@@ -135,7 +135,7 @@ export const Modal = ({
             onClick={closeModal}
             className='w-full rounded-full bg-red-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
           >
-            Cancel
+            Close
           </button>
         </div>
       </div>
