@@ -79,6 +79,7 @@ export const Modal = ({
       setTimeout(() => {
         setInTimeLimit(false);
       }, 1000);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mutation.isSuccess]);
 
     if (mutation.isLoading)

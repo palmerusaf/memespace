@@ -7,21 +7,22 @@ import {
 } from '@tanstack/react-query';
 import { RecievingProfileData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
-import NextLayout from './layout';
+import { AvatarArea } from './index';
 
 const queryClient = new QueryClient();
 
 export default {
-  title: 'Profile/Layout',
-  component: NextLayout,
+  title: 'Profile/Avatar Area',
+  component: AvatarArea,
   args: {
-    params: { uid: '', pUseIsOwner: (uid: string) => ({ isOwner: false }) },
+    uid: '',
+    pUseIsOwner: (uid: string) => ({ isOwner: false }),
   },
-} as ComponentMeta<typeof NextLayout>;
+} as ComponentMeta<typeof AvatarArea>;
 
-const Template: ComponentStory<typeof NextLayout> = (args) => (
+const Template: ComponentStory<typeof AvatarArea> = (args) => (
   <QueryClientProvider client={queryClient}>
-    <NextLayout {...args} />
+    <AvatarArea {...args}></AvatarArea>
   </QueryClientProvider>
 );
 
