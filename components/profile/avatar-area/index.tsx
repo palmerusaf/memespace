@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { useIsOwner, useProfileQuery } from '@ui/shared/firebase-utils';
-import { LoadingPage } from '@ui/shared/loading-page';
+import { MadBro } from '@ui/shared/imgs';
 import assert from 'assert';
 import { AvatarMeme } from './avatar-meme';
 import { useModalHook } from './profile-modal';
@@ -19,8 +20,23 @@ export function AvatarArea({
   const { isOwner } = pUseIsOwner(uid);
   const { openModal, ProfileModal } = useModalHook();
 
-  if (query.isLoading) return <LoadingPage loadingMsg='Gathering User Data.' />;
-  if (query.isError) throw new Error('Trouble connecting to database.');
+  if (query.isLoading) {
+    return (
+      <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-xl md:justify-start md:px-16 md:pt-6 md:pb-11'>
+        <div className='w-16 md:w-36'>
+          <img src={MadBro.src} alt='loading spiner' className='animate-spin' />
+        </div>
+        <div className='flex flex-col gap-1 text-center md:flex-1 md:gap-9'>
+          <div className='animate-pulse text-xl font-semibold md:text-2xl'>
+            Loading...
+          </div>
+        </div>
+      </div>
+    );
+  } else if (query.isError) {
+    throw new Error('Trouble connecting to database.');
+  }
+
   assert(query.data !== undefined);
   return (
     <>

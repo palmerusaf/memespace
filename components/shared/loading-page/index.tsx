@@ -1,4 +1,4 @@
-import Spinner from '@ui/shared/loading-page/mad-bro.png';
+import Spinner from '@ui/shared/imgs/mad-bro.png';
 import Image from 'next/image';
 interface Props {
   loadingMsg?: string;
