@@ -102,6 +102,7 @@ NotFoundMeme.args = {
 
 export const MockedAvatarArea = () => {
   const args = {
+    pUseIsOwner: () => ({ isOwner: true }),
     pUseProfileQuery: setQueryWith({
       meme: '',
       userName: 'foo',
