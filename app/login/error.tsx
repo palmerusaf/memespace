@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { Button, PageWrapper } from '@ui/login';
-import SadError from '@ui/login/sad-error.png';
+import { SadBoi } from '@ui/shared/imgs';
 export default function ErrorPage({
   error,
   reset,
@@ -16,7 +16,7 @@ export default function ErrorPage({
       <PageWrapper>
         <div className='flex h-full w-full flex-col items-center justify-center gap-2'>
           <img
-            src={SadError.src}
+            src={SadBoi.src}
             alt='Forever Alone'
             className='w-24 animate-bounce'
           />

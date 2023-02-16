@@ -1,7 +1,7 @@
 'use client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NavWrapper from '@ui/app/nav-wrapper';
-import Logo from '@ui/shared/logo.png';
+import { Logo } from '@ui/shared/imgs';
 import Image from 'next/image';
 import Link from 'next/link';
 import './tailwind.css';

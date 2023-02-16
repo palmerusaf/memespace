@@ -1,5 +1,5 @@
-import LogoPic from '@ui/shared/logo.png';
 import Image from 'next/image';
+import { Logo } from './imgs';
 
 interface Props {
   page: string;
@@ -11,7 +11,7 @@ function ComingSoon({ page }: Props) {
       <Image
         height={300}
         width={350}
-        src={LogoPic}
+        src={Logo}
         alt='Logo'
         className='h-auto w-auto'
       />

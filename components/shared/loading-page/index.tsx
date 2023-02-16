@@ -1,4 +1,4 @@
-import Spinner from '@ui/shared/imgs/mad-bro.png';
+import { MadBro } from '@ui/shared/imgs';
 import Image from 'next/image';
 interface Props {
   loadingMsg?: string;
@@ -11,7 +11,7 @@ export const LoadingPage = ({ loadingMsg, className }: Props) => {
         className={`flex h-full w-full flex-col items-center justify-center bg-blue-600 text-white ${className}`}
       >
         <Image
-          src={Spinner}
+          src={MadBro}
           alt='loading spinner'
           height={100}
           width={123}
