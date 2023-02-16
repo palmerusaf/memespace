@@ -26,11 +26,12 @@ const Template: ComponentStory<typeof AvatarArea> = (args) => (
   </QueryClientProvider>
 );
 
-const setQueryWith = (testData: RecievingProfileData | null) => (uid: string) =>
-  useQuery({
-    queryKey: ['test-value'],
-    queryFn: () => testData,
-  });
+export const setQueryWith =
+  (testData: RecievingProfileData | null) => (uid: string) =>
+    useQuery({
+      queryKey: ['test-value'],
+      queryFn: () => testData,
+    });
 
 export const NullData = Template.bind({});
 NullData.args = { pUseProfileQuery: setQueryWith(null) };
@@ -99,10 +100,17 @@ NotFoundMeme.args = {
   }),
 };
 
-// export const Error = Template.bind({});
-// Error.args = {
-//   pUseProfileQuery: (uid: string) =>
-//     useQuery({
-//       queryFn: async () => Promise.reject(),
-//     }),
-// };
+export const MockedAvatarArea = () => {
+  const args = {
+    pUseProfileQuery: setQueryWith({
+      meme: '',
+      userName: 'foo',
+      createdDate: Timestamp.now(),
+    }),
+  };
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AvatarArea uid={''} {...args}></AvatarArea>
+    </QueryClientProvider>
+  );
+};

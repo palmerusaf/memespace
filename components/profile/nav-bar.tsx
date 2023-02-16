@@ -13,42 +13,47 @@ export function NavBar({
   let segment = pUseSelectedLayoutSegment();
 
   return (
-    <nav className='flex w-full justify-center'>
-      <ul className='flex gap-3 rounded-md bg-white px-2 py-0.5 shadow-md md:text-xl'>
+    <nav className='mt-2 flex border-t md:w-full md:justify-center'>
+      <ul className='flex gap-3 px-2'>
         <NavBarLink
           href={`/profile/${uid}`}
           imgSrc={MadBro.src}
           imgAlt={'Mad Bro'}
-        >
-          MEMES
-        </NavBarLink>
+          label='MEMES'
+        />
         <NavBarLink
           href={`/profile/${uid}/tracked`}
           imgSrc={SmallLogo.src}
           imgAlt={'meme people'}
-        >
-          TRACKING
-        </NavBarLink>
+          label='TRACKING'
+        />
       </ul>
     </nav>
   );
 
   function NavBarLink({
     href,
-    children,
+    label,
     imgSrc,
     imgAlt,
   }: {
     href: string;
-    children: React.ReactNode;
+    label: string;
     imgSrc: string;
     imgAlt: string;
   }) {
     let active = href === `/profile/${uid}${segment ? `/${segment}` : ''}`;
     return (
-      <NavLink activeClass='font-bold' href={href} active={active}>
-        <img src={imgSrc} alt={imgAlt} />
-        {children}
+      <NavLink
+        activeClass='font-bold border-t-2 border-blue-600'
+        className=''
+        href={href}
+        active={active}
+      >
+        <div className='flex gap-2 p-2'>
+          <img src={imgSrc} className='h-8' alt={imgAlt} />
+          <div className='hidden'>{label}</div>
+        </div>
       </NavLink>
     );
   }

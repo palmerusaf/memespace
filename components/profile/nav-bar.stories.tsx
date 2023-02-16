@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { LayoutWrapper } from 'app/profile/[uid]/layout';
+import { MockedAvatarArea } from './avatar-area/index.stories';
 
 import { NavBar } from './nav-bar';
 
@@ -9,17 +10,9 @@ export default {
   args: { pUseSelectedLayoutSegment: () => 'yo' },
 } as ComponentMeta<typeof NavBar>;
 
-const MockAvatarArea = () => (
-  <div className='flex h-[112px] w-full items-center justify-center md:h-[212px]'>
-    Avatar Area
-  </div>
-);
-
 const Template: ComponentStory<typeof NavBar> = (args) => (
   <LayoutWrapper>
-    <div className='flex h-[112px] w-full items-center justify-center rounded-md shadow-xl md:h-[212px]'>
-      Avatar Area
-    </div>
+    <MockedAvatarArea />
     <NavBar {...args} />
   </LayoutWrapper>
 );

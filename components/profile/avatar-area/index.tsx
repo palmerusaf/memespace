@@ -41,7 +41,7 @@ export function AvatarArea({
   return (
     <>
       <ProfileModal data={query.data} />
-      <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-xl md:justify-start md:px-16 md:pt-6 md:pb-11'>
+      <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-md md:justify-start md:px-16 md:pt-6 md:pb-11'>
         <div className='w-20 md:w-36'>
           <AvatarMeme data={query.data} />
         </div>
