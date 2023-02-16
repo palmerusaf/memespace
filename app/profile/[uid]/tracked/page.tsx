@@ -1,9 +1,7 @@
-'use client';
-
 interface Props {}
 
 const Page = ({}: Props) => {
-  return <div>meme collection</div>;
+  return <div>tracked</div>;
 };
 
 export default Page;

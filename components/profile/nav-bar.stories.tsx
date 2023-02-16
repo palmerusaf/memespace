@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof NavBar> = (args) => (
 );
 
 export const MemeSelected = Template.bind({});
-MemeSelected.args = { uid: '123', pUseSelectedLayoutSegment: () => '123' };
+MemeSelected.args = { uid: '123', pUseSelectedLayoutSegment: () => null };
 
 export const TrackedSelected = Template.bind({});
 TrackedSelected.args = {
