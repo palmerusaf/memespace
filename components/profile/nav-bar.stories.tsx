@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { LayoutWrapper } from 'app/profile/[uid]/layout';
 
-import { NavBar } from './layout';
+import { NavBar } from './nav-bar';
 
 export default {
   title: 'profile/Nav Bar',

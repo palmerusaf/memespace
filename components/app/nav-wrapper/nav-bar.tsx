@@ -15,17 +15,20 @@ export function NavBar({
     children: React.ReactNode;
   }
 
-  const NavBarLink = ({ href, children }: NavBarLinkProps) => (
-    <NavLink
-      href={href}
-      className='block flex-1 select-none border-b-2 border-white border-opacity-0 md:py-3'
-      activeClass='border-opacity-100 text-white'
-      inActiveClass='hover:border-opacity-100 hover:text-white'
-      segment={segment}
-    >
-      {children}
-    </NavLink>
-  );
+  const NavBarLink = ({ href, children }: NavBarLinkProps) => {
+    let active = href.startsWith(`/${segment}`);
+    return (
+      <NavLink
+        href={href}
+        className='block flex-1 select-none border-b-2 border-white border-opacity-0 md:py-3'
+        activeClass='border-opacity-100 text-white'
+        inActiveClass='hover:border-opacity-100 hover:text-white'
+        active={active}
+      >
+        {children}
+      </NavLink>
+    );
+  };
 
   return (
     <div className='h-full  w-full bg-blue-600'>

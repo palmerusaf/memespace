@@ -8,18 +8,17 @@ interface Props {
   inActiveClass?: string;
   href: string;
   children: React.ReactNode;
-  segment: string | null;
+  active: boolean;
 }
 
 export const NavLink = ({
   inActiveClass = '',
   className = '',
   activeClass = '',
-  segment,
+  active,
   href,
   children,
 }: Props) => {
-  let active = href.startsWith(`/${segment}`);
   return (
     <Link
       href={href}
