@@ -27,7 +27,7 @@ export function NavBar({
   pUseSelectedLayoutSegment = useSelectedLayoutSegment,
 }: {
   uid: string;
-  pUseSelectedLayoutSegment: typeof useSelectedLayoutSegment;
+  pUseSelectedLayoutSegment?: typeof useSelectedLayoutSegment;
 }) {
   let segment = pUseSelectedLayoutSegment();
   const active = true;
