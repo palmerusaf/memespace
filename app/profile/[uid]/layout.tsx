@@ -24,7 +24,7 @@ export default Layout;
 
 export function NavBar({
   uid,
-  pUseSelectedLayoutSegment,
+  pUseSelectedLayoutSegment = useSelectedLayoutSegment,
 }: {
   uid: string;
   pUseSelectedLayoutSegment: typeof useSelectedLayoutSegment;
@@ -33,7 +33,7 @@ export function NavBar({
   const active = true;
   return (
     <nav className='flex w-full justify-center'>
-      <ul className='flex gap-3 rounded-md bg-white px-2 py-1 shadow-md md:text-xl'>
+      <ul className='flex gap-3 rounded-md bg-white px-2 py-0.5 shadow-md md:text-xl'>
         <NavLink href={`/profile/${uid}`}>Meme Collection</NavLink>
         <NavLink href={`/profile/${uid}/tracked`}>Tracked Degens</NavLink>
       </ul>

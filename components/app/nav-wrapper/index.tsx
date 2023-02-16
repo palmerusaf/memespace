@@ -3,9 +3,10 @@ import { NavBar } from './nav-bar';
 
 interface Props {
   children: React.ReactNode;
+  NavBarInj?: typeof NavBar;
 }
 
-const NavWrapper = ({ children }: Props) => {
+const NavWrapper = ({ children, NavBarInj = NavBar }: Props) => {
   return (
     <div className='flex h-full flex-col md:grid md:grid-cols-[160px,auto]'>
       <div
@@ -14,7 +15,7 @@ const NavWrapper = ({ children }: Props) => {
         {children}
       </div>
       <div className='fixed bottom-0 h-16 w-screen shadow-xl md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
-        <NavBar />
+        <NavBarInj />
       </div>
     </div>
   );
