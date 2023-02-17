@@ -37,9 +37,7 @@ export function NavBar({
           {loggedIn && <NavBarLink href='/profile'>Profile</NavBarLink>}
           {!loggedIn && <NavBarLink href='/login'>Login</NavBarLink>}
           <NavBarLink href='/find-memes/1'>Find Memes</NavBarLink>
-          {loggedIn && (
-            <NavBarLink href='/find-friends'>Find Friends</NavBarLink>
-          )}
+          {loggedIn && <NavBarLink href='/find-degens'>Find Degens</NavBarLink>}
         </ul>
       </nav>
     </div>
