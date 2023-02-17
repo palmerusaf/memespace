@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { AvatarArea } from '@ui/profile/avatar-area';
+import { LayoutWrapper } from '@ui/profile/layout-wrapper';
 import { NavBar } from '@ui/profile/nav-bar';
 import React from 'react';
 
@@ -20,13 +21,3 @@ const Layout = ({ params: { uid }, children }: Props) => {
 };
 
 export default Layout;
-
-export function LayoutWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <div className='flex h-full w-full flex-col items-center'>
-      <div className='flex h-full w-full max-w-3xl flex-col gap-2 px-2 md:gap-4 md:pt-2'>
-        {children}
-      </div>
-    </div>
-  );
-}

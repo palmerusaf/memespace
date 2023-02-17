@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { LayoutWrapper } from 'app/profile/[uid]/layout';
 import { MockedAvatarArea } from './avatar-area/index.stories';
+import { LayoutWrapper } from './layout-wrapper';
 
 import { NavBar } from './nav-bar';
 
