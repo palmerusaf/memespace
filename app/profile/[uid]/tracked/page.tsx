@@ -1,7 +1,9 @@
-interface Props {}
+import ComingSoon from '@ui/shared/coming-soon';
 
-const Page = ({}: Props) => {
-  return <div>tracked</div>;
-};
+const Page = () => (
+  <div className='h-1/2 w-full overflow-hidden rounded-lg'>
+    <ComingSoon page='Tracking' />
+  </div>
+);
 
 export default Page;

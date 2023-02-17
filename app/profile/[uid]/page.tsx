@@ -1,9 +1,9 @@
-'use client';
+import ComingSoon from '@ui/shared/coming-soon';
 
-interface Props {}
-
-const Page = ({}: Props) => {
-  return <div>meme collection</div>;
-};
+const Page = () => (
+  <div className='h-1/2 w-full overflow-hidden rounded-lg'>
+    <ComingSoon page='Meme Collection' />
+  </div>
+);
 
 export default Page;
