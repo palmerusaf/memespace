@@ -1,5 +1,5 @@
-import LogoPic from '@ui/shared/logo.png';
 import Image from 'next/image';
+import { Logo } from './imgs';
 
 interface Props {
   page: string;
@@ -7,11 +7,11 @@ interface Props {
 
 function ComingSoon({ page }: Props) {
   return (
-    <div className='flex h-full w-full flex-col items-center justify-center bg-blue-800'>
+    <div className='flex h-full w-full flex-col items-center justify-center bg-blue-600'>
       <Image
         height={300}
         width={350}
-        src={LogoPic}
+        src={Logo}
         alt='Logo'
         className='h-auto w-auto'
       />

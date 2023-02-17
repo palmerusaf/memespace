@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { LoadingPage } from './index';
 
 export default {
-  title: 'Shared/Loading-Page',
+  title: 'Shared/Loading Page',
   component: LoadingPage,
   args: {},
 } as ComponentMeta<typeof LoadingPage>;

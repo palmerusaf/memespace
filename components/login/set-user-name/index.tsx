@@ -1,41 +1,35 @@
+import { useMyProfileMutation } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { Input, useInputValidator } from '@ui/shared/username-input';
+import { serverTimestamp } from 'firebase/firestore';
+import { useRef } from 'react';
 import { Button, Divider, PageWrapper } from '..';
-import { Input } from '../input';
-import { useErrorMsg, useSetUserNameInDB } from './hooks';
-
-interface Props {
-  setUserName: React.Dispatch<React.SetStateAction<string | null>>;
-  defaultTestValue?: string;
-  setErrorStatus: Dispatch<SetStateAction<Error | null>>;
-}
 
 export function SetUserNameForm({
-  setUserName,
   defaultTestValue = '',
-  setErrorStatus,
-}: Props) {
+  pUseMyProfileMutation = useMyProfileMutation,
+}) {
   // hooks
-  const { invalidInput, displayErrorMsg, ErrorBox } = useErrorMsg();
-  const { isSending, setUserNameInDB } = useSetUserNameInDB();
+  const { validInput, updateMsgBox, InvalidMsgBox } = useInputValidator();
+  const mutation = pUseMyProfileMutation();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  if (isSending) {
+  if (mutation.isLoading)
     return <LoadingPage loadingMsg='Setting User Name in Database' />;
-  }
+  if (mutation.isError)
+    throw new Error('Failed to connect to DB while setting profile data!');
 
   const handleClick = () => {
     if (!inputRef || !inputRef.current) return;
-    const inputVal = inputRef.current.value;
-
-    if (invalidInput(inputVal)) return displayErrorMsg(inputVal);
-
-    setUserNameInDB(inputVal)
-      ?.then(() => {
-        setUserName(inputVal);
-      })
-      .catch(setErrorStatus);
+    const userName = inputRef.current.value;
+    updateMsgBox(userName);
+    if (validInput(userName))
+      mutation.mutate({
+        userName,
+        createdDate: serverTimestamp(),
+        meme: '',
+      });
   };
 
   return (
@@ -53,7 +47,7 @@ export function SetUserNameForm({
         <Button onClick={handleClick} className='bg-blue-600'>
           Continue
         </Button>
-        <ErrorBox />
+        <InvalidMsgBox />
       </form>
     </PageWrapper>
   );
