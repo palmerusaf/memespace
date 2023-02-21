@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { useIsOwner, useProfileQuery } from '@ui/shared/firebase-utils';
+import { auth, useIsOwner, useProfileQuery } from '@ui/shared/firebase-utils';
 import { MadBro } from '@ui/shared/imgs';
 import assert from 'assert';
+import { signOut } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 import { AvatarMeme } from './avatar-meme';
 import { useModalHook } from './profile-modal';
 
@@ -17,6 +19,7 @@ export function AvatarArea({
   pUseIsOwner = useIsOwner,
 }: Props) {
   const query = pUseProfileQuery(uid);
+  const router = useRouter();
   const { isOwner } = pUseIsOwner(uid);
   const { openModal, ProfileModal } = useModalHook();
 
@@ -58,12 +61,23 @@ export function AvatarArea({
           </div>
         </div>
         {isOwner && (
-          <button
-            className='absolute -bottom-2 -right-1 rounded-full bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-110 md:bottom-2 md:right-2 md:px-3 md:text-xl'
-            onClick={openModal}
-          >
-            Edit
-          </button>
+          <div className='absolute -bottom-2 -right-1 flex gap-2 md:bottom-2 md:right-2'>
+            <button
+              className='rounded-full bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-110 md:px-3 md:text-xl'
+              onClick={openModal}
+            >
+              Edit
+            </button>
+            <button
+              className='rounded-full bg-red-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-110 md:px-3 md:text-xl'
+              onClick={() => {
+                signOut(auth);
+                router.replace('/');
+              }}
+            >
+              Logout
+            </button>
+          </div>
         )}
       </div>
     </>
