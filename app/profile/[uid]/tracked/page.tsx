@@ -1,7 +1,7 @@
 import ComingSoon from '@ui/shared/coming-soon';
 
 const Page = () => (
-  <div className='h-1/2 w-full overflow-hidden rounded-lg'>
+  <div className='mb-2 h-full w-full overflow-scroll rounded-lg'>
     <ComingSoon page='Tracking' />
   </div>
 );
