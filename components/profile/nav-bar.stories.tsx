@@ -7,7 +7,7 @@ import { NavBar } from './nav-bar';
 export default {
   title: 'profile/Nav Bar',
   component: NavBar,
-  args: { pUseSelectedLayoutSegment: () => 'yo' },
+  args: {},
 } as ComponentMeta<typeof NavBar>;
 
 const Template: ComponentStory<typeof NavBar> = (args) => (
@@ -24,4 +24,13 @@ export const TrackedSelected = Template.bind({});
 TrackedSelected.args = {
   uid: '123',
   pUseSelectedLayoutSegment: () => 'tracked',
+};
+
+export const MockedNavBar = ({ selected }: { selected: 'tracked' | null }) => {
+  const args = {
+    uid: '123',
+    pUseSelectedLayoutSegment: () => selected,
+  };
+
+  return <NavBar {...args} />;
 };
