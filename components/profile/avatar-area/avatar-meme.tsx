@@ -3,8 +3,8 @@ import { getThumbnail } from '@ui/shared/api-meme-utils';
 import { SmallLogo } from '@ui/shared/imgs';
 import ImageWithLoadState from '@ui/shared/next-image';
 
-export function AvatarMeme({ data }: { data: { meme: string } | null }) {
-  if (!data || data.meme === '') {
+export function AvatarMeme({ data }: { data: { profileMeme: string } | null }) {
+  if (!data || data.profileMeme === '') {
     return (
       <div className='aspect-square w-full rounded-full bg-blue-600 shadow-xl'>
         <img
@@ -17,7 +17,7 @@ export function AvatarMeme({ data }: { data: { meme: string } | null }) {
   } else {
     return (
       <ImageWithLoadState
-        src={getThumbnail(data.meme)}
+        src={getThumbnail(data.profileMeme)}
         alt='Placeholder Meme'
         width={150}
         height={150}

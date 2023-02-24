@@ -71,13 +71,13 @@ export const setDocWithTimeLimit = (
 };
 export interface RecievingProfileData {
   userName: string;
-  meme: string;
+  profileMeme: string;
   createdDate: Timestamp;
 }
 
 export interface SendingProfileData {
   userName: string;
-  meme: string;
+  profileMeme: string;
   createdDate?: FieldValue;
 }
 

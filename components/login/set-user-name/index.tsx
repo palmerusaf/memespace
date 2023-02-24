@@ -28,7 +28,7 @@ export function SetUserNameForm({
       mutation.mutate({
         userName,
         createdDate: serverTimestamp(),
-        meme: '',
+        profileMeme: '',
       });
   };
 

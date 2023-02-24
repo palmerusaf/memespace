@@ -49,7 +49,7 @@ const Template: ComponentStory<typeof Modal> = (args) => (
 export const Normal = Template.bind({});
 Normal.args = {
   data: {
-    meme: '10-Guy',
+    profileMeme: '10-Guy',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },
@@ -61,7 +61,7 @@ NoData.args = {};
 export const BlankMeme = Template.bind({});
 BlankMeme.args = {
   data: {
-    meme: '',
+    profileMeme: '',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },
@@ -70,7 +70,7 @@ BlankMeme.args = {
 export const ImageNotFound = Template.bind({});
 ImageNotFound.args = {
   data: {
-    meme: 'Always-Has-Been',
+    profileMeme: 'Always-Has-Been',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },
@@ -79,7 +79,7 @@ ImageNotFound.args = {
 export const Name20Chars = Template.bind({});
 Name20Chars.args = {
   data: {
-    meme: '10-Guy',
+    profileMeme: '10-Guy',
     createdDate: Timestamp.now(),
     userName: 'BBBBBBBBBBBBBBBBBBBB',
   },
@@ -88,7 +88,7 @@ Name20Chars.args = {
 export const OverFlowMeme = Template.bind({});
 OverFlowMeme.args = {
   data: {
-    meme: 'American-Chopper-Argument',
+    profileMeme: 'American-Chopper-Argument',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },
@@ -98,7 +98,7 @@ export const SaveWillFail = Template.bind({});
 SaveWillFail.args = {
   pUseMyProfileMutation: useFailingMutation,
   data: {
-    meme: 'American-Chopper-Argument',
+    profileMeme: 'American-Chopper-Argument',
     createdDate: Timestamp.now(),
     userName: 'foobar',
   },

@@ -40,7 +40,7 @@ export const Modal = ({
   closeModal,
 }: ModalProps) => {
   const mutation = pUseMyProfileMutation();
-  const [profilePic, setProfilePic] = useState(data?.meme ?? '');
+  const [profileMeme, setProfileMeme] = useState(data?.profileMeme ?? '');
   const [userName, setUserName] = useState(data?.userName ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
   const { InvalidMsgBox, validInput, updateMsgBox } = useInputValidator();
@@ -51,7 +51,7 @@ export const Modal = ({
 
     if (!validInput(inputVal)) return;
     mutation.mutate({
-      meme: profilePic,
+      profileMeme,
       userName: inputVal,
       createdDate: data?.createdDate ?? serverTimestamp(),
     });
@@ -111,15 +111,15 @@ export const Modal = ({
       >
         <h1 className='my-2 text-xl font-bold md:text-2xl'>Preview</h1>
         <AvatarArea
-          meme={profilePic || undefined}
+          profileMeme={profileMeme || undefined}
           userName={userName || undefined}
         />
         <div className='mt-3 flex w-full max-w-md flex-col items-center gap-2'>
           <DropDown
             optionValues={MEME_LIST}
             placeholder='Select Profile Meme'
-            selectedOption={profilePic}
-            setSelectedOption={setProfilePic}
+            selectedOption={profileMeme}
+            setSelectedOption={setProfileMeme}
           />
           <Input
             ref={inputRef}
@@ -143,11 +143,11 @@ export const Modal = ({
   );
 };
 
-function AvatarArea({ meme = '', userName = 'No UserName' }) {
+function AvatarArea({ profileMeme = '', userName = 'No UserName' }) {
   return (
     <div className='flex w-full items-center gap-3 rounded-md bg-white p-2 shadow md:justify-start md:p-5'>
       <div className='w-20 md:w-36'>
-        <AvatarMeme data={{ meme }} />
+        <AvatarMeme data={{ profileMeme }} />
       </div>
       <div className='w-full text-center text-xl md:text-2xl md:font-semibold'>
         {userName !== '' ? userName : 'No Username'}

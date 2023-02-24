@@ -20,13 +20,13 @@ export const NoData = Template.bind({});
 NoData.args = { data: null };
 
 export const BlankMeme = Template.bind({});
-BlankMeme.args = { data: { meme: '' } };
+BlankMeme.args = { data: { profileMeme: '' } };
 
 export const Normal = Template.bind({});
-Normal.args = { data: { meme: '10-Guy' } };
+Normal.args = { data: { profileMeme: '10-Guy' } };
 
 export const OverFlowMeme = Template.bind({});
-OverFlowMeme.args = { data: { meme: 'American-Chopper-Argument' } };
+OverFlowMeme.args = { data: { profileMeme: 'American-Chopper-Argument' } };
 
 export const ImageNotFound = Template.bind({});
-ImageNotFound.args = { data: { meme: 'Always-Has-Been' } };
+ImageNotFound.args = { data: { profileMeme: 'Always-Has-Been' } };

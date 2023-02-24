@@ -39,7 +39,7 @@ NullData.args = { pUseProfileQuery: setQueryWith(null) };
 export const MemeNotSet = Template.bind({});
 MemeNotSet.args = {
   pUseProfileQuery: setQueryWith({
-    meme: '',
+    profileMeme: '',
     userName: 'foo',
     createdDate: Timestamp.now(),
   }),
@@ -49,7 +49,7 @@ export const HasOwnership = Template.bind({});
 HasOwnership.args = {
   pUseIsOwner: (uid) => ({ isOwner: true }),
   pUseProfileQuery: setQueryWith({
-    meme: '10-Guy',
+    profileMeme: '10-Guy',
     userName: 'foo',
     createdDate: Timestamp.now(),
   }),
@@ -58,7 +58,7 @@ HasOwnership.args = {
 export const Normal = Template.bind({});
 Normal.args = {
   pUseProfileQuery: setQueryWith({
-    meme: '10-Guy',
+    profileMeme: '10-Guy',
     userName: 'foo',
     createdDate: Timestamp.now(),
   }),
@@ -67,7 +67,7 @@ Normal.args = {
 export const UserName20Chars = Template.bind({});
 UserName20Chars.args = {
   pUseProfileQuery: setQueryWith({
-    meme: '10-Guy',
+    profileMeme: '10-Guy',
     userName: 'aaaaaaaaaaaaaaaaaaaa',
     createdDate: Timestamp.now(),
   }),
@@ -76,7 +76,7 @@ UserName20Chars.args = {
 export const UserNameWithSpaces = Template.bind({});
 UserNameWithSpaces.args = {
   pUseProfileQuery: setQueryWith({
-    meme: '10-Guy',
+    profileMeme: '10-Guy',
     userName: 'username with space',
     createdDate: Timestamp.now(),
   }),
@@ -85,7 +85,7 @@ UserNameWithSpaces.args = {
 export const OverFlowMeme = Template.bind({});
 OverFlowMeme.args = {
   pUseProfileQuery: setQueryWith({
-    meme: 'American-Chopper-Argument',
+    profileMeme: 'American-Chopper-Argument',
     userName: 'foo',
     createdDate: Timestamp.now(),
   }),
@@ -94,7 +94,7 @@ OverFlowMeme.args = {
 export const NotFoundMeme = Template.bind({});
 NotFoundMeme.args = {
   pUseProfileQuery: setQueryWith({
-    meme: 'Always-Has-Been',
+    profileMeme: 'Always-Has-Been',
     userName: 'foo',
     createdDate: Timestamp.now(),
   }),
@@ -104,7 +104,7 @@ export const MockedAvatarArea = () => {
   const args = {
     pUseIsOwner: () => ({ isOwner: true }),
     pUseProfileQuery: setQueryWith({
-      meme: '',
+      profileMeme: '',
       userName: 'foo',
       createdDate: Timestamp.now(),
     }),
