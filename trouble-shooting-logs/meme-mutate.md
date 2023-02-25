@@ -18,7 +18,11 @@ Never but a similar method called useProfileMutation does work
 
 ## Possible Causes
 
+its being used in server component when useMutation is a client library
+
 ## Possible Solutions
+
+add 'use client' to top of page component
 
 ## Eliminated Causes
 
@@ -27,3 +31,5 @@ Never but a similar method called useProfileMutation does work
 ## New Insights
 
 ## Solved
+
+add 'use client' to top of page component
