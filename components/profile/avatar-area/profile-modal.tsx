@@ -1,6 +1,6 @@
 import DropDown from '@ui/shared/drop-down';
 import {
-  RecievingProfileData,
+  ReceivingProfileData,
   useMyProfileMutation,
 } from '@ui/shared/firebase-utils';
 import { MEME_LIST } from '@ui/shared/meme-list';
@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
 interface ProfileModalProps {
-  data: RecievingProfileData | null;
+  data: ReceivingProfileData | null;
 }
 
 export const useModalHook = () => {

@@ -69,7 +69,7 @@ export const setDocWithTimeLimit = (
     }),
   ]);
 };
-export interface RecievingProfileData {
+export interface ReceivingProfileData {
   userName: string;
   profileMeme: string;
   createdDate: Timestamp;
@@ -87,7 +87,7 @@ export const useProfileQuery = (uid: string) => {
     queryFn: async () => {
       const res = await getDoc(doc(db, 'users', uid));
       if (!res.exists()) return null;
-      return res.data() as RecievingProfileData;
+      return res.data() as ReceivingProfileData;
     },
   });
 };

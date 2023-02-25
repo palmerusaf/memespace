@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-import { RecievingProfileData } from '@ui/shared/firebase-utils';
+import { ReceivingProfileData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
 import { AvatarArea } from './index';
 
@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof AvatarArea> = (args) => (
 );
 
 export const setQueryWith =
-  (testData: RecievingProfileData | null) => (uid: string) =>
+  (testData: ReceivingProfileData | null) => (uid: string) =>
     useQuery({
       queryKey: ['test-value'],
       queryFn: () => testData,
