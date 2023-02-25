@@ -120,7 +120,7 @@ export const useMyProfileMutation = () => {
 interface MemeData {
   topText: string;
   bottomText: string;
-  id: string;
+  meme: string;
   createdBy: string;
 }
 
@@ -131,3 +131,27 @@ export interface ReceivingMemeData extends MemeData {
 export interface SendingMemeData extends MemeData {
   createdDate: FieldValue;
 }
+
+export const useMemeCollectionQuery = (uid: string) => {
+  return useQuery({
+    queryKey: [`meme-col-id-${uid}`],
+    queryFn: async () => {
+      const res = await getDoc(doc(db, 'users', uid));
+      if (!res.exists()) return null;
+      return res.data() as ReceivingMemeData[];
+    },
+  });
+};
+
+export const useMemeMutation = (uid: string, memeId: string) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: SendingMemeData) =>
+      setDocWithTimeLimit('users', [uid, 'memes', memeId], data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`meme-col-id-${uid}`],
+      });
+    },
+  });
+};
