@@ -143,11 +143,13 @@ export const useMemeCollectionQuery = (uid: string) => {
   });
 };
 
-export const useMemeMutation = (uid: string, memeId: string) => {
+export const useMemeMutation = (uid: string, memeId?: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: SendingMemeData) =>
-      setDocWithTimeLimit('users', [uid, 'memes', memeId], data),
+    mutationFn: (data: SendingMemeData) => {
+      if (!memeId) return setDocWithTimeLimit('users', [uid, 'memes'], data);
+      else return setDocWithTimeLimit('users', [uid, 'memes', memeId], data);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`meme-col-id-${uid}`],
