@@ -114,3 +114,11 @@ export const useMyProfileMutation = () => {
   assert(auth.currentUser);
   return useProfileMutation(auth.currentUser.uid);
 };
+
+export interface ReceivingMemeData {
+  topText: string;
+  bottomText: string;
+  id: string;
+  createdDate: Timestamp;
+  createdBy: string;
+}
