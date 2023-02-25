@@ -69,15 +69,17 @@ export const setDocWithTimeLimit = (
     }),
   ]);
 };
-export interface ReceivingProfileData {
+
+interface ProfileData {
   userName: string;
   profileMeme: string;
+}
+
+export interface ReceivingProfileData extends ProfileData {
   createdDate: Timestamp;
 }
 
-export interface SendingProfileData {
-  userName: string;
-  profileMeme: string;
+export interface SendingProfileData extends ProfileData {
   createdDate?: FieldValue;
 }
 
@@ -115,10 +117,17 @@ export const useMyProfileMutation = () => {
   return useProfileMutation(auth.currentUser.uid);
 };
 
-export interface ReceivingMemeData {
+interface MemeData {
   topText: string;
   bottomText: string;
   id: string;
-  createdDate: Timestamp;
   createdBy: string;
+}
+
+export interface ReceivingMemeData extends MemeData {
+  createdDate: Timestamp;
+}
+
+export interface SendingMemeData extends MemeData {
+  createdDate: FieldValue;
 }
