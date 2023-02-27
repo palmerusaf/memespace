@@ -10,7 +10,9 @@ const MemeCollection = ({
   pUseMemeCollectionQuery = useMemeCollectionQuery,
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
-  return <div>yo</div>;
+  if (query.isLoading) return <div>loading</div>;
+  if (query.data) return <div>{`${query.data}`}</div>;
+  if (!query.data) return <div>no data</div>;
 };
 
 export default MemeCollection;

@@ -127,3 +127,20 @@ TenMemes.args = {
     },
   ]),
 };
+
+const useLoading = (uid: string) =>
+  useQuery({
+    queryKey: ['test-value'],
+    queryFn: () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('done');
+        }, 10000);
+      }),
+  });
+
+export const Loading = Template.bind({});
+Loading.args = {
+  // @ts-ignore
+  pUseMemeCollectionQuery: useLoading,
+};
