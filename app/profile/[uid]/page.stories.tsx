@@ -10,7 +10,7 @@ import { MockedNavBar } from '@ui/profile/nav-bar.stories';
 import { ReceivingMemeData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
 
-import MemeCollection from './meme-collection';
+import Page from './page';
 
 const setQueryWith = (testData: ReceivingMemeData[] | null) => (uid: string) =>
   useQuery({
@@ -20,18 +20,20 @@ const setQueryWith = (testData: ReceivingMemeData[] | null) => (uid: string) =>
 
 export default {
   title: 'profile/Meme Collection',
-  component: MemeCollection,
+  component: Page,
   args: { uid: '123' },
-} as ComponentMeta<typeof MemeCollection>;
+} as ComponentMeta<typeof Page>;
 
 const queryClient = new QueryClient();
-const Template: ComponentStory<typeof MemeCollection> = (args) => (
+const Template: ComponentStory<typeof Page> = (args) => (
   <QueryClientProvider client={queryClient}>
-    <LayoutWrapper>
-      <MockedAvatarArea />
-      <MockedNavBar selected={null} />
-      <MemeCollection {...args} />
-    </LayoutWrapper>
+    <div className='h-screen w-screen'>
+      <LayoutWrapper>
+        <MockedAvatarArea />
+        <MockedNavBar selected={null} />
+        <Page {...args} />
+      </LayoutWrapper>
+    </div>
   </QueryClientProvider>
 );
 export const NullCollection = Template.bind({});
@@ -130,7 +132,7 @@ TenMemes.args = {
 
 const useLoading = (uid: string) =>
   useQuery({
-    queryKey: ['test-value'],
+    queryKey: ['loading'],
     queryFn: () =>
       new Promise((resolve) => {
         setTimeout(() => {
