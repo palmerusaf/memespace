@@ -36,9 +36,31 @@ const Template: ComponentStory<typeof Page> = (args) => (
     </div>
   </QueryClientProvider>
 );
+
 export const NullCollection = Template.bind({});
 NullCollection.args = {
   pUseMemeCollectionQuery: setQueryWith(null),
+  pUseIsOwner: (uid) => ({ isOwner: false }),
+};
+
+export const NullOwned = Template.bind({});
+NullOwned.args = {
+  pUseMemeCollectionQuery: setQueryWith(null),
+  pUseIsOwner: (uid) => ({ isOwner: true }),
+};
+
+export const OneMemeOwned = Template.bind({});
+OneMemeOwned.args = {
+  pUseIsOwner: (uid) => ({ isOwner: true }),
+  pUseMemeCollectionQuery: setQueryWith([
+    {
+      topText: 'foo',
+      bottomText: 'bar',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+  ]),
 };
 
 export const OneMeme = Template.bind({});
@@ -67,14 +89,91 @@ TenMemes.args = {
     {
       topText: 'foo2',
       bottomText: 'bar2',
-      meme: '10-Guy',
+      meme: 'American-Chopper-Argument',
       createdBy: '123',
       createdDate: Timestamp.now(),
     },
     {
       topText: 'foo3',
       bottomText: 'bar3',
+      meme: 'Criana',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo4',
+      bottomText: 'bar4',
       meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo5',
+      bottomText: 'bar5',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo6',
+      bottomText: 'bar6',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo7',
+      bottomText: 'bar7',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo8',
+      bottomText: 'bar8',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo9',
+      bottomText: 'bar9',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo10',
+      bottomText: 'bar10',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+  ]),
+};
+
+export const TenMemesOwned = Template.bind({});
+TenMemesOwned.args = {
+  pUseIsOwner: (uid) => ({ isOwner: true }),
+  pUseMemeCollectionQuery: setQueryWith([
+    {
+      topText: 'foo1',
+      bottomText: 'bar1',
+      meme: '10-Guy',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo2',
+      bottomText: 'bar2',
+      meme: 'American-Chopper-Argument',
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    },
+    {
+      topText: 'foo3',
+      bottomText: 'bar3',
+      meme: 'Criana',
       createdBy: '123',
       createdDate: Timestamp.now(),
     },

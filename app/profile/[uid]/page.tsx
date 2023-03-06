@@ -9,6 +9,7 @@ import React from 'react';
 interface Props {
   uid: string;
   pUseMemeCollectionQuery?: typeof useMemeCollectionQuery;
+  pUseIsOwner?: typeof useIsOwner;
 }
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -20,9 +21,10 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
 const Page = ({
   uid,
   pUseMemeCollectionQuery = useMemeCollectionQuery,
+  pUseIsOwner = useIsOwner,
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
-  const { isOwner } = useIsOwner(uid);
+  const { isOwner } = pUseIsOwner(uid);
   if (query.isLoading) return <PageWrapper>loading</PageWrapper>;
   if (query.data) return <PageWrapper>{`${query.data}`}</PageWrapper>;
   else
