@@ -9,14 +9,17 @@ import { LayoutWrapper } from '@ui/profile/layout-wrapper';
 import { MockedNavBar } from '@ui/profile/nav-bar.stories';
 import { ReceivingMemeData } from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
+import { uniqueId } from 'lodash';
 
 import Page from './page';
 
-const setQueryWith = (testData: ReceivingMemeData[] | null) => (uid: string) =>
-  useQuery({
-    queryKey: ['test-value'],
-    queryFn: () => testData,
-  });
+const setQueryWith =
+  (testData: { data: () => ReceivingMemeData; id: string }[] | null) =>
+  (uid: string) =>
+    useQuery({
+      queryKey: ['test-value'],
+      queryFn: () => testData as any,
+    });
 
 export default {
   title: 'profile/Meme Collection',
@@ -54,11 +57,14 @@ OneMemeOwned.args = {
   pUseIsOwner: (uid) => ({ isOwner: true }),
   pUseMemeCollectionQuery: setQueryWith([
     {
-      topText: 'foo',
-      bottomText: 'bar',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo',
+        bottomText: 'bar',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
   ]),
 };
@@ -67,11 +73,14 @@ export const OneMeme = Template.bind({});
 OneMeme.args = {
   pUseMemeCollectionQuery: setQueryWith([
     {
-      topText: 'foo',
-      bottomText: 'bar',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo',
+        bottomText: 'bar',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
   ]),
 };
@@ -80,74 +89,104 @@ export const TenMemes = Template.bind({});
 TenMemes.args = {
   pUseMemeCollectionQuery: setQueryWith([
     {
-      topText: 'foo1',
-      bottomText: 'bar1',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo1',
+        bottomText: 'bar1',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo2',
-      bottomText: 'bar2',
-      meme: 'American-Chopper-Argument',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo2',
+        bottomText: 'bar2',
+        meme: 'American-Chopper-Argument',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo3',
-      bottomText: 'bar3',
-      meme: 'Criana',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo3',
+        bottomText: 'bar3',
+        meme: 'Criana',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo4',
-      bottomText: 'bar4',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo4',
+        bottomText: 'bar4',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo5',
-      bottomText: 'bar5',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo5',
+        bottomText: 'bar5',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo6',
-      bottomText: 'bar6',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo6',
+        bottomText: 'bar6',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo7',
-      bottomText: 'bar7',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo7',
+        bottomText: 'bar7',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo8',
-      bottomText: 'bar8',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo8',
+        bottomText: 'bar8',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo9',
-      bottomText: 'bar9',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo9',
+        bottomText: 'bar9',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo10',
-      bottomText: 'bar10',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo10',
+        bottomText: 'bar10',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
   ]),
 };
@@ -157,74 +196,104 @@ TenMemesOwned.args = {
   pUseIsOwner: (uid) => ({ isOwner: true }),
   pUseMemeCollectionQuery: setQueryWith([
     {
-      topText: 'foo1',
-      bottomText: 'bar1',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo1',
+        bottomText: 'bar1',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo2',
-      bottomText: 'bar2',
-      meme: 'American-Chopper-Argument',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo2',
+        bottomText: 'bar2',
+        meme: 'American-Chopper-Argument',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo3',
-      bottomText: 'bar3',
-      meme: 'Criana',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo3',
+        bottomText: 'bar3',
+        meme: 'Criana',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo4',
-      bottomText: 'bar4',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo4',
+        bottomText: 'bar4',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo5',
-      bottomText: 'bar5',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo5',
+        bottomText: 'bar5',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo6',
-      bottomText: 'bar6',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo6',
+        bottomText: 'bar6',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo7',
-      bottomText: 'bar7',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo7',
+        bottomText: 'bar7',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo8',
-      bottomText: 'bar8',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo8',
+        bottomText: 'bar8',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo9',
-      bottomText: 'bar9',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo9',
+        bottomText: 'bar9',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
     {
-      topText: 'foo10',
-      bottomText: 'bar10',
-      meme: '10-Guy',
-      createdBy: '123',
-      createdDate: Timestamp.now(),
+      id: uniqueId('meme-doc-id-'),
+      data: () => ({
+        topText: 'foo10',
+        bottomText: 'bar10',
+        meme: '10-Guy',
+        createdBy: '123',
+        createdDate: Timestamp.now(),
+      }),
     },
   ]),
 };
