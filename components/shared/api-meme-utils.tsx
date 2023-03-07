@@ -1,12 +1,16 @@
-export const getThumbnail = (id: string) =>
-  `https://apimeme.com/thumbnail?name=${id}`;
+export const getThumbnail = (meme: string) =>
+  `https://apimeme.com/thumbnail?name=${meme}`;
 
 interface GetMemeProps {
-  id: string;
+  meme: string;
   topText?: string;
   bottomText?: string;
 }
-export const getMeme = ({ id, topText = '', bottomText = '' }: GetMemeProps) =>
-  `https://apimeme.com/meme?meme=${id}&top=${encodeURIComponent(
+export const getMeme = ({
+  meme,
+  topText = '',
+  bottomText = '',
+}: GetMemeProps) =>
+  `https://apimeme.com/meme?meme=${meme}&top=${encodeURIComponent(
     topText
   )}&bottom=${encodeURIComponent(bottomText)}`;

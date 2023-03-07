@@ -43,24 +43,24 @@ const Page = ({ params }: Props) => {
           />
         </div>
         <div className='grid h-full w-full grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
-          {memeSubList.map((id) => {
+          {memeSubList.map((meme) => {
             return (
               <div
-                key={id}
+                key={meme}
                 className='m-2 flex flex-col justify-between rounded-lg bg-white p-2 shadow-md animate-in zoom-in-50 spin-in-12'
               >
                 <h2 className='w-full overflow-hidden overflow-ellipsis text-center font-medium'>
-                  {id.replace(/-/g, ' ')}
+                  {meme.replace(/-/g, ' ')}
                 </h2>
                 <ImageWithLoadState
-                  src={getThumbnail(id)}
-                  alt={id.replace(/-/g, ' ')}
+                  src={getThumbnail(meme)}
+                  alt={meme.replace(/-/g, ' ')}
                   className='my-2 aspect-square w-full rounded-md object-cover shadow-lg'
                   width={100}
                   height={100}
                 />
                 <button
-                  onClick={() => setMemeId(id)}
+                  onClick={() => setMemeId(meme)}
                   className={
                     'rounded-full border-2  border-black bg-blue-600 px-3 py-1 text-center font-medium text-white shadow-md duration-300 hover:-translate-y-1 hover:text-white hover:shadow-slate-500'
                   }

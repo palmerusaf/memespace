@@ -12,7 +12,7 @@ interface Props {
 
 const Modal = ({ modalId, setModalId }: Props) => {
   const [imgSrc, setImgSrc] = useState(
-    getMeme({ id: modalId, topText: 'top text', bottomText: 'bottom text' })
+    getMeme({ meme: modalId, topText: 'top text', bottomText: 'bottom text' })
   );
   const topRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLInputElement>(null);
@@ -23,7 +23,7 @@ const Modal = ({ modalId, setModalId }: Props) => {
 
     setImgSrc(
       getMeme({
-        id: modalId,
+        meme: modalId,
         topText: topRef.current.value,
         bottomText: bottomRef.current.value,
       })
