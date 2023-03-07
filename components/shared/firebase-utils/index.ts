@@ -8,12 +8,16 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {
+  collection,
   connectFirestoreEmulator,
   doc,
   DocumentData,
   FieldValue,
   getDoc,
+  getDocs,
   getFirestore,
+  query,
+  QueryDocumentSnapshot,
   setDoc,
   Timestamp,
   WithFieldValue,
@@ -136,9 +140,10 @@ export const useMemeCollectionQuery = (uid: string) => {
   return useQuery({
     queryKey: [`meme-col-id-${uid}`],
     queryFn: async () => {
-      const res = await getDoc(doc(db, 'users', uid));
-      if (!res.exists()) return null;
-      return res.data() as ReceivingMemeData[];
+      const memeCollQuery = query(collection(db, `users/${uid}/memes`));
+      const res = await getDocs(memeCollQuery);
+      if (res.empty) return null;
+      return res.docs as QueryDocumentSnapshot<ReceivingMemeData>[];
     },
   });
 };
