@@ -71,18 +71,21 @@ function MemeCollection({
   data: QueryDocumentSnapshot<ReceivingMemeData>[];
 }) {
   return (
-    <div className='grid'>
+    <ul className='grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
       {data.map(({ id, data }) => {
         const { bottomText, topText, meme } = data();
         return (
-          <ImageWithLoadState
-            fill={true}
-            key={id}
-            src={getMeme({ meme, topText, bottomText })}
-            alt={meme.replace(/-/g, ' ')}
-          />
+          <li key={id} className='flex items-center justify-center bg-black'>
+            <ImageWithLoadState
+              width={500}
+              height={500}
+              className='max-h-full w-auto'
+              src={getMeme({ meme, topText, bottomText })}
+              alt={meme.replace(/-/g, ' ')}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }

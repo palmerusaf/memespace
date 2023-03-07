@@ -101,8 +101,8 @@ TenMemes.args = {
     {
       id: uniqueId('meme-doc-id-'),
       data: () => ({
-        topText: 'foo2',
-        bottomText: 'bar2',
+        topText: 'top text',
+        bottomText: 'bottom text',
         meme: 'American-Chopper-Argument',
         createdBy: '123',
         createdDate: Timestamp.now(),
