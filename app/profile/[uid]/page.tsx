@@ -10,8 +10,9 @@ import {
 } from '@ui/shared/firebase-utils';
 import { MadBro, SadBoi } from '@ui/shared/imgs';
 import ImageWithLoadState from '@ui/shared/next-image';
+import assert from 'assert';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Props {
   params: { uid: string };
@@ -32,15 +33,38 @@ const Page = ({
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
   const { isOwner } = pUseIsOwner(uid);
+  const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
 
   const MemeCollection = () => {
     if (query.isLoading) return <Loading />;
-    if (query.data) return <Collection data={query.data} />;
+    if (query.data)
+      return (
+        <Collection data={query.data} setSelectedIndex={setSelectedIndex} />
+      );
     else return <EmptyCollection isOwner={isOwner}></EmptyCollection>;
+  };
+
+  const SelectedModal = () => {
+    if (selectedIndex === null) return <></>;
+    assert(query.data);
+    const { topText, meme, bottomText } = query.data[selectedIndex].data();
+    return (
+      <div
+        onClick={() => setSelectedIndex(null)}
+        className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in'
+      >
+        <img
+          src={getMeme({ topText, bottomText, meme })}
+          alt={meme.replace(/-/g, ' ')}
+          className='h-full'
+        />
+      </div>
+    );
   };
 
   return (
     <PageWrapper>
+      <SelectedModal />
       <MemeCollection />
     </PageWrapper>
   );
@@ -66,15 +90,23 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
 
 function Collection({
   data,
+  setSelectedIndex,
 }: {
   data: QueryDocumentSnapshot<ReceivingMemeData>[];
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   return (
     <ul className='grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
-      {data.map(({ id, data }) => {
+      {data.map(({ id, data }, index) => {
         const { bottomText, topText, meme } = data();
         return (
-          <li key={id} className='m-1 h-40 overflow-hidden rounded'>
+          <li
+            key={id}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
+            className='m-1 h-40 overflow-hidden rounded'
+          >
             <ImageWithLoadState
               width={500}
               height={500}
