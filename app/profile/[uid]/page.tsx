@@ -75,11 +75,11 @@ function MemeCollection({
       {data.map(({ id, data }) => {
         const { bottomText, topText, meme } = data();
         return (
-          <li key={id} className='flex items-center justify-center bg-black'>
+          <li key={id} className='m-1 h-40 overflow-hidden rounded'>
             <ImageWithLoadState
               width={500}
               height={500}
-              className='max-h-full w-auto'
+              className='object-cover'
               src={getMeme({ meme, topText, bottomText })}
               alt={meme.replace(/-/g, ' ')}
             />
