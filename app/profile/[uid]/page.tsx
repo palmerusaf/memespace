@@ -8,7 +8,7 @@ import {
   useIsOwner,
   useMemeCollectionQuery,
 } from '@ui/shared/firebase-utils';
-import { SadBoi } from '@ui/shared/imgs';
+import { MadBro, SadBoi } from '@ui/shared/imgs';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import React from 'react';
@@ -32,7 +32,12 @@ const Page = ({
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
   const { isOwner } = pUseIsOwner(uid);
-  if (query.isLoading) return <PageWrapper>loading</PageWrapper>;
+  if (query.isLoading)
+    return (
+      <PageWrapper>
+        <Loading />
+      </PageWrapper>
+    );
   if (query.data)
     return (
       <PageWrapper>
@@ -87,5 +92,16 @@ function MemeCollection({
         );
       })}
     </ul>
+  );
+}
+
+function Loading() {
+  return (
+    <div className='flex h-full w-full flex-col items-center justify-center gap-4'>
+      <img src={MadBro.src} alt='mad bro spinner' className='animate-spin' />
+      <div className='animate-pulse text-lg font-bold'>
+        Loading Collection...
+      </div>
+    </div>
   );
 }
