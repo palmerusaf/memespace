@@ -24,7 +24,7 @@ const setQueryWith =
 export default {
   title: 'profile/Meme Collection',
   component: Page,
-  args: { uid: '123' },
+  args: { params: { uid: '123' } },
 } as ComponentMeta<typeof Page>;
 
 const queryClient = new QueryClient();

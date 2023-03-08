@@ -14,7 +14,7 @@ import { QueryDocumentSnapshot } from 'firebase/firestore';
 import React from 'react';
 
 interface Props {
-  uid: string;
+  params: { uid: string };
   pUseMemeCollectionQuery?: typeof useMemeCollectionQuery;
   pUseIsOwner?: typeof useIsOwner;
 }
@@ -26,7 +26,7 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Page = ({
-  uid,
+  params: { uid },
   pUseMemeCollectionQuery = useMemeCollectionQuery,
   pUseIsOwner = useIsOwner,
 }: Props) => {
@@ -98,7 +98,11 @@ function MemeCollection({
 function Loading() {
   return (
     <div className='flex h-full w-full flex-col items-center justify-center gap-4'>
-      <img src={MadBro.src} alt='mad bro spinner' className='animate-spin' />
+      <img
+        src={MadBro.src}
+        alt='mad bro spinner'
+        className='w-20 animate-spin'
+      />
       <div className='animate-pulse text-lg font-bold'>
         Loading Collection...
       </div>
