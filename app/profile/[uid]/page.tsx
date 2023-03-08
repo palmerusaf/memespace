@@ -32,24 +32,18 @@ const Page = ({
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
   const { isOwner } = pUseIsOwner(uid);
-  if (query.isLoading)
-    return (
-      <PageWrapper>
-        <Loading />
-      </PageWrapper>
-    );
-  if (query.data)
-    return (
-      <PageWrapper>
-        <MemeCollection data={query.data} />
-      </PageWrapper>
-    );
-  else
-    return (
-      <PageWrapper>
-        <EmptyCollection isOwner={isOwner}></EmptyCollection>
-      </PageWrapper>
-    );
+
+  const MemeCollection = () => {
+    if (query.isLoading) return <Loading />;
+    if (query.data) return <Collection data={query.data} />;
+    else return <EmptyCollection isOwner={isOwner}></EmptyCollection>;
+  };
+
+  return (
+    <PageWrapper>
+      <MemeCollection />
+    </PageWrapper>
+  );
 };
 
 export default Page;
@@ -70,7 +64,7 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
   );
 }
 
-function MemeCollection({
+function Collection({
   data,
 }: {
   data: QueryDocumentSnapshot<ReceivingMemeData>[];
