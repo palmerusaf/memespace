@@ -14,3 +14,5 @@ export const getMeme = ({
   `https://apimeme.com/meme?meme=${meme}&top=${encodeURIComponent(
     topText
   )}&bottom=${encodeURIComponent(bottomText)}`;
+
+export const getTitle = ({ meme }: { meme: string }) => meme.replace(/-/g, ' ');

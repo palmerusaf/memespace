@@ -26,6 +26,35 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+interface ModalProps {
+  data: QueryDocumentSnapshot<ReceivingMemeData>[] | null | undefined;
+}
+const useMemeViewModal = ({ data }: ModalProps) => {
+  const [memeIndex, setMemeIndex] = useState<null | number>(null);
+  const closeModal = () => setMemeIndex(null);
+  const openModal = (index: number) => setMemeIndex(index);
+
+  const MemeViewModal = () => {
+    if (selectedIndex === null) return <></>;
+    assert(data);
+    const { topText, meme, bottomText } = data[selectedIndex].data();
+    return (
+      <div
+        onClick={() => openModal(null)}
+        className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in'
+      >
+        <img
+          src={getMeme({ topText, bottomText, meme })}
+          alt={meme.replace(/-/g, ' ')}
+          className='h-full'
+        />
+      </div>
+    );
+  };
+
+  return { openModal };
+};
+
 const Page = ({
   params: { uid },
   pUseMemeCollectionQuery = useMemeCollectionQuery,
@@ -33,24 +62,22 @@ const Page = ({
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
   const { isOwner } = pUseIsOwner(uid);
-  const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
+  const [selectedIndex, openModal] = useState<null | number>(null);
 
   const MemeCollection = () => {
     if (query.isLoading) return <Loading />;
     if (query.data)
-      return (
-        <Collection data={query.data} setSelectedIndex={setSelectedIndex} />
-      );
+      return <Collection data={query.data} openModal={openModal} />;
     else return <EmptyCollection isOwner={isOwner}></EmptyCollection>;
   };
 
-  const SelectedModal = () => {
+  const MemeViewModal = () => {
     if (selectedIndex === null) return <></>;
     assert(query.data);
     const { topText, meme, bottomText } = query.data[selectedIndex].data();
     return (
       <div
-        onClick={() => setSelectedIndex(null)}
+        onClick={() => openModal(null)}
         className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in'
       >
         <img
@@ -64,7 +91,7 @@ const Page = ({
 
   return (
     <PageWrapper>
-      <SelectedModal />
+      <MemeViewModal />
       <MemeCollection />
     </PageWrapper>
   );
@@ -90,10 +117,10 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
 
 function Collection({
   data,
-  setSelectedIndex,
+  openModal: setSelectedIndex,
 }: {
   data: QueryDocumentSnapshot<ReceivingMemeData>[];
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  openModal: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   return (
     <ul className='grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
