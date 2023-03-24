@@ -1,7 +1,8 @@
 import { getMeme, getTitle } from '@ui/shared/api-meme-utils';
 import { ReceivingMemeData } from '@ui/shared/firebase-utils';
 import ImageWithLoadState from '@ui/shared/next-image';
-import { Dispatch, SetStateAction } from 'react';
+import assert from 'assert';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 interface Props {
   memeData: ReceivingMemeData[];
@@ -9,13 +10,24 @@ interface Props {
   index: number | null;
 }
 export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
+  useEffect(() => {}, [index]);
   if (index === null || memeData === null) return <></>;
 
   const cycleNext = () =>
-    index === memeData.length - 1 ? setIndex(0) : setIndex(index++);
+    index === memeData.length - 1
+      ? setIndex(0)
+      : setIndex(() => {
+          assert(index !== null);
+          return index++;
+        });
 
   const cyclePrev = () =>
-    index === 0 ? setIndex(memeData.length - 1) : setIndex(index--);
+    index === 0
+      ? setIndex(memeData.length - 1)
+      : setIndex(() => {
+          assert(index !== null);
+          return index--;
+        });
 
   return (
     <div className=''>

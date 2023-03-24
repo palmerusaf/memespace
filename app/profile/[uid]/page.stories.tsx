@@ -22,7 +22,7 @@ const setQueryWith =
     });
 
 export default {
-  title: 'profile/Meme Collection',
+  title: 'meme collection/Page',
   component: Page,
   args: { params: { uid: '123' } },
 } as ComponentMeta<typeof Page>;

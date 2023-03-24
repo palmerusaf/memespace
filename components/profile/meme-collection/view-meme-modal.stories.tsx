@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ViewMemeModal } from './view-meme-modal';
 
 export default {
-  title: 'Components/ViewMemeModal',
+  title: 'Meme Collection/View Meme Modal',
   component: ViewMemeModal,
   args: {},
 } as ComponentMeta<typeof ViewMemeModal>;
