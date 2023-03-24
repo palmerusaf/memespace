@@ -18,7 +18,7 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
       ? setIndex(0)
       : setIndex(() => {
           assert(index !== null);
-          return index++;
+          return index + 1;
         });
 
   const cyclePrev = () =>
@@ -26,7 +26,7 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
       ? setIndex(memeData.length - 1)
       : setIndex(() => {
           assert(index !== null);
-          return index--;
+          return index - 1;
         });
 
   return (
