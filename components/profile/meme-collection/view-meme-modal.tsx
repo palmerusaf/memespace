@@ -30,20 +30,25 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
         });
 
   return (
-    <div className=''>
-      <div className=''>
-        <ImageWithLoadState
-          src={getMeme(memeData[index])}
-          alt={getTitle(memeData[index])}
-          height={500}
-          width={500}
-        />
-      </div>
-      <button className='' onClick={cyclePrev}>
-        prev
-      </button>
-      <button className='' onClick={cycleNext}>
-        next
+    <div className='relative flex h-screen w-screen justify-center bg-black'>
+      <button
+        className='absolute left-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white'
+        onClick={cyclePrev}
+      >
+        {'<'}
+      </button>{' '}
+      <ImageWithLoadState
+        src={getMeme(memeData[index])}
+        alt={getTitle(memeData[index])}
+        className='w-auto animate-in fade-in-0'
+        height={500}
+        width={500}
+      />
+      <button
+        className='absolute right-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white'
+        onClick={cycleNext}
+      >
+        {'>'}
       </button>
     </div>
   );

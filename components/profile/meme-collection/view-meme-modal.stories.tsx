@@ -14,7 +14,9 @@ const Template: ComponentStory<typeof ViewMemeModal> = (args) => {
   const [index, setIndex] = useState<number | null>(0);
   const { memeData } = args;
   return (
-    <ViewMemeModal memeData={memeData} index={index} setIndex={setIndex} />
+    <div className='h-screen w-screen'>
+      <ViewMemeModal memeData={memeData} index={index} setIndex={setIndex} />
+    </div>
   );
 };
 
