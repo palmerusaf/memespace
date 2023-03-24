@@ -30,7 +30,7 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
         });
 
   return (
-    <div className='relative flex h-screen w-screen justify-center bg-black'>
+    <div className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in-0'>
       <button
         className='absolute left-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white'
         onClick={cyclePrev}
