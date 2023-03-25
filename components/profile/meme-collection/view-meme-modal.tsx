@@ -8,8 +8,14 @@ interface Props {
   memeData: ReceivingMemeData[];
   setIndex: Dispatch<SetStateAction<number | null>>;
   index: number | null;
+  controlButton: JSX.Element;
 }
-export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
+export const ViewMemeModal = ({
+  setIndex,
+  memeData,
+  index,
+  controlButton,
+}: Props) => {
   useEffect(() => {}, [index]);
   if (index === null || memeData === null) return <></>;
 
@@ -30,9 +36,9 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
         });
 
   return (
-    <div className='absolute flex h-screen w-screen items-center justify-center bg-black animate-in fade-in-0 md:items-stretch'>
+    <button className='absolute flex h-screen w-screen items-center justify-center bg-black animate-in fade-in-0 md:items-stretch'>
       <button
-        className='absolute left-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 hover:scale-110 hover:bg-white hover:bg-opacity-50'
+        className='absolute left-0 z-40 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:scale-110 md:hover:bg-white md:hover:bg-opacity-50'
         onClick={cyclePrev}
       >
         {'<'}
@@ -45,11 +51,22 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
         width={500}
       />
       <button
-        className='absolute right-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 hover:scale-110 hover:bg-white hover:bg-opacity-50'
+        className='absolute right-0 z-40 flex h-full items-center justify-center px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:scale-110 md:hover:bg-white md:hover:bg-opacity-50'
         onClick={cycleNext}
       >
         {'>'}
       </button>
-    </div>
+      <div className='absolute top-0 right-0 z-50 flex flex-col items-center p-4 text-white'>
+        <button
+          className='-mx-2 rounded-full px-2 py-0 text-center text-xl duration-300 md:text-3xl md:hover:bg-white md:hover:bg-opacity-50'
+          onClick={() => {
+            setIndex(null);
+          }}
+        >
+          X
+        </button>
+        {controlButton}
+      </div>
+    </button>
   );
 };
