@@ -30,9 +30,9 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
         });
 
   return (
-    <div className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in-0'>
+    <div className='absolute flex h-screen w-screen items-center justify-center bg-black animate-in fade-in-0 md:items-stretch'>
       <button
-        className='absolute left-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white'
+        className='absolute left-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 hover:scale-110 hover:bg-white hover:bg-opacity-50'
         onClick={cyclePrev}
       >
         {'<'}
@@ -40,12 +40,12 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
       <ImageWithLoadState
         src={getMeme(memeData[index])}
         alt={getTitle(memeData[index])}
-        className='w-auto animate-in fade-in-0'
+        className='max-h-full w-auto animate-in fade-in-0'
         height={500}
         width={500}
       />
       <button
-        className='absolute right-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white'
+        className='absolute right-0 z-50 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 hover:scale-110 hover:bg-white hover:bg-opacity-50'
         onClick={cycleNext}
       >
         {'>'}
