@@ -1,16 +1,16 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { ControlDrawer } from './control-drawer';
+import { ModalDrawer } from './modal-drawer';
 
 export default {
   title: 'meme collection/Control Drawer',
-  component: ControlDrawer,
+  component: ModalDrawer,
   args: {},
-} as ComponentMeta<typeof ControlDrawer>;
+} as ComponentMeta<typeof ModalDrawer>;
 
-const Template: ComponentStory<typeof ControlDrawer> = (args) => (
+const Template: ComponentStory<typeof ModalDrawer> = (args) => (
   <div className='h-screen w-screen'>
-    <ControlDrawer {...args} />
+    <ModalDrawer {...args} />
   </div>
 );
 
