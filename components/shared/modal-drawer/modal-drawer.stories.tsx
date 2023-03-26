@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ModalDrawer } from './modal-drawer';
 
 export default {
-  title: 'meme collection/Control Drawer',
+  title: 'shared/Control Drawer',
   component: ModalDrawer,
   args: {},
 } as ComponentMeta<typeof ModalDrawer>;
@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof ModalDrawer> = (args) => (
 
 export const Text = Template.bind({});
 Text.args = {
-  content: (
+  children: (
     <div className=''>
       Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim
       labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet.
@@ -34,7 +34,7 @@ Text.args = {
 
 export const Button = Template.bind({});
 Button.args = {
-  content: (
+  children: (
     <div className='flex items-center justify-around gap-2'>
       <button className='rounded-full bg-blue-400 px-4 py-2 text-lg font-bold text-white shadow'>
         BAR
