@@ -4,10 +4,11 @@ import {
   useMyProfileMutation,
 } from '@ui/shared/firebase-utils';
 import { MEME_LIST } from '@ui/shared/meme-list';
+import { MutantButton } from '@ui/shared/mutant-button';
 import { Input, useInputValidator } from '@ui/shared/username-input';
 import assert from 'assert';
 import { serverTimestamp } from 'firebase/firestore';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { AvatarMeme } from './avatar-meme';
 
 interface ProfileModalProps {
@@ -57,39 +58,16 @@ export const Modal = ({
     });
   };
 
-  const SaveButton = () => {
-    interface ButtonProps {
-      onClick?: () => void;
-      className?: string;
-      children: React.ReactNode;
-    }
-
-    const Button = ({ onClick, className, children }: ButtonProps) => (
-      <button
-        onClick={onClick}
-        className={`w-full rounded-full bg-blue-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl ${className}`}
-      >
-        {children}
-      </button>
-    );
-
-    const [inTimeLimit, setInTimeLimit] = useState(false);
-    useEffect(() => {
-      setInTimeLimit(true);
-      setTimeout(() => {
-        setInTimeLimit(false);
-      }, 1000);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mutation.isSuccess]);
-
-    if (mutation.isLoading)
-      return <Button className='animate-pulse duration-1000'>Saving...</Button>;
-    if (mutation.isError)
-      return <Button onClick={handleSaveClick}>Failed Try Again</Button>;
-    if (mutation.isSuccess && inTimeLimit)
-      return <Button onClick={handleSaveClick}>Save Successful</Button>;
-    return <Button onClick={handleSaveClick}>Save</Button>;
-  };
+  const SaveButton = () => (
+    <MutantButton
+      onClick={handleSaveClick}
+      mutation={mutation}
+      loadMsg={'Saving...'}
+      errorMsg={'Failed Try Again'}
+      successMsg={'Save Successful'}
+      staticMsg={'Save'}
+    />
+  );
 
   const handleInputChange = () => {
     assert(inputRef && inputRef.current);
@@ -130,13 +108,15 @@ export const Modal = ({
           <div className='w-full pt-6  pb-2 text-center'>
             <InvalidMsgBox />
           </div>
-          <SaveButton />
-          <button
-            onClick={closeModal}
-            className='w-full rounded-full bg-red-500 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
-          >
-            Close
-          </button>
+          <div className='-mt-4 flex w-full flex-col gap-2'>
+            <SaveButton />
+            <button
+              onClick={closeModal}
+              className='rounded-full bg-red-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
