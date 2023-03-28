@@ -2,21 +2,17 @@ import { getMeme, getTitle } from '@ui/shared/api-meme-utils';
 import { ReceivingMemeData } from '@ui/shared/firebase-utils';
 import ImageWithLoadState from '@ui/shared/next-image';
 import assert from 'assert';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { HamButton } from './ham-button';
 
 interface Props {
   memeData: ReceivingMemeData[];
   setIndex: Dispatch<SetStateAction<number | null>>;
   index: number | null;
-  controlButton: JSX.Element;
 }
-export const ViewMemeModal = ({
-  setIndex,
-  memeData,
-  index,
-  controlButton,
-}: Props) => {
-  useEffect(() => {}, [index]);
+export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
+  const [menuOpen, setMenuOpen] = useState(true);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
   if (index === null || memeData === null) return <></>;
 
   const cycleNext = () =>
@@ -36,13 +32,13 @@ export const ViewMemeModal = ({
         });
 
   return (
-    <button className='absolute flex h-screen w-screen items-center justify-center bg-black animate-in fade-in-0 md:items-stretch'>
+    <div className='absolute flex h-screen w-screen items-center justify-center bg-black animate-in fade-in-0 md:items-stretch'>
       <button
         className='absolute left-0 z-40 flex h-full items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:scale-110 md:hover:bg-white md:hover:bg-opacity-50'
         onClick={cyclePrev}
       >
         {'<'}
-      </button>{' '}
+      </button>
       <ImageWithLoadState
         src={getMeme(memeData[index])}
         alt={getTitle(memeData[index])}
@@ -65,8 +61,9 @@ export const ViewMemeModal = ({
         >
           X
         </button>
-        {controlButton}
+        <HamButton toggleMenu={toggleMenu} />
+        {menuOpen && <div>open</div>}
       </div>
-    </button>
+    </div>
   );
 };

@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Timestamp } from 'firebase/firestore';
 import { useState } from 'react';
-import { HamButton } from './ham-button';
 
 import { ViewMemeModal } from './view-meme-modal';
 
@@ -16,20 +15,7 @@ const Template: ComponentStory<typeof ViewMemeModal> = (args) => {
   const { memeData } = args;
   return (
     <div className='h-screen w-screen'>
-      <ViewMemeModal
-        memeData={memeData}
-        index={index}
-        controlButton={
-          <HamButton
-            controlDrawer={
-              <div className='fixed top-0 left-0 flex h-screen w-screen items-center justify-center bg-white bg-opacity-50 text-2xl text-black'>
-                open
-              </div>
-            }
-          />
-        }
-        setIndex={setIndex}
-      />
+      <ViewMemeModal memeData={memeData} index={index} setIndex={setIndex} />
     </div>
   );
 };
