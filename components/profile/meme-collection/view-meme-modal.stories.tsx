@@ -15,7 +15,17 @@ const Template: ComponentStory<typeof ViewMemeModal> = (args) => {
   const { memeData } = args;
   return (
     <div className='h-screen w-screen'>
-      <ViewMemeModal memeData={memeData} index={index} setIndex={setIndex} />
+      <ViewMemeModal
+        memeData={memeData}
+        menuContent={
+          <div className='flex h-full w-full items-center justify-center bg-pink-700'>
+            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+            cillum sint consectetur cupidatat.
+          </div>
+        }
+        index={index}
+        setIndex={setIndex}
+      />
     </div>
   );
 };

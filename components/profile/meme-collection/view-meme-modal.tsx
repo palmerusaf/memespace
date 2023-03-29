@@ -2,15 +2,21 @@ import { getMeme, getTitle } from '@ui/shared/api-meme-utils';
 import { ReceivingMemeData } from '@ui/shared/firebase-utils';
 import ImageWithLoadState from '@ui/shared/next-image';
 import assert from 'assert';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import { HamButton } from './ham-button';
 
 interface Props {
   memeData: ReceivingMemeData[];
   setIndex: Dispatch<SetStateAction<number | null>>;
   index: number | null;
+  menuContent: ReactNode;
 }
-export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
+export const ViewMemeModal = ({
+  setIndex,
+  memeData,
+  index,
+  menuContent,
+}: Props) => {
   const [menuOpen, setMenuOpen] = useState(true);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   if (index === null || memeData === null) return <></>;
@@ -31,20 +37,18 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
           return index - 1;
         });
 
-  const menuHeight = '10rem';
-  const menuWidth = '10rem';
-  const modalHeight = menuOpen
-    ? 'h-[calc(100vh-' + menuHeight + ')] md:h-full'
-    : 'h-full';
-  const modalWidth = menuOpen ? 'w-[calc(100vw-' + menuWidth + ')]' : 'w-full';
+  const menuHeight = 'h-[22.5rem] md:h-full';
+  const menuWidth = 'md:w-[22.5rem]';
+  const modalHeight = menuOpen ? 'h-[calc(100vh-22.5rem)] md:h-full' : 'h-full';
+  const modalWidth = menuOpen ? 'w-full md:w-[calc(100vw-22.5rem)]' : 'w-full';
 
   return (
     <div className='absolute flex h-screen w-screen flex-col md:flex-row'>
       <div
-        className={`flex items-center ${modalHeight} ${modalWidth} justify-center bg-black animate-in fade-in-0 md:items-stretch`}
+        className={`relative flex items-center ${modalHeight} ${modalWidth} justify-center bg-black animate-in fade-in-0 md:items-stretch`}
       >
         <button
-          className={`absolute left-0 ${modalHeight} z-40 flex items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:scale-110 md:hover:bg-white md:hover:bg-opacity-50`}
+          className={`absolute left-0 ${modalHeight} z-40 flex items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:bg-white md:hover:bg-opacity-50`}
           onClick={cyclePrev}
         >
           {'<'}
@@ -57,7 +61,7 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
           width={500}
         />
         <button
-          className={`absolute right-0 z-40 flex items-center justify-center ${modalHeight} px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:scale-110 md:hover:bg-white md:hover:bg-opacity-50`}
+          className={`absolute right-0 z-40 flex items-center justify-center ${modalHeight} px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:bg-white md:hover:bg-opacity-50`}
           onClick={cycleNext}
         >
           {'>'}
@@ -75,11 +79,7 @@ export const ViewMemeModal = ({ setIndex, memeData, index }: Props) => {
         </div>
       </div>
       {menuOpen && (
-        <div
-          className={`h-[${menuHeight}] md:h-full w-[${menuWidth}] bg-pink-700`}
-        >
-          open
-        </div>
+        <div className={`${menuHeight} ${menuWidth}`}>{menuContent}</div>
       )}
     </div>
   );
