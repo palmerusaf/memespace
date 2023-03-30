@@ -1,13 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTestMutation } from '@ui/shared/firebase-utils';
+import { Timestamp } from 'firebase/firestore';
 
 import { MenuContent } from './menu-content';
 
 export default {
   title: 'Meme Collection/Menu Content',
   component: MenuContent,
-  args: {},
+  args: { createdDate: Timestamp.now(), userName: 'FooBar' },
 } as ComponentMeta<typeof MenuContent>;
 
 const queryClient = new QueryClient();
@@ -37,4 +38,9 @@ const Template: ComponentStory<typeof MenuContent> = (pArgs) => {
 export const IsOwner = Template.bind({});
 IsOwner.args = {
   isOwner: true,
+};
+
+export const NotOwner = Template.bind({});
+NotOwner.args = {
+  isOwner: false,
 };
