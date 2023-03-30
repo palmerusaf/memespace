@@ -2,6 +2,7 @@
 'use client';
 
 import { Button } from '@ui/login';
+import { MenuContent } from '@ui/profile/meme-collection/menu-content';
 import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
 import {
@@ -48,7 +49,7 @@ const Page = ({
         memeData={query.data?.map((item) => item.data())}
         setIndex={setSelectedIndex}
         index={selectedIndex}
-        menuContent={'menu content goes here'}
+        menuContent={<MenuContent />}
       />
       <MemeCollection />
     </PageWrapper>
