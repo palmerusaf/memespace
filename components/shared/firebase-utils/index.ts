@@ -162,3 +162,9 @@ export const useMemeMutation = (uid: string, memeId?: string) => {
     },
   });
 };
+
+export const useTestMutation = (uid: string) => {
+  return useMutation({
+    mutationFn: (data: SendingProfileData) => Promise.resolve(),
+  });
+};

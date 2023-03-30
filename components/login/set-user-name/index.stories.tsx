@@ -1,20 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-} from '@tanstack/react-query';
-import { SendingProfileData } from '@ui/shared/firebase-utils';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useTestMutation } from '@ui/shared/firebase-utils';
 
 import { SetUserNameForm } from './index';
 
 const queryClient = new QueryClient();
-
-const useTestMutation = (uid: string) => {
-  return useMutation({
-    mutationFn: (data: SendingProfileData) => Promise.resolve(),
-  });
-};
 
 export default {
   title: 'Login/Username Form',
