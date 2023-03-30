@@ -2,6 +2,7 @@
 'use client';
 
 import { Button } from '@ui/login';
+import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
 import {
   ReceivingMemeData,
@@ -10,7 +11,6 @@ import {
 } from '@ui/shared/firebase-utils';
 import { MadBro, SadBoi } from '@ui/shared/imgs';
 import ImageWithLoadState from '@ui/shared/next-image';
-import assert from 'assert';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import React, { useState } from 'react';
 
@@ -26,35 +26,6 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-interface ModalProps {
-  data: QueryDocumentSnapshot<ReceivingMemeData>[] | null | undefined;
-}
-const useMemeViewModal = ({ data }: ModalProps) => {
-  const [memeIndex, setMemeIndex] = useState<null | number>(null);
-  const closeModal = () => setMemeIndex(null);
-  const openModal = (index: number) => setMemeIndex(index);
-
-  const MemeViewModal = () => {
-    if (selectedIndex === null) return <></>;
-    assert(data);
-    const { topText, meme, bottomText } = data[selectedIndex].data();
-    return (
-      <div
-        onClick={() => openModal(null)}
-        className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in'
-      >
-        <img
-          src={getMeme({ topText, bottomText, meme })}
-          alt={meme.replace(/-/g, ' ')}
-          className='h-full'
-        />
-      </div>
-    );
-  };
-
-  return { openModal };
-};
-
 const Page = ({
   params: { uid },
   pUseMemeCollectionQuery = useMemeCollectionQuery,
@@ -62,36 +33,23 @@ const Page = ({
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
   const { isOwner } = pUseIsOwner(uid);
-  const [selectedIndex, openModal] = useState<null | number>(null);
+  const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
 
   const MemeCollection = () => {
     if (query.isLoading) return <Loading />;
     if (query.data)
-      return <Collection data={query.data} openModal={openModal} />;
+      return <Collection data={query.data} openModal={setSelectedIndex} />;
     else return <EmptyCollection isOwner={isOwner}></EmptyCollection>;
-  };
-
-  const MemeViewModal = () => {
-    if (selectedIndex === null) return <></>;
-    assert(query.data);
-    const { topText, meme, bottomText } = query.data[selectedIndex].data();
-    return (
-      <div
-        onClick={() => openModal(null)}
-        className='absolute flex h-screen w-screen justify-center bg-black animate-in fade-in'
-      >
-        <img
-          src={getMeme({ topText, bottomText, meme })}
-          alt={meme.replace(/-/g, ' ')}
-          className='h-full'
-        />
-      </div>
-    );
   };
 
   return (
     <PageWrapper>
-      <MemeViewModal />
+      <ViewMemeModal
+        memeData={query.data?.map((item) => item.data())}
+        setIndex={setSelectedIndex}
+        index={selectedIndex}
+        menuContent={'menu content goes here'}
+      />
       <MemeCollection />
     </PageWrapper>
   );

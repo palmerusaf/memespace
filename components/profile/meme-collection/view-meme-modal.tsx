@@ -6,7 +6,7 @@ import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import { HamButton } from './ham-button';
 
 interface Props {
-  memeData: ReceivingMemeData[];
+  memeData: ReceivingMemeData[] | null | undefined;
   setIndex: Dispatch<SetStateAction<number | null>>;
   index: number | null;
   menuContent: ReactNode;
@@ -17,9 +17,10 @@ export const ViewMemeModal = ({
   index,
   menuContent,
 }: Props) => {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  if (index === null || memeData === null) return <></>;
+  if (index === null || memeData === null || memeData === undefined)
+    return <></>;
 
   const cycleNext = () =>
     index === memeData.length - 1
@@ -43,7 +44,7 @@ export const ViewMemeModal = ({
   const modalWidth = menuOpen ? 'w-full md:w-[calc(100vw-22.5rem)]' : 'w-full';
 
   return (
-    <div className='absolute flex h-screen w-screen flex-col md:flex-row'>
+    <div className='fixed top-0 left-0 z-50 flex h-screen w-screen flex-col md:flex-row'>
       <div
         className={`relative flex items-center ${modalHeight} ${modalWidth} justify-center bg-black animate-in fade-in-0 md:items-stretch`}
       >
