@@ -3,9 +3,10 @@ import { forwardRef } from 'react';
 interface Props {
   label: string;
   value?: string;
+  required?: boolean;
 }
 const Input = (
-  { label, value }: Props,
+  { label, value, required = true }: Props,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
   const notEmpty =
@@ -19,7 +20,7 @@ const Input = (
       <input
         autoComplete='off'
         id={label}
-        required
+        required={required}
         className='peer absolute h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
         value={value}
         ref={ref}

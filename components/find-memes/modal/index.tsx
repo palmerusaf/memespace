@@ -62,9 +62,8 @@ const Modal = ({ modalId, setModalId }: Props) => {
           onSubmit={(e) => e.preventDefault()}
           className='flex w-full flex-col items-center gap-4'
         >
-          <Input ref={topRef} label='Top Text'></Input>
-          <Input ref={bottomRef} label='Bottom Text'></Input>
-          <span className='flex w-full justify-between gap-1'>
+          <Input required={false} ref={topRef} label='Top Text'></Input>
+          <Input ref={bottomRef} required={false} label='Bottom Text'></Input>
             <button
               className={
                 'rounded-full border-2 border-black bg-blue-600 px-2 py-0.5 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
