@@ -1,38 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-} from '@tanstack/react-query';
-import { SendingProfileData } from '@ui/shared/firebase-utils';
+  useFailingMutation,
+  usePassingMutation,
+} from '@ui/shared/firebase-utils';
 import { Timestamp } from 'firebase/firestore';
 
 import { Modal } from './profile-modal';
-
-const mock = (willPass: boolean, timeout = 3000) => {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => {
-      if (willPass) {
-        resolve();
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, timeout);
-  });
-};
-
-const useFailingMutation = () => {
-  return useMutation({
-    mutationFn: (data: SendingProfileData) => mock(true),
-  });
-};
-
-const usePassingMutation = () => {
-  return useMutation({
-    mutationFn: (data: SendingProfileData) => mock(true),
-  });
-};
-
 export default {
   title: 'profile/Profile Modal',
   component: Modal,

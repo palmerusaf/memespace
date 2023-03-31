@@ -10,6 +10,7 @@ import {
 import {
   collection,
   connectFirestoreEmulator,
+  deleteDoc,
   doc,
   DocumentData,
   FieldValue,
@@ -68,6 +69,19 @@ export const setDocWithTimeLimit = (
 ) => {
   return Promise.race([
     setDoc(doc(db, path, ...pathSegments), data),
+    new Promise((_, reject) => {
+      return setTimeout(reject, timeLimit, new Error('DB write timed out'));
+    }),
+  ]);
+};
+
+export const delDocWithTimeLimit = (
+  path: string,
+  pathSegments: string[],
+  timeLimit = 10000
+) => {
+  return Promise.race([
+    deleteDoc(doc(db, path, ...pathSegments)),
     new Promise((_, reject) => {
       return setTimeout(reject, timeLimit, new Error('DB write timed out'));
     }),
@@ -148,8 +162,10 @@ export const useMemeCollectionQuery = (uid: string) => {
   });
 };
 
-export const useMemeMutation = (uid: string, memeId?: string) => {
+export const useMemeMutation = (memeId?: string) => {
   const queryClient = useQueryClient();
+  assert(auth.currentUser);
+  const uid = auth.currentUser?.uid;
   return useMutation({
     mutationFn: (data: SendingMemeData) => {
       if (!memeId) return setDocWithTimeLimit('users', [uid, 'memes'], data);
@@ -163,8 +179,50 @@ export const useMemeMutation = (uid: string, memeId?: string) => {
   });
 };
 
+export const useDeleteMemeMutation = (memeId: string) => {
+  const queryClient = useQueryClient();
+  assert(auth.currentUser);
+  const uid = auth.currentUser?.uid;
+  return useMutation({
+    mutationFn: () => {
+      if (!memeId) return delDocWithTimeLimit('users', [uid, 'memes']);
+      else return delDocWithTimeLimit('users', [uid, 'memes', memeId]);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`meme-col-id-${uid}`],
+      });
+    },
+  });
+};
+
+// test methods
 export const useTestMutation = (uid: string) => {
   return useMutation({
     mutationFn: (data: SendingProfileData) => Promise.resolve(),
+  });
+};
+
+const mock = (willPass: boolean, timeout = 3000) => {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      if (willPass) {
+        resolve();
+      } else {
+        reject({ message: 'Error' });
+      }
+    }, timeout);
+  });
+};
+
+export const useFailingMutation = () => {
+  return useMutation({
+    mutationFn: (data: any) => mock(false),
+  });
+};
+
+export const usePassingMutation = () => {
+  return useMutation({
+    mutationFn: (data: any) => mock(true),
   });
 };

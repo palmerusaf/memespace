@@ -1,54 +1,56 @@
-import { UseMutationResult } from '@tanstack/react-query';
+import { useDeleteMemeMutation } from '@ui/shared/firebase-utils';
 import { MutantButton } from '@ui/shared/mutant-button';
 import { Timestamp } from 'firebase/firestore';
 import { useState } from 'react';
 
 interface Props {
   isOwner: boolean;
-  mutation: UseMutationResult<unknown, unknown, any, unknown>;
   createdDate: Timestamp;
   userName: string;
+  pUseDeleteMemeMutation: typeof useDeleteMemeMutation;
+  memeId: string;
 }
-export const MenuContent = (props: Props) => {
+export const MenuContent = ({
+  isOwner,
+  createdDate,
+  userName,
+  memeId,
+  pUseDeleteMemeMutation = useDeleteMemeMutation,
+}: Props) => {
+  const mutation = pUseDeleteMemeMutation(memeId);
   return (
     <div className='flex h-full w-full flex-col gap-2 bg-gray-800 p-4 text-white'>
       <h1 className='w-full text-center font-serif text-xl font-bold md:text-2xl'>
         Details
       </h1>
       <MemeDetails />
-      {props.isOwner && <ButtonArea />}
+      {isOwner && <ButtonArea />}
       <CommentArea />
     </div>
   );
 
   function MemeDetails() {
     return (
-      <div className=''>
-        <div className=''>Created By: {props.userName}</div>
-        <div className=''>
-          Date Created: {props.createdDate.toDate().toDateString()}
-        </div>
+      <div>
+        <div>Created By: {userName}</div>
+        <div>Date Created: {createdDate.toDate().toDateString()}</div>
       </div>
     );
   }
 
   function ButtonArea() {
     return (
-      <div className='flex w-full justify-evenly'>
-        <MutantButton
+      <div className='grid w-full grid-cols-2 gap-4'>
+        <button
           className='rounded-full bg-blue-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
-          mutation={props.mutation}
           onClick={() => {}}
-          loadMsg={'Saving...'}
-          errorMsg={'Try Again'}
-          successMsg={'Success'}
-          staticMsg={'Edit'}
-        />
+        >
+          Edit
+        </button>
         <MutantButton
-          mutation={props.mutation}
+          mutation={mutation}
           className='rounded-full bg-red-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
-          onClick={() => {}}
-          color='red'
+          onClick={() => mutation.mutate()}
           loadMsg={'Deleting...'}
           errorMsg={'Try Again'}
           successMsg={'Deleted'}
