@@ -36,6 +36,7 @@ export const MenuContent = (props: Props) => {
     return (
       <div className='flex w-full justify-evenly'>
         <MutantButton
+          className='rounded-full bg-blue-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
           mutation={props.mutation}
           onClick={() => {}}
           loadMsg={'Saving...'}
@@ -45,6 +46,7 @@ export const MenuContent = (props: Props) => {
         />
         <MutantButton
           mutation={props.mutation}
+          className='rounded-full bg-red-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
           onClick={() => {}}
           color='red'
           loadMsg={'Deleting...'}

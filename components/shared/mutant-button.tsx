@@ -8,11 +8,10 @@ interface Props {
   errorMsg: string;
   successMsg: string;
   staticMsg: string;
-  color?: 'blue' | 'red';
+  className?: string;
 }
 export const MutantButton = (props: Props) => {
   const { mutation } = props;
-  const color = props.color || 'blue';
 
   const [inTimeLimit, setInTimeLimit] = useState(false);
   useEffect(() => {
@@ -40,7 +39,7 @@ export const MutantButton = (props: Props) => {
     return (
       <button
         onClick={clickable ? props.onClick : undefined}
-        className={`rounded-full bg-${color}-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl ${
+        className={`${props.className || ''} ${
           mutation.isLoading && 'animate-pulse duration-1000'
         }`}
       >

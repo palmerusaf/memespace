@@ -61,6 +61,7 @@ export const Modal = ({
   const SaveButton = () => (
     <MutantButton
       onClick={handleSaveClick}
+      className='rounded-full bg-blue-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
       mutation={mutation}
       loadMsg={'Saving...'}
       errorMsg={'Failed Try Again'}
