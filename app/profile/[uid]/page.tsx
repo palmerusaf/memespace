@@ -66,7 +66,7 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
         {isOwner ? 'Your collection is empty' : 'Collection is empty'}
       </p>
       {isOwner && (
-        <Button className='bg-blue-600 md:w-fit md:px-3' href='find-memes'>
+        <Button className='bg-blue-600 md:w-fit md:px-3' href='find-memes/1'>
           Find Memes
         </Button>
       )}
