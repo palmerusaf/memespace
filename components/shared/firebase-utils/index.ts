@@ -12,7 +12,6 @@ import {
   connectFirestoreEmulator,
   deleteDoc,
   doc,
-  DocumentData,
   FieldValue,
   getDoc,
   getDocs,
@@ -21,7 +20,6 @@ import {
   QueryDocumentSnapshot,
   setDoc,
   Timestamp,
-  WithFieldValue,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
@@ -49,7 +47,7 @@ export const useIsOwner = (uid: string) => {
     onAuthStateChanged(auth, (user) =>
       setIsOwner(user !== null && user.uid === uid)
     );
-  }, []);
+  }, [uid]);
   return { isOwner };
 };
 
@@ -61,27 +59,9 @@ export const useLoggedIn = () => {
   return { loggedIn };
 };
 
-export const setDocWithTimeLimit = (
-  path: string,
-  pathSegments: string[],
-  data: WithFieldValue<DocumentData>,
-  timeLimit = 10000
-) => {
+export const WithTimeLimit = (cb: () => Promise<void>, timeLimit = 10000) => {
   return Promise.race([
-    setDoc(doc(db, path, ...pathSegments), data),
-    new Promise((_, reject) => {
-      return setTimeout(reject, timeLimit, new Error('DB write timed out'));
-    }),
-  ]);
-};
-
-export const delDocWithTimeLimit = (
-  path: string,
-  pathSegments: string[],
-  timeLimit = 10000
-) => {
-  return Promise.race([
-    deleteDoc(doc(db, path, ...pathSegments)),
+    cb(),
     new Promise((_, reject) => {
       return setTimeout(reject, timeLimit, new Error('DB write timed out'));
     }),
@@ -116,7 +96,7 @@ export const useProfileMutation = (uid: string) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: SendingProfileData) =>
-      setDocWithTimeLimit('users', [uid], data),
+      WithTimeLimit(() => setDoc(doc(db, 'users', uid), data)),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`profile-id-${uid}`],
@@ -168,8 +148,13 @@ export const useMemeMutation = (memeId?: string) => {
   const uid = auth.currentUser?.uid;
   return useMutation({
     mutationFn: (data: SendingMemeData) => {
-      if (!memeId) return setDocWithTimeLimit('users', [uid, 'memes'], data);
-      else return setDocWithTimeLimit('users', [uid, 'memes', memeId], data);
+      if (!memeId)
+        return WithTimeLimit(() =>
+          setDoc(doc(db, 'users', uid, 'memes'), data)
+        );
+      return WithTimeLimit(() =>
+        setDoc(doc(db, 'users', uid, 'memes', memeId), data)
+      );
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -184,10 +169,8 @@ export const useDeleteMemeMutation = (memeId: string) => {
   assert(auth.currentUser);
   const uid = auth.currentUser?.uid;
   return useMutation({
-    mutationFn: () => {
-      if (!memeId) return delDocWithTimeLimit('users', [uid, 'memes']);
-      else return delDocWithTimeLimit('users', [uid, 'memes', memeId]);
-    },
+    mutationFn: () =>
+      WithTimeLimit(() => deleteDoc(doc(db, 'users', uid, 'memes', memeId))),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`meme-col-id-${uid}`],
