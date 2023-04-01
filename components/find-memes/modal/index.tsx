@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Modal = ({
-  pUseMemeMutation,
+  pUseMemeMutation = useMemeMutation,
   modalId,
   setModalId,
   currentUser = auth.currentUser,

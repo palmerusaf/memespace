@@ -8,10 +8,12 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {
+  addDoc,
   collection,
   connectFirestoreEmulator,
   deleteDoc,
   doc,
+  DocumentReference,
   FieldValue,
   getDoc,
   getDocs,
@@ -59,7 +61,10 @@ export const useLoggedIn = () => {
   return { loggedIn };
 };
 
-export const WithTimeLimit = (cb: () => Promise<void>, timeLimit = 10000) => {
+export const WithTimeLimit = (
+  cb: () => Promise<void | DocumentReference>,
+  timeLimit = 10000
+) => {
   return Promise.race([
     cb(),
     new Promise((_, reject) => {
@@ -150,7 +155,7 @@ export const useMemeMutation = (memeId?: string) => {
     mutationFn: (data: SendingMemeData) => {
       if (!memeId)
         return WithTimeLimit(() =>
-          setDoc(doc(db, 'users', uid, 'memes'), data)
+          addDoc(collection(db, 'users', uid, 'memes'), data)
         );
       return WithTimeLimit(() =>
         setDoc(doc(db, 'users', uid, 'memes', memeId), data)
