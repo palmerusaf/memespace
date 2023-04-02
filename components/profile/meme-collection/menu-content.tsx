@@ -1,21 +1,25 @@
-import { useDeleteMemeMutation } from '@ui/shared/firebase-utils';
+import Modal from '@ui/shared/edit-meme-modal';
+import {
+  ReceivingMemeData,
+  useDeleteMemeMutation,
+} from '@ui/shared/firebase-utils';
 import { MutantButton } from '@ui/shared/mutant-button';
-import { Timestamp } from 'firebase/firestore';
 import { useState } from 'react';
 
 interface Props {
   isOwner: boolean;
-  createdDate: Timestamp;
   pUseDeleteMemeMutation?: typeof useDeleteMemeMutation;
   memeUid: string;
+  memeData: ReceivingMemeData;
 }
 export const MenuContent = ({
   isOwner,
-  createdDate,
   memeUid,
   pUseDeleteMemeMutation = useDeleteMemeMutation,
+  memeData: { createdDate, topText, meme, bottomText },
 }: Props) => {
   const mutation = pUseDeleteMemeMutation(memeUid);
+  const [modalId, setModalId] = useState('');
   return (
     <div className='flex h-full w-full flex-col gap-2 bg-gray-800 p-4 text-white'>
       <h1 className='w-full text-center font-serif text-xl font-bold md:text-2xl'>
@@ -30,9 +34,18 @@ export const MenuContent = ({
   function ButtonArea() {
     return (
       <div className='grid w-full grid-cols-2 gap-4'>
+        {modalId !== '' && (
+          <Modal
+            topText={topText}
+            bottomText={bottomText}
+            memeUid={memeUid}
+            modalId={modalId}
+            setModalId={setModalId}
+          />
+        )}
         <button
           className='rounded-full bg-blue-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
-          onClick={() => {}}
+          onClick={() => setModalId(meme)}
         >
           Edit
         </button>

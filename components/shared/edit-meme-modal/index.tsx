@@ -72,7 +72,7 @@ const Modal = ({
 
   return (
     <div className='absolute top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-gray-400 bg-opacity-20 bg-blend-overlay backdrop-blur-sm'>
-      <div className='flex h-auto w-auto flex-col items-center gap-4 rounded-lg bg-white py-4 px-4 shadow-lg animate-in fade-in zoom-in-50 md:px-6'>
+      <div className='flex h-auto w-auto flex-col items-center gap-4 rounded-lg bg-white py-4 px-4 text-black shadow-lg animate-in fade-in zoom-in-50 md:px-6'>
         <h1 className='text-xl font-bold'>{getTitle({ meme: modalId })}</h1>
         <p className='-mt-4'>Right Click or Long Tap Image to Download</p>
         <ImageWithLoadState
@@ -89,13 +89,13 @@ const Modal = ({
           <Input
             required={false}
             ref={topRef}
-            value={topText}
+            defaultValue={topText}
             label='Top Text'
           ></Input>
           <Input
             ref={bottomRef}
             required={false}
-            value={bottomText}
+            defaultValue={bottomText}
             label='Bottom Text'
           ></Input>
           <div className='grid w-full grid-cols-2 gap-2'>

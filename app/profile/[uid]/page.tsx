@@ -80,7 +80,7 @@ function Collection({
   const menuContent =
     selectedIndex !== null ? (
       <MenuContent
-        createdDate={data[selectedIndex].data().createdDate}
+        memeData={data[selectedIndex].data()}
         isOwner={isOwner}
         memeUid={data[selectedIndex].id}
       />

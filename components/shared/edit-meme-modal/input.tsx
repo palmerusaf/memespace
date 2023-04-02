@@ -2,11 +2,11 @@ import { forwardRef } from 'react';
 
 interface Props {
   label: string;
-  value?: string;
+  defaultValue?: string;
   required?: boolean;
 }
 const Input = (
-  { label, value, required = true }: Props,
+  { label, defaultValue, required = true }: Props,
   ref: React.ForwardedRef<HTMLInputElement>
 ) => {
   const notEmpty =
@@ -22,7 +22,7 @@ const Input = (
         id={label}
         required={required}
         className='peer absolute h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
-        value={value}
+        defaultValue={defaultValue}
         ref={ref}
         type='text'
         placeholder=' '
