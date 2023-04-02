@@ -18,7 +18,7 @@ service cloud.firestore {
       }
     }
     match /users/{userId}/memes/{memeId} {
-      allow create, update: if isOwner();
+      allow create, update, delete: if isOwner();
       allow read: if request.auth != null;
 
       function isOwner(){

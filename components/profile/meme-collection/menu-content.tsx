@@ -6,37 +6,26 @@ import { useState } from 'react';
 interface Props {
   isOwner: boolean;
   createdDate: Timestamp;
-  userName: string;
-  pUseDeleteMemeMutation: typeof useDeleteMemeMutation;
-  memeId: string;
+  pUseDeleteMemeMutation?: typeof useDeleteMemeMutation;
+  memeUid: string;
 }
 export const MenuContent = ({
   isOwner,
   createdDate,
-  userName,
-  memeId,
+  memeUid,
   pUseDeleteMemeMutation = useDeleteMemeMutation,
 }: Props) => {
-  const mutation = pUseDeleteMemeMutation(memeId);
+  const mutation = pUseDeleteMemeMutation(memeUid);
   return (
     <div className='flex h-full w-full flex-col gap-2 bg-gray-800 p-4 text-white'>
       <h1 className='w-full text-center font-serif text-xl font-bold md:text-2xl'>
         Details
       </h1>
-      <MemeDetails />
+      <div>Date Created: {createdDate.toDate().toDateString()}</div>
       {isOwner && <ButtonArea />}
       <CommentArea />
     </div>
   );
-
-  function MemeDetails() {
-    return (
-      <div>
-        <div>Created By: {userName}</div>
-        <div>Date Created: {createdDate.toDate().toDateString()}</div>
-      </div>
-    );
-  }
 
   function ButtonArea() {
     return (

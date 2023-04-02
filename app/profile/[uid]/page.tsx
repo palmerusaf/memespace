@@ -34,23 +34,15 @@ const Page = ({
 }: Props) => {
   const query = pUseMemeCollectionQuery(uid);
   const { isOwner } = pUseIsOwner(uid);
-  const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
 
   const MemeCollection = () => {
     if (query.isLoading) return <Loading />;
-    if (query.data)
-      return <Collection data={query.data} openModal={setSelectedIndex} />;
+    if (query.data) return <Collection isOwner={isOwner} data={query.data} />;
     else return <EmptyCollection isOwner={isOwner}></EmptyCollection>;
   };
 
   return (
     <PageWrapper>
-      <ViewMemeModal
-        memeData={query.data?.map((item) => item.data())}
-        setIndex={setSelectedIndex}
-        index={selectedIndex}
-        menuContent={<MenuContent />}
-      />
       <MemeCollection />
     </PageWrapper>
   );
@@ -79,34 +71,52 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
 
 function Collection({
   data,
-  openModal: setSelectedIndex,
+  isOwner,
 }: {
   data: QueryDocumentSnapshot<ReceivingMemeData>[];
-  openModal: React.Dispatch<React.SetStateAction<number | null>>;
+  isOwner: boolean;
 }) {
+  const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
+  const menuContent =
+    selectedIndex !== null ? (
+      <MenuContent
+        createdDate={data[selectedIndex].data().createdDate}
+        isOwner={isOwner}
+        memeUid={data[selectedIndex].id}
+      />
+    ) : null;
+
   return (
-    <ul className='grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
-      {data.map(({ id, data }, index) => {
-        const { bottomText, topText, meme } = data();
-        return (
-          <li
-            key={id}
-            onClick={() => {
-              setSelectedIndex(index);
-            }}
-            className='m-1 h-40 overflow-hidden rounded'
-          >
-            <ImageWithLoadState
-              width={500}
-              height={500}
-              className='object-cover'
-              src={getMeme({ meme, topText, bottomText })}
-              alt={meme.replace(/-/g, ' ')}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <ViewMemeModal
+        memeData={data.map((item) => item.data())}
+        setIndex={setSelectedIndex}
+        index={selectedIndex}
+        menuContent={menuContent}
+      />
+      <ul className='grid grid-cols-[repeat(auto-fill,_minmax(10rem,_1fr))]'>
+        {data.map((doc, index) => {
+          const { bottomText, topText, meme } = doc.data();
+          return (
+            <li
+              key={doc.id}
+              onClick={() => {
+                setSelectedIndex(index);
+              }}
+              className='m-1 h-40 overflow-hidden rounded'
+            >
+              <ImageWithLoadState
+                width={500}
+                height={500}
+                className='object-cover'
+                src={getMeme({ meme, topText, bottomText })}
+                alt={meme.replace(/-/g, ' ')}
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 

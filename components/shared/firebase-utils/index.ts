@@ -88,7 +88,7 @@ export interface SendingProfileData extends ProfileData {
 
 export const useProfileQuery = (uid: string) => {
   return useQuery({
-    queryKey: [`profile-id-${uid}`],
+    queryKey: [`users/${uid}`],
     queryFn: async () => {
       const res = await getDoc(doc(db, 'users', uid));
       if (!res.exists()) return null;
@@ -104,7 +104,7 @@ export const useProfileMutation = (uid: string) => {
       WithTimeLimit(() => setDoc(doc(db, 'users', uid), data)),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`profile-id-${uid}`],
+        queryKey: [`users/${uid}`],
       });
     },
   });
@@ -137,7 +137,7 @@ export interface SendingMemeData extends MemeData {
 
 export const useMemeCollectionQuery = (uid: string) => {
   return useQuery({
-    queryKey: [`meme-col-id-${uid}`],
+    queryKey: [`users/${uid}/memes`],
     queryFn: async () => {
       const memeCollQuery = query(collection(db, `users/${uid}/memes`));
       const res = await getDocs(memeCollQuery);
@@ -147,38 +147,38 @@ export const useMemeCollectionQuery = (uid: string) => {
   });
 };
 
-export const useMemeMutation = (memeId?: string) => {
+export const useMemeMutation = (memeUid?: string) => {
   const queryClient = useQueryClient();
   assert(auth.currentUser);
   const uid = auth.currentUser?.uid;
   return useMutation({
     mutationFn: (data: SendingMemeData) => {
-      if (!memeId)
+      if (!memeUid)
         return WithTimeLimit(() =>
           addDoc(collection(db, 'users', uid, 'memes'), data)
         );
       return WithTimeLimit(() =>
-        setDoc(doc(db, 'users', uid, 'memes', memeId), data)
+        setDoc(doc(db, 'users', uid, 'memes', memeUid), data)
       );
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`meme-col-id-${uid}`],
+        queryKey: [`users/${uid}/memes`],
       });
     },
   });
 };
 
-export const useDeleteMemeMutation = (memeId: string) => {
+export const useDeleteMemeMutation = (memeUid: string) => {
   const queryClient = useQueryClient();
   assert(auth.currentUser);
   const uid = auth.currentUser?.uid;
   return useMutation({
     mutationFn: () =>
-      WithTimeLimit(() => deleteDoc(doc(db, 'users', uid, 'memes', memeId))),
+      WithTimeLimit(() => deleteDoc(doc(db, 'users', uid, 'memes', memeUid))),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`meme-col-id-${uid}`],
+        queryKey: [`users/${uid}/memes`],
       });
     },
   });
