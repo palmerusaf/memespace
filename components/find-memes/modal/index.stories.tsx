@@ -41,3 +41,10 @@ LoggedOut.args = {
   pUseMemeMutation: useFailingMutation,
   modalId: 'Criana',
 };
+
+export const TextOptionsFilled = Template.bind({});
+TextOptionsFilled.args = {
+  modalId: 'Criana',
+  topText: 'foo',
+  bottomText: 'bar',
+};
