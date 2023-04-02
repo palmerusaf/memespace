@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { Button } from '@ui/login';
 import { MenuContent } from '@ui/profile/meme-collection/menu-content';
 import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
@@ -13,6 +12,7 @@ import {
 import { MadBro, SadBoi } from '@ui/shared/imgs';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface Props {
@@ -66,9 +66,12 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
         {isOwner ? 'Your collection is empty' : 'Collection is empty'}
       </p>
       {isOwner && (
-        <Button className='bg-blue-600 md:w-fit md:px-3' href='find-memes/1'>
+        <Link
+          className='rounded-full border-2 border-black bg-blue-600 py-0.5 px-3 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
+          href='find-memes/1'
+        >
           Find Memes
-        </Button>
+        </Link>
       )}
     </div>
   );
