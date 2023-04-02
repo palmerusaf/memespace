@@ -8,7 +8,7 @@ import {
 import Modal from './index';
 
 export default {
-  title: 'find memes/Modal',
+  title: 'shared/Edit Meme Modal',
   component: Modal,
   args: {
     modalId: 'string',

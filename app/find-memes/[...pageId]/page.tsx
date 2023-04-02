@@ -1,8 +1,8 @@
 'use client';
-import Modal from '@ui/find-memes/modal';
 import { getMemeEndPoints, isInvalidPage } from '@ui/find-memes/nav/page-utils';
 import { getThumbnail } from '@ui/shared/api-meme-utils';
 import DropDown from '@ui/shared/drop-down';
+import Modal from '@ui/shared/edit-meme-modal';
 import { MEME_LIST } from '@ui/shared/meme-list';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { notFound } from 'next/navigation';
