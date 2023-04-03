@@ -7,11 +7,11 @@ export default {
   component: Input,
   argTypes: {
     label: { control: 'text' },
-    value: { control: 'text' },
+    defaultValue: { control: 'text' },
   },
   args: {
     label: 'string',
-    value: '',
+    defaultValue: '',
   },
 } as ComponentMeta<typeof Input>;
 
@@ -21,10 +21,10 @@ export const BottomTextEmpty = Template.bind({});
 BottomTextEmpty.args = { label: 'Bottom Text' };
 
 export const BottomTextFilled = Template.bind({});
-BottomTextFilled.args = { label: 'Bottom Text', value: 'this is text' };
+BottomTextFilled.args = { label: 'Bottom Text', defaultValue: 'this is text' };
 
 export const TopTextEmpty = Template.bind({});
 TopTextEmpty.args = { label: 'Top Text' };
 
 export const TopTextFilled = Template.bind({});
-TopTextFilled.args = { label: 'Top Text', value: 'this is text' };
+TopTextFilled.args = { label: 'Top Text', defaultValue: 'this is text' };
