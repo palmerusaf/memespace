@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
+import { HamButton } from '@ui/profile/meme-collection/ham-button';
 import { MenuContent } from '@ui/profile/meme-collection/menu-content';
 import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
@@ -103,8 +104,15 @@ function Collection({
               onClick={() => {
                 setSelectedIndex(index);
               }}
-              className='m-1 h-40 overflow-hidden rounded'
+              className='relative m-1 h-40 cursor-pointer overflow-hidden rounded'
             >
+              <div className='absolute right-1 bottom-1 z-0 flex'>
+                <HamButton
+                  toggleMenu={() => {
+                    setSelectedIndex(index);
+                  }}
+                />
+              </div>
               <ImageWithLoadState
                 width={500}
                 height={500}
