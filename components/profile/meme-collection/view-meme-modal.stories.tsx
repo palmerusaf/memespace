@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { MEME_LIST } from '@ui/shared/meme-list';
 import { Timestamp } from 'firebase/firestore';
 import { useState } from 'react';
 
@@ -30,13 +31,13 @@ const Template: ComponentStory<typeof ViewMemeModal> = (args) => {
   );
 };
 
-export const Data = Template.bind({});
-Data.args = {
+export const StaticData = Template.bind({});
+StaticData.args = {
   memeData: [
     {
-      topText: 'foo1',
-      bottomText: 'bar1',
-      meme: '10-Guy',
+      topText: 'meme',
+      bottomText: 'Look-At-All-These',
+      meme: 'Look-At-All-These',
       createdBy: '123',
       createdDate: Timestamp.now(),
     },
@@ -104,4 +105,19 @@ Data.args = {
       createdDate: Timestamp.now(),
     },
   ],
+};
+
+export const TwentyRandomMemes = Template.bind({});
+TwentyRandomMemes.args = {
+  memeData: new Array(20).fill(0).map(() => {
+    const randIndex = Math.floor(Math.random() * 999);
+    const meme = MEME_LIST[randIndex];
+    return {
+      topText: 'meme',
+      bottomText: meme,
+      meme,
+      createdBy: '123',
+      createdDate: Timestamp.now(),
+    };
+  }),
 };
