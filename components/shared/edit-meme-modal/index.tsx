@@ -39,22 +39,35 @@ const Modal = ({
   const topRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLInputElement>(null);
 
-  const mutation = pUseMemeMutation(memeUid);
+  const SaveButton = () => {
+    const mutation = pUseMemeMutation(memeUid);
 
-  const handleSave = () => {
-    if (!(topRef && topRef.current)) return;
-    if (!(bottomRef && bottomRef.current)) return;
-    assert(currentUser);
+    const handleSave = () => {
+      if (!(topRef && topRef.current)) return;
+      if (!(bottomRef && bottomRef.current)) return;
+      assert(currentUser);
 
-    mutation.mutate({
-      createdDate: serverTimestamp(),
-      topText: topRef.current.value,
-      bottomText: bottomRef.current.value,
-      meme: modalId,
-      createdBy: currentUser.uid,
-    });
+      mutation.mutate({
+        createdDate: serverTimestamp(),
+        topText: topRef.current.value,
+        bottomText: bottomRef.current.value,
+        meme: modalId,
+        createdBy: currentUser.uid,
+      });
+    };
+
+    return (
+      <MutantButton
+        mutation={mutation}
+        onClick={handleSave}
+        className='rounded-full border-2 border-black bg-blue-600 py-0.5 px-2 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
+        loadMsg={'Saving...'}
+        errorMsg={'Try Again'}
+        successMsg={'Success'}
+        staticMsg={'Save to Profile'}
+      />
+    );
   };
-
   const updateImgSrc = () => {
     if (!(topRef && topRef.current)) return;
     if (!(bottomRef && bottomRef.current)) return;
@@ -113,17 +126,7 @@ const Modal = ({
             >
               Lookup Origin
             </OriginLink>
-            {(currentUser && (
-              <MutantButton
-                mutation={mutation}
-                onClick={handleSave}
-                className='rounded-full border-2 border-black bg-blue-600 py-0.5 px-2 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
-                loadMsg={'Saving...'}
-                errorMsg={'Try Again'}
-                successMsg={'Success'}
-                staticMsg={'Save to Profile'}
-              />
-            )) || (
+            {(currentUser && <SaveButton />) || (
               <Link
                 className='rounded-full border-2 border-black bg-blue-600 py-0.5 px-2 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
                 href={'login'}
