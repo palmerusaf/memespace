@@ -2,7 +2,6 @@
 import { useIsOwner, useProfileQuery } from '@ui/shared/firebase-utils';
 import { MadBro } from '@ui/shared/imgs';
 import assert from 'assert';
-import { useRouter } from 'next/navigation';
 import { AvatarMeme } from './avatar-meme';
 import { useModalHook } from './profile-modal';
 
@@ -18,7 +17,6 @@ export function AvatarArea({
   pUseIsOwner = useIsOwner,
 }: Props) {
   const query = pUseProfileQuery(uid);
-  const router = useRouter();
   const { isOwner } = pUseIsOwner(uid);
   const { openModal, ProfileModal } = useModalHook();
 
