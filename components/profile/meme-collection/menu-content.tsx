@@ -18,7 +18,6 @@ export const MenuContent = ({
   pUseDeleteMemeMutation = useDeleteMemeMutation,
   memeData: { createdDate, topText, meme, bottomText },
 }: Props) => {
-  const mutation = pUseDeleteMemeMutation(memeUid);
   const [modalId, setModalId] = useState('');
   return (
     <div className='flex h-full w-full flex-col gap-2 bg-gray-800 p-4 text-white'>
@@ -32,6 +31,7 @@ export const MenuContent = ({
   );
 
   function ButtonArea() {
+    const mutation = pUseDeleteMemeMutation(memeUid);
     return (
       <div className='grid w-full grid-cols-2 gap-4'>
         {modalId !== '' && (
