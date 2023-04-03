@@ -1,5 +1,6 @@
 import DropDown from '@ui/shared/drop-down';
 import {
+  auth,
   ReceivingProfileData,
   useMyProfileMutation,
 } from '@ui/shared/firebase-utils';
@@ -106,7 +107,7 @@ export const Modal = ({
             onChange={handleInputChange}
             label='User Name'
           />
-          <div className='w-full pt-6  pb-2 text-center'>
+          <div className='w-full pt-6 pb-2 text-center'>
             <InvalidMsgBox />
           </div>
           <div className='-mt-4 flex w-full flex-col gap-2'>
@@ -116,6 +117,15 @@ export const Modal = ({
               className='rounded-full bg-red-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
             >
               Close
+            </button>
+            <button
+              className='mt-4 rounded-full bg-red-500 px-4 text-lg font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:text-xl'
+              onClick={() => {
+                closeModal();
+                auth.signOut();
+              }}
+            >
+              Log Out
             </button>
           </div>
         </div>
