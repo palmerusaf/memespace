@@ -28,7 +28,10 @@ export function OptionsAfterUserNameSet({ userName }: { userName: string }) {
         >
           Logout
         </Button>
-        <Button className='bg-blue-600 text-white' href='/profile'>
+        <Button
+          className='bg-blue-600 text-white'
+          href={`/profile/${auth.currentUser?.uid}`}
+        >
           Go To Profile
         </Button>
       </div>
