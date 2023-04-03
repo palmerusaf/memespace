@@ -1,19 +1,20 @@
 'use client';
-import { auth, useLoggedIn } from '@ui/shared/firebase-utils';
+import { auth } from '@ui/shared/firebase-utils';
 import { LoadingPage } from '@ui/shared/loading-page';
 import assert from 'assert';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { LoggedInContext } from './loggedin-context';
 
 const Page = () => {
   const router = useRouter();
-  const { loggedIn } = useLoggedIn();
+  const loggedIn = useContext(LoggedInContext);
   useEffect(() => {
     if (loggedIn) {
       assert(auth.currentUser);
-      router.replace(`/profile/${auth.currentUser.uid}`);
+      router.push(`/profile/${auth.currentUser.uid}`);
     } else {
-      router.replace('/login');
+      router.push('/login');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);

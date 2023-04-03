@@ -4,6 +4,7 @@ import {
   useFailingMutation,
   usePassingMutation,
 } from '@ui/shared/firebase-utils';
+import { MEME_LIST } from '@ui/shared/meme-list';
 import { Timestamp } from 'firebase/firestore';
 
 import { MenuContent } from './menu-content';
@@ -13,9 +14,15 @@ export default {
   component: MenuContent,
   args: {
     pUseDeleteMemeMutation: usePassingMutation,
-    createdDate: Timestamp.now(),
-    userName: 'FooBar',
-    memeId: '123',
+    memeData: {
+      createdDate: Timestamp.now(),
+      topText: 'top',
+      meme: MEME_LIST[0],
+      bottomText: 'bottom',
+      createdBy: 'foobar',
+    },
+    memeUid: '123',
+    isOwner: true,
   },
 } as ComponentMeta<typeof MenuContent>;
 
