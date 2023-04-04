@@ -14,8 +14,10 @@ const NavWrapper = ({ children, NavBarInj = NavBar }: Props) => {
       >
         {children}
       </div>
-      <div className='fixed bottom-0 h-16 w-screen shadow-xl md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
-        <NavBarInj />
+      <div className='h-16 w-screen md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
+        <div className='fixed bottom-0 h-16 w-screen shadow-xl md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
+          <NavBarInj />
+        </div>
       </div>
     </div>
   );
