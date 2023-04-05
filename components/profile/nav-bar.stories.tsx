@@ -20,13 +20,17 @@ const Template: ComponentStory<typeof NavBar> = (args) => (
 export const MemeSelected = Template.bind({});
 MemeSelected.args = { uid: '123', pUseSelectedLayoutSegment: () => null };
 
-export const TrackedSelected = Template.bind({});
-TrackedSelected.args = {
+export const FollowingSelected = Template.bind({});
+FollowingSelected.args = {
   uid: '123',
-  pUseSelectedLayoutSegment: () => 'tracked',
+  pUseSelectedLayoutSegment: () => 'following',
 };
 
-export const MockedNavBar = ({ selected }: { selected: 'tracked' | null }) => {
+export const MockedNavBar = ({
+  selected,
+}: {
+  selected: 'following' | null;
+}) => {
   const args = {
     uid: '123',
     pUseSelectedLayoutSegment: () => selected,

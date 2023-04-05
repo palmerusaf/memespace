@@ -22,10 +22,10 @@ export function NavBar({
           label='MEMES'
         />
         <NavBarLink
-          href={`/profile/${uid}/tracked`}
+          href={`/profile/${uid}/following`}
           imgSrc={SmallLogo.src}
           imgAlt={'meme people'}
-          label='TRACKING'
+          label='FOLLOWING'
         />
       </ul>
     </nav>
@@ -53,7 +53,7 @@ export function NavBar({
       >
         <div className='flex gap-2 p-2'>
           <img src={imgSrc} className='h-8' alt={imgAlt} />
-          <div className='hidden md:inline'>{label}</div>
+          <span>{label}</span>
         </div>
       </NavLink>
     );
