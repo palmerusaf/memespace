@@ -17,7 +17,7 @@ export const ViewMemeModal = ({
   index,
   menuContent,
 }: Props) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   if (index === null || memeData === null || memeData === undefined)
     return <></>;
