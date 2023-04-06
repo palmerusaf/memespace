@@ -27,7 +27,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/palmerusaf/memespace">
-    <img src="./public/favicon.ico" alt="Logo" width="80" height="80">
+    <img src="./components/shared/imgs/small-logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">memespace</h3>
@@ -97,7 +97,9 @@ The purpose of this project is to serve as a capstone project to show off everyt
 ## Roadmap
 
 - [x] Add meme creator
-- [ ] Add user login
+- [x] Add user login
+- [x] Add profile
+- [x] Add meme collection
 - [ ] Add friends list
 - [ ] Add comment system
 - [ ] Add wall
