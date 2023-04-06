@@ -42,6 +42,20 @@ MemeNotSet.args = {
   userName: 'username',
 };
 
+export const NoButton = Template.bind({});
+NoButton.args = {
+  profileMeme: '10-Guy',
+  userName: 'username',
+  button: undefined,
+};
+
+export const Following = Template.bind({});
+Following.args = {
+  profileMeme: '10-Guy',
+  userName: 'username',
+  button: <span>Following</span>,
+};
+
 export const Normal = Template.bind({});
 Normal.args = {
   profileMeme: '10-Guy',

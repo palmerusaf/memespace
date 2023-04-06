@@ -38,11 +38,11 @@ interface Props {
 
 export function UserCard({ uid, userName, profileMeme, button }: Props) {
   return (
-    <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-3 px-3 shadow-md md:justify-start md:py-6 md:px-16'>
-      <Link href={`/profile/${uid}`} className='w-14 md:w-36'>
+    <div className='relative flex items-center justify-between gap-3 rounded-md bg-white p-3 shadow-md md:justify-start md:p-6'>
+      <Link href={`/profile/${uid}`} className='w-14 md:w-20'>
         <AvatarPic profileMeme={profileMeme} />
       </Link>
-      <div className='flex flex-col gap-1 text-center md:flex-1 md:gap-9'>
+      <div className='flex flex-col gap-1 text-center md:flex-1 md:gap-3'>
         <Link
           className='text-lg font-semibold underline md:text-2xl'
           href={`/profile/${uid}`}
