@@ -1,22 +1,45 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { MEME_LIST } from '../meme-list';
 import { UserCard } from './index';
 
+const FollowButton = () => {
+  return (
+    <button className='rounded-full bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-110 md:px-3 md:text-xl'>
+      Follow
+    </button>
+  );
+};
 export default {
   title: 'Shared/User Card',
   component: UserCard,
   args: {
     uid: '123',
+    button: <FollowButton />,
   },
 } as ComponentMeta<typeof UserCard>;
 
 const Template: ComponentStory<typeof UserCard> = (args) => (
-  <UserCard {...args}></UserCard>
+  <div className='flex h-screen w-screen items-center justify-center'>
+    <UserCard {...args}></UserCard>
+  </div>
 );
+
+export const UserNameUndefined = Template.bind({});
+UserNameUndefined.args = {
+  profileMeme: MEME_LIST[0],
+};
+
+export const UserNameBlank = Template.bind({});
+UserNameBlank.args = {
+  profileMeme: MEME_LIST[0],
+  userName: '',
+};
 
 export const MemeNotSet = Template.bind({});
 MemeNotSet.args = {
   profileMeme: '',
+  userName: 'username',
 };
 
 export const Normal = Template.bind({});
