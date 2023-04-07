@@ -999,3 +999,6 @@ export const MEME_LIST = [
   'Zura-Janai-Katsura-Da',
   'confession-kid',
 ] as const;
+
+export const getRandMemeIndex = () =>
+  Math.floor(Math.random() * MEME_LIST.length);

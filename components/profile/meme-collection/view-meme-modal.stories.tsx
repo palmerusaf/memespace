@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { MEME_LIST } from '@ui/shared/meme-list';
+import { getRandMemeIndex, MEME_LIST } from '@ui/shared/meme-list';
 import { Timestamp } from 'firebase/firestore';
 import { useState } from 'react';
 
@@ -110,8 +110,7 @@ StaticData.args = {
 export const TwentyRandomMemes = Template.bind({});
 TwentyRandomMemes.args = {
   memeData: new Array(20).fill(0).map(() => {
-    const randIndex = Math.floor(Math.random() * 999);
-    const meme = MEME_LIST[randIndex];
+    const meme = MEME_LIST[getRandMemeIndex()];
     return {
       topText: 'meme',
       bottomText: meme,
