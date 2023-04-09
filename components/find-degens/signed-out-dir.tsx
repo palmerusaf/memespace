@@ -9,14 +9,14 @@ export interface UserDocument {
 }
 export interface UserDir {
   isLoading: boolean;
-  usersQueryResults: UserDocument[] | null;
+  userDocs: UserDocument[] | null;
 }
-export const SignedOutDir = ({ usersQueryResults, isLoading }: UserDir) => {
+export const SignedOutDir = ({ userDocs, isLoading }: UserDir) => {
   if (isLoading) return <UserLoadCards />;
   else
     return (
       <>
-        {usersQueryResults?.map((res) => (
+        {userDocs?.map((res) => (
           <UserCard
             uid={res.id}
             userName={res.data().userName}

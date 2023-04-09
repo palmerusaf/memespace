@@ -24,13 +24,13 @@ const Template: ComponentStory<typeof SignedOutDir> = (args) => (
 export const Loading = Template.bind({});
 Loading.args = {
   isLoading: true,
-  usersQueryResults: null,
+  userDocs: null,
 };
 
 export const OneUser = Template.bind({});
 OneUser.args = {
   isLoading: false,
-  usersQueryResults: [
+  userDocs: [
     {
       id: '123',
       data: () => {
@@ -64,5 +64,5 @@ const genMemes = (num: number) => {
 export const TwentyUsers = Template.bind({});
 TwentyUsers.args = {
   isLoading: false,
-  usersQueryResults: genMemes(20),
+  userDocs: genMemes(20),
 };
