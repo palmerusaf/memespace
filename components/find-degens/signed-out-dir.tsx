@@ -14,13 +14,11 @@ interface Props {
 export const SignedOutDir = ({ usersQueryResults, isLoading }: Props) => {
   if (isLoading)
     return (
-      <div className='flex h-full w-full justify-center'>
-        <div className='flex max-w-md grow flex-col gap-2'>
-          <LoadingCard />
-          <LoadingCard className='opacity-75' />
-          <LoadingCard className='opacity-30' />
-        </div>
-      </div>
+      <>
+        <LoadingCard />
+        <LoadingCard className='opacity-75' />
+        <LoadingCard className='opacity-30' />
+      </>
     );
   else return <div>yo</div>;
 };

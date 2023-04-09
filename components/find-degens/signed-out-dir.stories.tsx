@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { getRandMemeIndex, MEME_LIST } from '@ui/shared/meme-list';
+import Layout from 'app/find-degens/layout';
 import { Timestamp } from 'firebase/firestore';
 
 import { SignedOutDir } from './signed-out-dir';
@@ -13,19 +14,21 @@ export default {
 } as ComponentMeta<typeof SignedOutDir>;
 
 const Template: ComponentStory<typeof SignedOutDir> = (args) => (
-  <SignedOutDir {...args} />
+  <Layout>
+    <SignedOutDir {...args} />
+  </Layout>
 );
 
 export const Loading = Template.bind({});
 Loading.args = {
   isLoading: true,
-  usersQueryResult: null,
+  usersQueryResults: null,
 };
 
 export const OneUser = Template.bind({});
 OneUser.args = {
   isLoading: true,
-  usersQueryResult: [
+  usersQueryResults: [
     {
       id: '123',
       data: () => {
