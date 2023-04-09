@@ -14,9 +14,11 @@ export default {
 } as ComponentMeta<typeof SignedOutDir>;
 
 const Template: ComponentStory<typeof SignedOutDir> = (args) => (
-  <Layout>
-    <SignedOutDir {...args} />
-  </Layout>
+  <div className='h-screen w-screen'>
+    <Layout>
+      <SignedOutDir {...args} />
+    </Layout>
+  </div>
 );
 
 export const Loading = Template.bind({});
@@ -27,7 +29,7 @@ Loading.args = {
 
 export const OneUser = Template.bind({});
 OneUser.args = {
-  isLoading: true,
+  isLoading: false,
   usersQueryResults: [
     {
       id: '123',
@@ -40,4 +42,27 @@ OneUser.args = {
       },
     },
   ],
+};
+
+const genMemes = (num: number) => {
+  const result = [];
+  for (let i = 0; i < num; i++) {
+    result.push({
+      id: `${i}`,
+      data: () => {
+        return {
+          userName: `username${i}`,
+          createdDate: Timestamp.now(),
+          profileMeme: MEME_LIST[getRandMemeIndex()],
+        };
+      },
+    });
+  }
+  return result;
+};
+
+export const TwentyUsers = Template.bind({});
+TwentyUsers.args = {
+  isLoading: false,
+  usersQueryResults: genMemes(20),
 };

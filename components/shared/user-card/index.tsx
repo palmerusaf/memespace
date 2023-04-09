@@ -33,7 +33,7 @@ interface Props {
   uid: string;
   userName: string;
   profileMeme: string;
-  button: ReactNode;
+  button?: ReactNode;
 }
 
 export function UserCard({ uid, userName, profileMeme, button }: Props) {
@@ -42,14 +42,14 @@ export function UserCard({ uid, userName, profileMeme, button }: Props) {
       <Link href={`/profile/${uid}`} className='w-14 md:w-20'>
         <AvatarPic profileMeme={profileMeme} />
       </Link>
-      <div className='flex flex-col gap-1 text-center md:flex-1 md:gap-3'>
+      <div className='flex w-full flex-col gap-1 text-center md:flex-1 md:gap-3'>
         <Link
           className='text-lg font-semibold underline md:text-2xl'
           href={`/profile/${uid}`}
         >
           {userName || 'No Username'}
         </Link>
-        {button}
+        {button ?? button}
       </div>
     </div>
   );
