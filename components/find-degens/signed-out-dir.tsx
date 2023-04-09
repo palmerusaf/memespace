@@ -1,25 +1,18 @@
 import { ReceivingProfileData } from '@ui/shared/firebase-utils';
 import { UserCard } from '@ui/shared/user-card';
+import { UserLoadCards } from '@ui/shared/user-load-cards';
 import { SnapshotOptions } from 'firebase/firestore';
-import { LoadingCard } from './loading-card';
 
 export interface UserDocument {
   id: string;
   data: (options?: SnapshotOptions | undefined) => ReceivingProfileData;
 }
-interface Props {
+export interface UserDir {
   isLoading: boolean;
   usersQueryResults: UserDocument[] | null;
 }
-export const SignedOutDir = ({ usersQueryResults, isLoading }: Props) => {
-  if (isLoading)
-    return (
-      <>
-        <LoadingCard />
-        <LoadingCard className='opacity-75' />
-        <LoadingCard className='opacity-30' />
-      </>
-    );
+export const SignedOutDir = ({ usersQueryResults, isLoading }: UserDir) => {
+  if (isLoading) return <UserLoadCards />;
   else
     return (
       <>
