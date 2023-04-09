@@ -134,8 +134,7 @@ export const useMemeCollectionQuery = (uid: string) => {
   return useQuery({
     queryKey: [`users/${uid}/memes`],
     queryFn: async () => {
-      const memeCollQuery = query(collection(db, `users/${uid}/memes`));
-      const res = await getDocs(memeCollQuery);
+      const res = await getDocs(query(collection(db, `users/${uid}/memes`)));
       if (res.empty) return null;
       return res.docs as QueryDocumentSnapshot<ReceivingMemeData>[];
     },
@@ -174,6 +173,47 @@ export const useDeleteMemeMutation = (memeUid: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`users/${uid}/memes`],
+      });
+    },
+  });
+};
+
+export const useUserCollectionQuery = () => {
+  return useQuery({
+    queryKey: [`users`],
+    queryFn: async () => {
+      const res = await getDocs(query(collection(db, `users`)));
+      if (res.empty) return null;
+      return res.docs as QueryDocumentSnapshot<ReceivingMemeData>[];
+    },
+  });
+};
+
+export const useFollowingCollectionQuery = (uid: string) => {
+  return useQuery({
+    queryKey: [`users/${uid}/following`],
+    queryFn: async () => {
+      const res = await getDocs(
+        query(collection(db, `users/${uid}/following`))
+      );
+      if (res.empty) return null;
+      return res.docs as QueryDocumentSnapshot<ReceivingMemeData>[];
+    },
+  });
+};
+
+export const useDeleteFollowingMutation = () => {
+  const queryClient = useQueryClient();
+  assert(auth.currentUser);
+  const uid = auth.currentUser?.uid;
+  return useMutation({
+    mutationFn: (followingUid: string) =>
+      WithTimeLimit(() =>
+        deleteDoc(doc(db, 'users', uid, 'memes', followingUid))
+      ),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`users/${uid}/following`],
       });
     },
   });
