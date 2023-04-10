@@ -22,31 +22,34 @@ const Page = ({
       {!loggedIn && <SignedOutPage />}
     </>
   );
+
+  function SignedInPage() {
+    assert(auth.currentUser);
+    const usersQuery = pUseUserCollectionQuery();
+    const followingQuery = pUseFollowingCollectionQuery(auth.currentUser?.uid);
+
+    if (followingQuery.isLoading || usersQuery.isLoading)
+      return <UserLoadCards />;
+
+    if (!usersQuery.data) return <AreaEmpty />;
+
+    return (
+      <SignedInDir
+        following={followingQuery.data ?? []}
+        userDocs={usersQuery.data}
+      />
+    );
+  }
+
+  function SignedOutPage() {
+    const usersQuery = pUseUserCollectionQuery();
+
+    if (usersQuery.isLoading) return <UserLoadCards />;
+
+    if (!usersQuery.data) return <AreaEmpty />;
+
+    return <SignedOutDir userDocs={usersQuery.data} />;
+  }
 };
 
 export default Page;
-
-function SignedInPage({
-  pUseUserCollectionQuery = useUserCollectionQuery,
-  pUseFollowingCollectionQuery = useFollowingCollectionQuery,
-}) {
-  assert(auth.currentUser);
-  const usersQuery = pUseUserCollectionQuery();
-  const followingQuery = pUseFollowingCollectionQuery(auth.currentUser?.uid);
-
-  if (followingQuery.isLoading || usersQuery.isLoading)
-    return <UserLoadCards />;
-
-  if (!usersQuery.data) return <AreaEmpty />;
-
-  return (
-    <SignedInDir
-      following={followingQuery.data ?? []}
-      userDocs={usersQuery.data}
-    />
-  );
-}
-
-function SignedOutPage() {
-  return <SignedOutDir />;
-}
