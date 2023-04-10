@@ -2,10 +2,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import assert from 'assert';
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  connectAuthEmulator,
+  getAuth,
+  onAuthStateChanged,
+} from 'firebase/auth';
 import {
   addDoc,
   collection,
+  connectFirestoreEmulator,
   deleteDoc,
   doc,
   DocumentReference,
@@ -33,10 +38,10 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-// connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
 
 export const db = getFirestore(app);
-// connectFirestoreEmulator(db, 'localhost', 9100);
+connectFirestoreEmulator(db, 'localhost', 9100);
 
 export const useIsOwner = (uid: string) => {
   const [isOwner, setIsOwner] = useState(false);
@@ -184,7 +189,7 @@ export const useUserCollectionQuery = () => {
     queryFn: async () => {
       const res = await getDocs(query(collection(db, `users`)));
       if (res.empty) return null;
-      return res.docs as QueryDocumentSnapshot<ReceivingMemeData>[];
+      return res.docs as QueryDocumentSnapshot<ReceivingProfileData>[];
     },
   });
 };
@@ -197,7 +202,7 @@ export const useFollowingCollectionQuery = (uid: string) => {
         query(collection(db, `users/${uid}/following`))
       );
       if (res.empty) return null;
-      return res.docs as QueryDocumentSnapshot<ReceivingMemeData>[];
+      return res.docs as QueryDocumentSnapshot<ReceivingProfileData>[];
     },
   });
 };
