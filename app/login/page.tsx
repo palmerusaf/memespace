@@ -1,10 +1,9 @@
 'use client';
 import { AfterLogin, PreLogin } from '@ui/login';
-import { LoggedInContext } from '@ui/shared/loggedin-context';
-import { useContext } from 'react';
+import { useLoggedIn } from '@ui/shared/firebase-utils';
 
 const Page = () => {
-  const loggedIn = useContext(LoggedInContext);
+  const { loggedIn } = useLoggedIn();
   if (!loggedIn) return <PreLogin />;
   else return <AfterLogin />;
 };

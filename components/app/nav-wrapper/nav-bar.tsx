@@ -1,14 +1,13 @@
 'use client';
-import { auth } from '@ui/shared/firebase-utils';
-import { LoggedInContext } from '@ui/shared/loggedin-context';
+import { auth, useLoggedIn } from '@ui/shared/firebase-utils';
 import { NavLink } from '@ui/shared/nav-link';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { useContext } from 'react';
 
 export function NavBar({
   pUseSelectedLayoutSegment = useSelectedLayoutSegment,
+  pUseLoggedIn = useLoggedIn,
 }) {
-  const loggedIn = useContext(LoggedInContext);
+  const { loggedIn } = pUseLoggedIn();
   let segment = pUseSelectedLayoutSegment();
 
   interface NavBarLinkProps {

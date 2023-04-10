@@ -14,15 +14,16 @@ export default {
   component: MenuContent,
   args: {
     pUseDeleteMemeMutation: usePassingMutation,
+    createdDate: Timestamp.now(),
+    userName: 'FooBar',
+    memeId: '123',
     memeData: {
-      createdDate: Timestamp.now(),
+      createdBy: '123',
       topText: 'top',
-      meme: MEME_LIST[0],
       bottomText: 'bottom',
-      createdBy: 'foobar',
+      createdDate: Timestamp.now(),
+      meme: MEME_LIST[0],
     },
-    memeUid: '123',
-    isOwner: true,
   },
 } as ComponentMeta<typeof MenuContent>;
 
