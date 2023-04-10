@@ -8,7 +8,7 @@ import { SignedInDir } from './signed-in-dir';
 export default {
   title: 'find degens/Signed in Dir',
   component: SignedInDir,
-  args: { isLoading: false },
+  args: {},
 } as ComponentMeta<typeof SignedInDir>;
 
 const Template: ComponentStory<typeof SignedInDir> = (args) => (
@@ -16,11 +16,6 @@ const Template: ComponentStory<typeof SignedInDir> = (args) => (
     <SignedInDir {...args} />
   </Layout>
 );
-
-export const Loading = Template.bind({});
-Loading.args = {
-  isLoading: true,
-};
 
 const genMemes = (num: number) => {
   const result = [];

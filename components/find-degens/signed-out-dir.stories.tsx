@@ -8,9 +8,7 @@ import { SignedOutDir } from './signed-out-dir';
 export default {
   title: 'Find Degens/Signed Out Dir',
   component: SignedOutDir,
-  args: {
-    isLoading: false,
-  },
+  args: {},
 } as ComponentMeta<typeof SignedOutDir>;
 
 const Template: ComponentStory<typeof SignedOutDir> = (args) => (
@@ -21,15 +19,8 @@ const Template: ComponentStory<typeof SignedOutDir> = (args) => (
   </div>
 );
 
-export const Loading = Template.bind({});
-Loading.args = {
-  isLoading: true,
-  userDocs: null,
-};
-
 export const OneUser = Template.bind({});
 OneUser.args = {
-  isLoading: false,
   userDocs: [
     {
       id: '123',
@@ -63,6 +54,5 @@ const genMemes = (num: number) => {
 
 export const TwentyUsers = Template.bind({});
 TwentyUsers.args = {
-  isLoading: false,
   userDocs: genMemes(20),
 };
