@@ -5,12 +5,13 @@ import { HamButton } from '@ui/profile/meme-collection/ham-button';
 import { MenuContent } from '@ui/profile/meme-collection/menu-content';
 import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
+import { AreaEmpty } from '@ui/shared/area-empty';
 import {
   ReceivingMemeData,
   useIsOwner,
   useMemeCollectionQuery,
 } from '@ui/shared/firebase-utils';
-import { MadBro, SadBoi } from '@ui/shared/imgs';
+import { MadBro } from '@ui/shared/imgs';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import Link from 'next/link';
@@ -52,22 +53,16 @@ const Page = ({
 export default Page;
 
 function EmptyCollection({ isOwner }: { isOwner: boolean }) {
-  return (
-    <div className='flex h-full w-full flex-col items-center justify-center gap-2'>
-      <img src={SadBoi.src} alt='sad meme' className='w-14' />
-      <p className='text-xl font-semibold'>
-        {isOwner ? 'Your collection is empty' : 'Collection is empty'}
-      </p>
-      {isOwner && (
-        <Link
-          className='rounded-full border-2 border-black bg-blue-600 py-0.5 px-3 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
-          href='find-memes/1'
-        >
-          Find Memes
-        </Link>
-      )}
-    </div>
+  const findMemesLink = (
+    <Link
+      className='rounded-full border-2 border-black bg-blue-600 py-0.5 px-3 text-center font-medium text-white shadow-md shadow-stone-400 duration-300 hover:-translate-y-0.5 hover:text-white'
+      href='find-memes/1'
+    >
+      Find Memes
+    </Link>
   );
+
+  return <AreaEmpty button={isOwner && findMemesLink} />;
 }
 
 function Collection({
