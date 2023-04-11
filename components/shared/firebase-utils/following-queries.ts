@@ -1,13 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import assert from 'assert';
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
   getDocs,
   query,
   QueryDocumentSnapshot,
+  setDoc,
 } from 'firebase/firestore';
 import { auth, db, ReceivingProfileData, WithTimeLimit } from '.';
 
@@ -42,7 +42,7 @@ export const useAddFollowingMutation = () => {
       followUid: string;
     }) => {
       return WithTimeLimit(() =>
-        addDoc(collection(db, 'users', uid, 'following', followUid), data)
+        setDoc(doc(db, 'users', uid, 'following', followUid), data)
       );
     },
     onSuccess: () => {
