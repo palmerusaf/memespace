@@ -43,6 +43,20 @@ LoggedOut.args = {
 export const NoneFollowed = Template.bind({});
 NoneFollowed.args = {
   pUseLoggedIn: () => ({ loggedIn: true }),
-  pUseUserCollectionQuery: setQueryWith(genUsers(1), 'user'),
+  pUseUserCollectionQuery: setQueryWith(genUsers(20), 'user'),
   pUseMyFollowingCollectionQuery: setQueryWith(null, 'following'),
+};
+
+export const HalfFollowed = Template.bind({});
+HalfFollowed.args = {
+  pUseLoggedIn: () => ({ loggedIn: true }),
+  pUseUserCollectionQuery: setQueryWith(genUsers(20), 'user'),
+  pUseMyFollowingCollectionQuery: setQueryWith(genUsers(10), 'following'),
+};
+
+export const Empty = Template.bind({});
+Empty.args = {
+  pUseLoggedIn: () => ({ loggedIn: false }),
+  pUseUserCollectionQuery: setQueryWith(null, 'user'),
+  pUseMyFollowingCollectionQuery: setQueryWith(genUsers(10), 'following'),
 };
