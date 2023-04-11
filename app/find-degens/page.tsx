@@ -2,20 +2,19 @@ import { SignedInDir } from '@ui/find-degens/signed-in-dir';
 import { SignedOutDir } from '@ui/find-degens/signed-out-dir';
 import { AreaEmpty } from '@ui/shared/area-empty';
 import {
-  auth,
-  useFollowingCollectionQuery,
+  useLoggedIn,
+  useMyFollowingCollectionQuery,
   useUserCollectionQuery,
 } from '@ui/shared/firebase-utils';
-import { LoggedInContext } from '@ui/shared/loggedin-context';
 import { UserLoadCards } from '@ui/shared/user-load-cards';
-import assert from 'assert';
-import { useContext } from 'react';
 
 const Page = ({
   pUseUserCollectionQuery = useUserCollectionQuery,
-  pUseFollowingCollectionQuery = useFollowingCollectionQuery,
+  pUseMyFollowingCollectionQuery = useMyFollowingCollectionQuery,
+  pUseLoggedIn = useLoggedIn,
 }) => {
-  const loggedIn = useContext(LoggedInContext);
+  const { loggedIn } = pUseLoggedIn();
+
   return (
     <>
       {loggedIn && <SignedInPage />}
@@ -24,9 +23,8 @@ const Page = ({
   );
 
   function SignedInPage() {
-    assert(auth.currentUser);
     const usersQuery = pUseUserCollectionQuery();
-    const followingQuery = pUseFollowingCollectionQuery(auth.currentUser?.uid);
+    const followingQuery = pUseMyFollowingCollectionQuery();
 
     if (followingQuery.isLoading || usersQuery.isLoading)
       return <UserLoadCards />;

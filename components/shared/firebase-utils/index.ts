@@ -207,6 +207,11 @@ export const useFollowingCollectionQuery = (uid: string) => {
   });
 };
 
+export const useMyFollowingCollectionQuery = () => {
+  assert(auth.currentUser);
+  return useFollowingCollectionQuery(auth.currentUser.uid);
+};
+
 export const useDeleteFollowingMutation = () => {
   const queryClient = useQueryClient();
   assert(auth.currentUser);
