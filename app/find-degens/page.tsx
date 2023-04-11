@@ -3,6 +3,7 @@ import { SignedInDir } from '@ui/find-degens/signed-in-dir';
 import { SignedOutDir } from '@ui/find-degens/signed-out-dir';
 import { AreaEmpty } from '@ui/shared/area-empty';
 import {
+  useAddFollowingMutation,
   useLoggedIn,
   useMyFollowingCollectionQuery,
   useUserCollectionQuery,
@@ -14,12 +15,14 @@ interface Props {
   pUseUserCollectionQuery?: typeof useUserCollectionQuery;
   pUseMyFollowingCollectionQuery?: typeof useMyFollowingCollectionQuery;
   pUseLoggedIn?: typeof useLoggedIn;
+  pUseAddFollowingMutation?: typeof useAddFollowingMutation;
 }
 
 const Page = ({
   pUseUserCollectionQuery = useUserCollectionQuery,
   pUseMyFollowingCollectionQuery = useMyFollowingCollectionQuery,
   pUseLoggedIn = useLoggedIn,
+  pUseAddFollowingMutation = useAddFollowingMutation,
 }: Props) => {
   const { loggedIn } = pUseLoggedIn();
 
@@ -43,6 +46,7 @@ const Page = ({
       <SignedInDir
         following={followingQuery.data ?? []}
         userDocs={usersQuery.data}
+        pUseAddFollowingMutation={pUseAddFollowingMutation}
       />
     );
   }

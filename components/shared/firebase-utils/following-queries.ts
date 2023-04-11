@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import assert from 'assert';
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -33,10 +34,17 @@ export const useAddFollowingMutation = () => {
   assert(auth.currentUser);
   const uid = auth.currentUser?.uid;
   return useMutation({
-    mutationFn: (followingUid: string) =>
-      WithTimeLimit(() =>
-        deleteDoc(doc(db, 'users', uid, 'memes', followingUid))
-      ),
+    mutationFn: ({
+      data,
+      followUid,
+    }: {
+      data: ReceivingProfileData;
+      followUid: string;
+    }) => {
+      return WithTimeLimit(() =>
+        addDoc(collection(db, 'users', uid, 'following', followUid), data)
+      );
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`users/${uid}/following`],

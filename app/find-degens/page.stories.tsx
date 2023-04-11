@@ -5,6 +5,10 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { genUsers } from '@ui/find-degens/testing-utils';
+import {
+  useFailingMutation,
+  usePassingMutation,
+} from '@ui/shared/firebase-utils';
 import Layout from './layout';
 
 import Page from './page';
@@ -12,7 +16,10 @@ import Page from './page';
 export default {
   title: 'find degens/Page',
   component: Page,
-  args: { pUseLoggedIn: () => ({ loggedIn: true }) },
+  args: {
+    pUseLoggedIn: () => ({ loggedIn: true }),
+    pUseAddFollowingMutation: usePassingMutation,
+  },
 } as ComponentMeta<typeof Page>;
 
 const Template: ComponentStory<typeof Page> = (args) => {
@@ -52,6 +59,14 @@ HalfFollowed.args = {
   pUseLoggedIn: () => ({ loggedIn: true }),
   pUseUserCollectionQuery: setQueryWith(genUsers(20), 'user'),
   pUseMyFollowingCollectionQuery: setQueryWith(genUsers(10), 'following'),
+};
+
+export const Failing = Template.bind({});
+Failing.args = {
+  pUseLoggedIn: () => ({ loggedIn: true }),
+  pUseUserCollectionQuery: setQueryWith(genUsers(1), 'user'),
+  pUseMyFollowingCollectionQuery: setQueryWith(genUsers(0), 'following'),
+  pUseAddFollowingMutation: useFailingMutation,
 };
 
 export const Empty = Template.bind({});
