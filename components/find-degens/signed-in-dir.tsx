@@ -20,7 +20,7 @@ export const SignedInDir = ({
     <>
       {userDocs?.map((doc: UserDocument) => {
         const button = following.some((item) => item.id === doc.id) ? (
-          <span>following</span>
+          <Following />
         ) : (
           <FollowButton data={doc.data()} id={doc.id} />
         );
@@ -58,3 +58,7 @@ export const SignedInDir = ({
     );
   }
 };
+
+function Following() {
+  return <span className='px-2 md:px-3 md:text-lg'>Following</span>;
+}
