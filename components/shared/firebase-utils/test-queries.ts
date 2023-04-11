@@ -1,9 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { SendingProfileData } from '.';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { db } from '.';
+import { MEME_LIST } from '../meme-list';
+import { SendingProfileData } from './profile-queries';
 
 export const useTestMutation = (uid: string) => {
   return useMutation({
-    mutationFn: (data: SendingProfileData) => Promise.resolve(),
+    mutationFn: (data: any) => Promise.resolve(),
   });
 };
 
@@ -29,4 +32,28 @@ export const usePassingMutation = () => {
   return useMutation({
     mutationFn: (data: any) => mock(true),
   });
+};
+
+const loadBot = ({
+  data,
+  docId,
+}: {
+  data: SendingProfileData;
+  docId: string;
+}) => {
+  setDoc(doc(db, 'users', docId), data);
+};
+
+export const loadBots = (num: number) => {
+  for (let i = 0; i < num; i++) {
+    const userName = `bot${i + 1}`;
+    loadBot({
+      data: {
+        profileMeme: MEME_LIST[i],
+        userName,
+        createdDate: Timestamp.now(),
+      },
+      docId: userName,
+    });
+  }
 };
