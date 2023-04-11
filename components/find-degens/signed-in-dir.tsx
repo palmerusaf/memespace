@@ -6,19 +6,13 @@ interface Props extends UserDir {
 }
 
 export const SignedInDir = ({ following, userDocs }: Props) => {
-  const Following = () => <span>following</span>;
-  const Follow = () => (
-    <button className='rounded-full bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:px-3 md:text-xl'>
-      follow
-    </button>
-  );
   return (
     <>
       {userDocs?.map((doc: UserDocument) => {
         const button = following.some((item) => item.id === doc.id) ? (
-          <Following />
+          <span>following</span>
         ) : (
-          <Follow />
+          <FollowButton />
         );
         return (
           <UserCard
@@ -33,3 +27,11 @@ export const SignedInDir = ({ following, userDocs }: Props) => {
     </>
   );
 };
+
+function FollowButton() {
+  return (
+    <button className='rounded-full bg-blue-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:px-3 md:text-xl'>
+      follow
+    </button>
+  );
+}
