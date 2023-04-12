@@ -3,6 +3,7 @@ import assert from 'assert';
 import {
   collection,
   doc,
+  DocumentData,
   FieldValue,
   getDoc,
   getDocs,
@@ -61,12 +62,23 @@ export const useMyProfileMutation = () => {
 };
 
 export const useUserCollectionQuery = () => {
+  const queryClient = useQueryClient();
   return useQuery({
     queryKey: [`users`],
     queryFn: async () => {
       const res = await getDocs(query(collection(db, `users`)));
       if (res.empty) return null;
+      primeProfileQueries(res.docs);
       return res.docs as QueryDocumentSnapshot<ReceivingProfileData>[];
     },
   });
+
+  /**
+   * This primes the cache for profile queries so useProfileQuery doesn't cause redundant fetches
+   */
+  function primeProfileQueries(docs: QueryDocumentSnapshot<DocumentData>[]) {
+    for (const doc of docs) {
+      queryClient.setQueryData([`users/${doc.id}`], doc.data());
+    }
+  }
 };
