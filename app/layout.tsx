@@ -1,7 +1,6 @@
 'use client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import style from '@ui/app/nav-wrapper/index.module.css';
-import { NavBar } from '@ui/app/nav-wrapper/nav-bar';
+import { NavBar } from '@ui/app/nav-bar';
 import { loadBots } from '@ui/shared/firebase-utils';
 import { Logo } from '@ui/shared/imgs';
 import Image from 'next/image';
@@ -38,7 +37,7 @@ const Layout = ({ children }: Props) => {
           </Link>
           <div className='flex h-full flex-col md:grid md:grid-cols-[160px,auto]'>
             <div
-              className={`mb-16 h-full overflow-scroll md:col-start-2 md:row-start-1 md:mb-0 md:w-full ${style.padChild}`}
+              className={`mb-16 h-full overflow-scroll md:col-start-2 md:row-start-1 md:mb-0 md:w-full `}
             >
               {children}
             </div>
