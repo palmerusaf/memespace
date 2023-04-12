@@ -1,6 +1,7 @@
 'use client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NavWrapper from '@ui/app/nav-wrapper';
+import { loadBots } from '@ui/shared/firebase-utils';
 import { Logo } from '@ui/shared/imgs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,6 +19,10 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// TODO DELETE AFTER TESTING
+loadBots(7);
+// TODO DELETE AFTER TESTING
 
 const Layout = ({ children }: Props) => {
   return (
