@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
 });
 
 // TODO DELETE AFTER TESTING
-loadBots(7);
+loadBots(20);
 // TODO DELETE AFTER TESTING
 
 const Layout = ({ children }: Props) => {
@@ -35,16 +35,12 @@ const Layout = ({ children }: Props) => {
               <Image src={Logo} width={300} height={56} alt='logo' />
             </header>
           </Link>
-          <div className='flex h-full flex-col md:grid md:grid-cols-[160px,auto]'>
-            <div
-              className={`mb-16 h-full overflow-scroll md:col-start-2 md:row-start-1 md:mb-0 md:w-full `}
-            >
+          <div className='flex h-[calc(100vh-7.5rem)] flex-col md:grid md:h-[calc(100vh-3.5rem)] md:grid-cols-[160px,auto]'>
+            <div className='h-full overflow-scroll md:col-start-2 md:row-start-1 md:w-full'>
               {children}
             </div>
-            <div className='h-16 w-screen md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
-              <div className='fixed bottom-0 h-16 w-screen shadow-xl md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
-                <NavBar />
-              </div>
+            <div className='fixed bottom-0 h-16 w-screen shadow-xl md:static md:col-start-1 md:row-start-1 md:h-full md:w-full'>
+              <NavBar />
             </div>
           </div>
         </QueryClientProvider>
