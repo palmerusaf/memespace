@@ -38,7 +38,7 @@ interface Props {
 
 export function UserCard({ uid, userName, profileMeme, button }: Props) {
   return (
-    <div className='relative flex items-center justify-between gap-3 rounded-md bg-white p-3 shadow-md md:justify-start md:p-6'>
+    <div className='relative m-2 flex items-center justify-between gap-3 rounded-md bg-white p-3 shadow-md md:justify-start md:p-6'>
       <Link href={`/profile/${uid}`} className='w-14 md:w-20'>
         <AvatarPic profileMeme={profileMeme} />
       </Link>

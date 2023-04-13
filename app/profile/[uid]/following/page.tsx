@@ -35,11 +35,11 @@ const Page = ({
 
   function List() {
     return (
-      <>
+      <div className='mb-2 h-full w-full overflow-scroll rounded-lg'>
         {followingQuery.data?.map((doc) => (
           <Item key={doc.id} followingUid={doc.data().followingUid} />
         ))}
-      </>
+      </div>
     );
 
     function Item({ followingUid }: { followingUid: string }) {
