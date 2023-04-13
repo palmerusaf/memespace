@@ -100,7 +100,8 @@ The purpose of this project is to serve as a capstone project to show off everyt
 - [x] Add user login
 - [x] Add profile
 - [x] Add meme collection
-- [ ] Add friends list
+- [x] Add friends list
+- [ ] Add a pagination system to collection fetches
 - [ ] Add comment system
 - [ ] Add wall
 - [ ] Add upvote system
