@@ -16,18 +16,10 @@ import Link from 'next/link';
 
 interface Props {
   params: { uid: string };
-  pUseFollowingCollectionQuery: typeof useFollowingCollectionQuery;
-  pUseDeleteFollowingMutation: typeof useDeleteFollowingMutation;
-  pUseProfileQuery: typeof useProfileQuery;
 }
 
-const Page = ({
-  params: { uid },
-  pUseDeleteFollowingMutation = useDeleteFollowingMutation,
-  pUseFollowingCollectionQuery = useFollowingCollectionQuery,
-  pUseProfileQuery = useProfileQuery,
-}: Props) => {
-  const followingQuery = pUseFollowingCollectionQuery(uid);
+const Page = ({ params: { uid } }: Props) => {
+  const followingQuery = useFollowingCollectionQuery(uid);
   const { isOwner } = useIsOwner(uid);
   if (followingQuery.isLoading) return <LoadingList />;
   else if (followingQuery.data) return <List />;
@@ -43,8 +35,7 @@ const Page = ({
     );
 
     function Item({ followingUid }: { followingUid: string }) {
-      const profileQuery = pUseProfileQuery(followingUid);
-      const mutation = pUseDeleteFollowingMutation();
+      const profileQuery = useProfileQuery(followingUid);
       if (profileQuery.isLoading) return <LoadingCard />;
       else
         return (
@@ -52,19 +43,7 @@ const Page = ({
             uid={followingUid}
             userName={profileQuery.data?.userName ?? 'No Username'}
             profileMeme={profileQuery.data?.profileMeme ?? ''}
-            button={
-              isOwner && (
-                <MutantButton
-                  className='rounded-full bg-red-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:px-3 md:text-xl'
-                  mutation={mutation}
-                  onClick={() => mutation.mutate(followingUid)}
-                  loadMsg={'Unfollowing...'}
-                  errorMsg={'Try Again'}
-                  successMsg={'Unfollowed'}
-                  staticMsg={'Unfollow'}
-                />
-              )
-            }
+            button={isOwner && <UnfollowButton followingUid={followingUid} />}
           />
         );
     }
@@ -72,6 +51,21 @@ const Page = ({
 };
 
 export default Page;
+
+function UnfollowButton({ followingUid }: { followingUid: string }) {
+  const mutation = useDeleteFollowingMutation();
+  return (
+    <MutantButton
+      className='rounded-full bg-red-500 px-2 font-semibold text-white shadow-2xl duration-500 hover:-translate-y-1 hover:scale-105 md:px-3 md:text-xl'
+      mutation={mutation}
+      onClick={() => mutation.mutate(followingUid)}
+      loadMsg={'Unfollowing...'}
+      errorMsg={'Try Again'}
+      successMsg={'Unfollowed'}
+      staticMsg={'Unfollow'}
+    />
+  );
+}
 
 function LoadingList() {
   return (
