@@ -24,6 +24,13 @@ service cloud.firestore {
       function isOwner(){
         return request.auth != null && request.auth.uid == userId
       }
+    match /users/{userId}/following/{followingId} {
+      allow create, update, delete: if isOwner();
+      allow read: if true;
+
+      function isOwner(){
+        return request.auth != null && request.auth.uid == userId
+      }
     }
   }
 }
