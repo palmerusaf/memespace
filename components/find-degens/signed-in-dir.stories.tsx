@@ -16,6 +16,21 @@ export default {
   },
 } as ComponentMeta<typeof SignedInDir>;
 
+const genFollowing = (num: number) => {
+  const result = [];
+  for (let i = 0; i < num; i++) {
+    result.push({
+      id: `${i}`,
+      data: () => {
+        return {
+          followingUid: `${i}`,
+        };
+      },
+    });
+  }
+  return result;
+};
+
 const Template: ComponentStory<typeof SignedInDir> = (args) => (
   <div className='h-screen w-screen'>
     <QueryClientProvider client={new QueryClient()}>
@@ -34,7 +49,7 @@ NoneFollowed.args = {
 
 export const HalfFollowed = Template.bind({});
 HalfFollowed.args = {
-  following: genUsers(10),
+  following: genFollowing(10),
   userDocs: genUsers(20),
 };
 

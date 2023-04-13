@@ -9,7 +9,7 @@ import {
   QueryDocumentSnapshot,
   setDoc,
 } from 'firebase/firestore';
-import { auth, db, ReceivingProfileData, WithTimeLimit } from '.';
+import { auth, db, WithTimeLimit } from '.';
 
 export const useFollowingCollectionQuery = (uid: string) => {
   return useQuery({
@@ -19,7 +19,7 @@ export const useFollowingCollectionQuery = (uid: string) => {
         query(collection(db, `users/${uid}/following`))
       );
       if (res.empty) return null;
-      return res.docs as QueryDocumentSnapshot<ReceivingProfileData>[];
+      return res.docs as QueryDocumentSnapshot<{ followingUid: string }>[];
     },
   });
 };
@@ -34,15 +34,11 @@ export const useAddFollowingMutation = () => {
   assert(auth.currentUser);
   const uid = auth.currentUser?.uid;
   return useMutation({
-    mutationFn: ({
-      data,
-      followUid,
-    }: {
-      data: ReceivingProfileData;
-      followUid: string;
-    }) => {
+    mutationFn: ({ followingUid }: { followingUid: string }) => {
       return WithTimeLimit(() =>
-        setDoc(doc(db, 'users', uid, 'following', followUid), data)
+        setDoc(doc(db, 'users', uid, 'following', followingUid), {
+          followingUid,
+        })
       );
     },
     onSuccess: () => {
@@ -60,7 +56,7 @@ export const useDeleteFollowingMutation = () => {
   return useMutation({
     mutationFn: (followingUid: string) =>
       WithTimeLimit(() =>
-        deleteDoc(doc(db, 'users', uid, 'memes', followingUid))
+        deleteDoc(doc(db, 'users', uid, 'following', followingUid))
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({
