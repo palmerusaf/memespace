@@ -50,8 +50,8 @@ StaticData.args = {
     },
     {
       topText: 'foo3',
-      bottomText: 'bar3',
-      meme: 'Criana',
+      bottomText: 'crazy-dawg',
+      meme: 'crazy-dawg',
       createdBy: '123',
       createdDate: Timestamp.now(),
     },

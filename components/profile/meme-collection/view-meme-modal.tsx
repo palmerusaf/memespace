@@ -49,7 +49,7 @@ export const ViewMemeModal = ({
         className={`relative flex items-center ${modalHeight} ${modalWidth} justify-center bg-black animate-in fade-in-0 md:items-stretch`}
       >
         <button
-          className={`absolute left-0 ${modalHeight} z-40 flex items-center px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:bg-white md:hover:bg-opacity-50`}
+          className={`absolute left-0 ${modalHeight} z-40 flex items-center px-4 font-mono text-2xl font-extrabold text-white drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] duration-300 md:hover:bg-white md:hover:bg-opacity-50`}
           onClick={cyclePrev}
         >
           {'<'}
@@ -62,14 +62,14 @@ export const ViewMemeModal = ({
           width={500}
         />
         <button
-          className={`absolute right-0 z-40 flex items-center justify-center ${modalHeight} px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:bg-white md:hover:bg-opacity-50`}
+          className={`absolute right-0 z-40 flex items-center justify-center drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] ${modalHeight} px-4 font-mono text-2xl font-extrabold text-white duration-300 md:hover:bg-white md:hover:bg-opacity-50`}
           onClick={cycleNext}
         >
           {'>'}
         </button>
         <div className='absolute top-0 right-0 z-50 flex flex-col items-center p-4 text-white'>
           <button
-            className='-mx-2 rounded-full py-0 px-2 text-center text-xl duration-300 md:text-3xl md:hover:bg-white md:hover:bg-opacity-50'
+            className='-mx-2 rounded-full py-0 px-2 text-center text-xl drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] duration-300 md:text-3xl md:hover:bg-white md:hover:bg-opacity-50'
             onClick={() => {
               setIndex(null);
             }}
