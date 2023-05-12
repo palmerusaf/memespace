@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { HamButton } from '@ui/profile/meme-collection/ham-button';
 import { MenuContent } from '@ui/profile/meme-collection/menu-content';
+import { OpenSvg } from '@ui/profile/meme-collection/open-svg';
 import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
 import { AreaEmpty } from '@ui/shared/area-empty';
@@ -102,11 +102,7 @@ function Collection({
               className='relative m-1 h-40 cursor-pointer overflow-hidden rounded'
             >
               <div className='absolute right-1 bottom-1 z-0 flex'>
-                <HamButton
-                  toggleMenu={() => {
-                    setSelectedIndex(index);
-                  }}
-                />
+                <OpenSvg className='h-4 w-4 fill-white drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] md:h-6 md:w-6' />
               </div>
               <ImageWithLoadState
                 width={500}
