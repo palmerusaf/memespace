@@ -3,7 +3,8 @@ import { ReceivingMemeData } from '@ui/shared/firebase-utils';
 import ImageWithLoadState from '@ui/shared/next-image';
 import assert from 'assert';
 import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
-import { HamButton } from './ham-button';
+import { CloseSvg } from './close-svg';
+import { OpenSvg } from './open-svg';
 
 interface Props {
   memeData: ReceivingMemeData[] | null | undefined;
@@ -76,7 +77,7 @@ export const ViewMemeModal = ({
           >
             X
           </button>
-          <HamButton toggleMenu={toggleMenu} />
+          <FullScreenButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
         </div>
       </div>
       {menuOpen && (
@@ -85,3 +86,25 @@ export const ViewMemeModal = ({
     </div>
   );
 };
+
+function FullScreenButton({
+  menuOpen,
+  toggleMenu,
+}: {
+  menuOpen: boolean;
+  toggleMenu: () => void;
+}) {
+  return (
+    <button
+      className='rounded-full drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] duration-300 md:hover:bg-white md:hover:bg-opacity-50'
+      onClick={toggleMenu}
+    >
+      {menuOpen && (
+        <OpenSvg className='h-4 w-4 fill-white drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] md:h-6 md:w-6' />
+      )}
+      {!menuOpen && (
+        <CloseSvg className='h-4 w-4 fill-white drop-shadow-[0_1px_1px_rgb(0_0_0_/_1)] md:h-6 md:w-6' />
+      )}
+    </button>
+  );
+}
