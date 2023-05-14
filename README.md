@@ -101,6 +101,10 @@ The purpose of this project is to serve as a capstone project to show off everyt
 - [x] Add profile
 - [x] Add meme collection
 - [x] Add friends list
+- [ ] Add admin screen
+  - [ ] Add role base db rules
+  - [ ] Create section to add/delete/edit users
+  - [ ] Create section to add/delete/edit memes
 - [ ] Add a pagination system to collection fetches
 - [ ] Add comment system
 - [ ] Add wall
