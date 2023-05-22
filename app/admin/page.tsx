@@ -1,4 +1,6 @@
 'use client';
+import { UserArea } from '@ui/admin/user-area';
+import { Divider } from '@ui/login';
 import { useLoggedIn } from '@ui/shared/firebase-utils';
 import Link from 'next/link';
 
@@ -13,6 +15,14 @@ const Page = () => {
         >
           Login to Continue
         </Link>
+      </div>
+    );
+  else
+    return (
+      <div className='mt-2 flex w-full max-w-2xl flex-col items-center md:mx-auto'>
+        <Divider label={'Create User Below'} />
+        <UserArea />
+        <Divider label={'Create Meme Below'} />
       </div>
     );
 };
