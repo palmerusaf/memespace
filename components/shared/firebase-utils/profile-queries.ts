@@ -57,8 +57,8 @@ export const useProfileMutation = (uid: string) => {
     mutationFn: (data: SendingProfileData) =>
       WithTimeLimit(() => setDoc(doc(db, 'users', uid), data)),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
       queryClient.invalidateQueries({ queryKey: [`users/${uid}`] });
+      queryClient.invalidateQueries({ queryKey: ['users'] });
     },
   });
 };

@@ -20,7 +20,6 @@ const Page = () => {
   else
     return (
       <div className='mt-2 flex w-full max-w-2xl flex-col items-center md:mx-auto'>
-        <Divider label={'Create User Below'} />
         <UserArea />
         <Divider label={'Create Meme Below'} />
       </div>
