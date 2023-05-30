@@ -41,8 +41,6 @@ const Page = ({ params: { uid } }: Props) => {
         return (
           <UserCard
             uid={followingUid}
-            userName={profileQuery.data?.userName ?? 'No Username'}
-            profileMeme={profileQuery.data?.profileMeme ?? ''}
             button={isOwner && <UnfollowButton followingUid={followingUid} />}
           />
         );

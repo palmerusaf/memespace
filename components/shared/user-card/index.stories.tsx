@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { setQueryWith } from '@ui/profile/avatar-area/index.stories';
+import { Timestamp } from 'firebase/firestore';
 import { MEME_LIST } from '../meme-list';
 import { UserCard } from './index';
 
@@ -25,63 +27,85 @@ const Template: ComponentStory<typeof UserCard> = (args) => (
   </div>
 );
 
-export const UserNameUndefined = Template.bind({});
-UserNameUndefined.args = {
-  profileMeme: MEME_LIST[0],
-};
-
 export const UserNameBlank = Template.bind({});
 UserNameBlank.args = {
-  profileMeme: MEME_LIST[0],
-  userName: '',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: MEME_LIST[0],
+    userName: '',
+    createdDate: Timestamp.now(),
+  }),
 };
 
 export const MemeNotSet = Template.bind({});
 MemeNotSet.args = {
-  profileMeme: '',
-  userName: 'username',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: '',
+    userName: 'username',
+    createdDate: Timestamp.now(),
+  }),
 };
 
 export const NoButton = Template.bind({});
 NoButton.args = {
-  profileMeme: '10-Guy',
-  userName: 'username',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: '10-Guy',
+    userName: 'username',
+    createdDate: Timestamp.now(),
+  }),
   button: undefined,
 };
 
 export const Following = Template.bind({});
 Following.args = {
-  profileMeme: '10-Guy',
-  userName: 'username',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: '10-Guy',
+    userName: 'username',
+    createdDate: Timestamp.now(),
+  }),
   button: <span>Following</span>,
 };
 
 export const Normal = Template.bind({});
 Normal.args = {
-  profileMeme: '10-Guy',
-  userName: 'username',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: '10-Guy',
+    userName: 'username',
+    createdDate: Timestamp.now(),
+  }),
 };
 
 export const UserName20Chars = Template.bind({});
 UserName20Chars.args = {
-  profileMeme: '10-Guy',
-  userName: 'aaaaaaaaaaaaaaaaaaaa',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: '10-Guy',
+    userName: 'aaaaaaaaaaaaaaaaaaaa',
+    createdDate: Timestamp.now(),
+  }),
 };
 
 export const UserNameWithSpaces = Template.bind({});
 UserNameWithSpaces.args = {
-  profileMeme: '10-Guy',
-  userName: 'username with space',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: '10-Guy',
+    userName: 'username with space',
+    createdDate: Timestamp.now(),
+  }),
 };
 
 export const OverFlowMeme = Template.bind({});
 OverFlowMeme.args = {
-  profileMeme: 'American-Chopper-Argument',
-  userName: 'foo',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: 'American-Chopper-Argument',
+    userName: 'foo',
+    createdDate: Timestamp.now(),
+  }),
 };
 
 export const NotFoundMeme = Template.bind({});
 NotFoundMeme.args = {
-  profileMeme: 'Always-Has-Been',
-  userName: 'foo',
+  pUseProfileQuery: setQueryWith({
+    profileMeme: 'Always-Has-Been',
+    userName: 'foo',
+    createdDate: Timestamp.now(),
+  }),
 };

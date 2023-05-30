@@ -13,12 +13,7 @@ export const SignedOutDir = ({ userDocs }: UserDir) => {
   return (
     <>
       {userDocs?.map((res) => (
-        <UserCard
-          uid={res.id}
-          userName={res.data().userName}
-          key={res.id}
-          profileMeme={res.data().profileMeme}
-        />
+        <UserCard uid={res.id} key={res.id} />
       ))}
     </>
   );

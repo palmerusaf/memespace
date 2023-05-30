@@ -27,15 +27,7 @@ export const SignedInDir = ({
         ) : (
           <FollowButton id={doc.id} />
         );
-        return (
-          <UserCard
-            uid={doc.id}
-            key={doc.id}
-            userName={doc.data().userName}
-            button={button}
-            profileMeme={doc.data().profileMeme}
-          />
-        );
+        return <UserCard uid={doc.id} key={doc.id} button={button} />;
       })}
     </>
   );

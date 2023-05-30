@@ -18,8 +18,7 @@ export const UserArea = () => {
             <UserCard
               uid={user.id}
               key={user.id}
-              userName={user.data().userName}
-              profileMeme={user.data().profileMeme}
+              button={<ButtonArea uid={user.id} data={user.data()} />}
             />
           );
         })}
