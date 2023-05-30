@@ -1,10 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { getThumbnail } from '@ui/shared/api-meme-utils';
-import { SmallLogo } from '@ui/shared/imgs';
-import ImageWithLoadState from '@ui/shared/next-image';
+import { getThumbnail } from './api-meme-utils';
+import { SmallLogo } from './imgs';
+import ImageWithLoadState from './next-image';
 
-export function AvatarMeme({ data }: { data: { profileMeme: string } | null }) {
-  if (!data || data.profileMeme === '') {
+interface Props {
+  profileMeme: string | null | undefined;
+}
+
+export function AvatarPic({ profileMeme }: Props) {
+  profileMeme = profileMeme ?? '';
+  if (profileMeme === '') {
     return (
       <div className='aspect-square w-full rounded-full bg-blue-600 shadow-xl'>
         <img
@@ -17,7 +22,7 @@ export function AvatarMeme({ data }: { data: { profileMeme: string } | null }) {
   } else {
     return (
       <ImageWithLoadState
-        src={getThumbnail(data.profileMeme)}
+        src={getThumbnail(profileMeme)}
         alt='Placeholder Meme'
         width={150}
         height={150}

@@ -1,3 +1,4 @@
+import { AvatarPic } from '@ui/shared/avatar-pic';
 import DropDown from '@ui/shared/drop-down';
 import {
   auth,
@@ -10,7 +11,6 @@ import { Input, useInputValidator } from '@ui/shared/username-input';
 import assert from 'assert';
 import { serverTimestamp } from 'firebase/firestore';
 import { useRef, useState } from 'react';
-import { AvatarMeme } from './avatar-meme';
 
 interface ProfileModalProps {
   data: ReceivingProfileData | null;
@@ -138,7 +138,7 @@ function AvatarArea({ profileMeme = '', userName = 'No UserName' }) {
   return (
     <div className='flex w-full items-center gap-3 rounded-md bg-white p-2 shadow md:justify-start md:p-5'>
       <div className='w-20 md:w-36'>
-        <AvatarMeme data={{ profileMeme }} />
+        <AvatarPic profileMeme={profileMeme} />
       </div>
       <div className='w-full text-center text-xl md:text-2xl md:font-semibold'>
         {userName !== '' ? userName : 'No Username'}

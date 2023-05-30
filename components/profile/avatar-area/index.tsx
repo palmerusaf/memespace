@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import { AvatarPic } from '@ui/shared/avatar-pic';
 import { useIsOwner, useProfileQuery } from '@ui/shared/firebase-utils';
 import { MadBro } from '@ui/shared/imgs';
 import assert from 'assert';
-import { AvatarMeme } from './avatar-meme';
 import { useModalHook } from './profile-modal';
 
 interface Props {
@@ -24,7 +24,11 @@ export function AvatarArea({
     return (
       <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-xl md:justify-start md:px-16 md:pt-6 md:pb-11'>
         <div className='w-16 md:w-36'>
-          <img src={MadBro.src} alt='loading spiner' className='animate-spin' />
+          <img
+            src={MadBro.src}
+            alt='loading spinner'
+            className='animate-spin'
+          />
         </div>
         <div className='flex flex-col gap-1 text-center md:flex-1 md:gap-9'>
           <div className='animate-pulse text-xl font-semibold md:text-2xl'>
@@ -43,7 +47,7 @@ export function AvatarArea({
       <ProfileModal data={query.data} />
       <div className='relative flex items-center justify-between gap-3 rounded-md bg-white py-4 px-3 shadow-md md:justify-start md:py-6 md:px-16'>
         <div className='w-20 md:w-36'>
-          <AvatarMeme data={query.data} />
+          <AvatarPic profileMeme={query.data?.profileMeme} />
         </div>
         <div className='flex flex-col gap-1 text-center md:flex-1 md:gap-9'>
           <div className='text-xl font-semibold md:text-2xl'>

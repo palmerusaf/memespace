@@ -8,7 +8,7 @@ export const LoadingPage = ({ loadingMsg, className }: Props) => {
   return (
     <div>
       <div
-        className={`flex h-full w-full flex-col items-center justify-center bg-blue-600 text-white ${className}`}
+        className={`flex h-screen w-screen flex-col items-center justify-center bg-blue-600 text-white ${className}`}
       >
         <Image
           src={MadBro}
