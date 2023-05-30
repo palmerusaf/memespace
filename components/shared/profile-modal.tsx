@@ -3,7 +3,7 @@ import DropDown from '@ui/shared/drop-down';
 import {
   auth,
   ReceivingProfileData,
-  useMyProfileMutation,
+  useProfileMutation,
 } from '@ui/shared/firebase-utils';
 import { MEME_LIST } from '@ui/shared/meme-list';
 import { MutantButton } from '@ui/shared/mutant-button';
@@ -16,19 +16,20 @@ interface ProfileModalProps {
   data: ReceivingProfileData | null;
 }
 
-export const useModalHook = () => {
+export const useProfileModal = (uid: string) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
   const ProfileModal = (props: ProfileModalProps) => {
-    const modalProps = { closeModal, ...props };
+    const modalProps = { closeModal, uid, ...props };
     return isModalOpen ? <Modal {...modalProps} /> : <></>;
   };
   return { openModal, ProfileModal };
 };
 
 interface ModalProps extends ProfileModalProps {
-  pUseMyProfileMutation?: typeof useMyProfileMutation;
+  pUseProfileMutation?: typeof useProfileMutation;
+  uid: string;
   closeModal: () => void;
 }
 
@@ -37,11 +38,12 @@ interface ModalProps extends ProfileModalProps {
  * @param pUseMyProfileMutation for dep injection
  */
 export const Modal = ({
+  uid,
   data,
-  pUseMyProfileMutation = useMyProfileMutation,
+  pUseProfileMutation = useProfileMutation,
   closeModal,
 }: ModalProps) => {
-  const mutation = pUseMyProfileMutation();
+  const mutation = pUseProfileMutation(uid);
   const [profileMeme, setProfileMeme] = useState(data?.profileMeme ?? '');
   const [userName, setUserName] = useState(data?.userName ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -81,7 +83,7 @@ export const Modal = ({
   return (
     <div
       className={
-        'absolute top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-gray-400 bg-opacity-20 bg-blend-overlay backdrop-blur-sm'
+        'fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-gray-400 bg-opacity-20 bg-blend-overlay backdrop-blur-sm'
       }
       onClick={closeModal}
     >

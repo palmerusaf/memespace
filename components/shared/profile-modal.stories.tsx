@@ -10,7 +10,7 @@ import { Modal } from './profile-modal';
 export default {
   title: 'profile/Profile Modal',
   component: Modal,
-  args: { closeModal: console.log, pUseMyProfileMutation: usePassingMutation },
+  args: { closeModal: console.log, pUseProfileMutation: usePassingMutation },
 } as ComponentMeta<typeof Modal>;
 
 const queryClient = new QueryClient();
@@ -70,7 +70,7 @@ OverFlowMeme.args = {
 
 export const SaveWillFail = Template.bind({});
 SaveWillFail.args = {
-  pUseMyProfileMutation: useFailingMutation,
+  pUseProfileMutation: useFailingMutation,
   data: {
     profileMeme: 'American-Chopper-Argument',
     createdDate: Timestamp.now(),

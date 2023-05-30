@@ -22,7 +22,7 @@ const input = (
         id={label}
         onChange={onChange}
         required
-        className='peer absolute h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
+        className='peer absolute top-0 left-0 h-full w-full bg-transparent px-2 text-center focus-visible:outline-none'
         defaultValue={defaultValue}
         ref={ref}
         type='text'
