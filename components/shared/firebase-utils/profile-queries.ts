@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import assert from 'assert';
 import {
   collection,
+  deleteDoc,
   doc,
   DocumentData,
   FieldValue,
@@ -34,6 +35,18 @@ export const useProfileQuery = (uid: string) => {
       const res = await getDoc(doc(db, 'users', uid));
       if (!res.exists()) return null;
       return res.data() as ReceivingProfileData;
+    },
+  });
+};
+
+export const useDelProfileMutation = (uid: string) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => WithTimeLimit(() => deleteDoc(doc(db, 'users', uid))),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`users`],
+      });
     },
   });
 };
