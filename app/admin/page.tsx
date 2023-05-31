@@ -1,6 +1,6 @@
 'use client';
+import { MemeArea } from '@ui/admin/meme-area';
 import { UserArea } from '@ui/admin/user-area';
-import { Divider } from '@ui/login';
 import { useLoggedIn } from '@ui/shared/firebase-utils';
 import Link from 'next/link';
 
@@ -21,7 +21,7 @@ const Page = () => {
     return (
       <div className='mt-2 flex w-full max-w-2xl flex-col items-center md:mx-auto'>
         <UserArea />
-        <Divider label={'Create Meme Below'} />
+        <MemeArea />
       </div>
     );
 };

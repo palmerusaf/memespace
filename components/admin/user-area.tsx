@@ -1,4 +1,3 @@
-import { Divider } from '@ui/login';
 import { AvatarPic } from '@ui/shared/avatar-pic';
 import DropDown from '@ui/shared/drop-down';
 import Input from '@ui/shared/edit-meme-modal/input';
@@ -15,6 +14,7 @@ import { UserCard } from '@ui/shared/user-card';
 import { LoadingCard } from '@ui/shared/user-load-cards/loading-card';
 import { serverTimestamp } from 'firebase/firestore';
 import { MutableRefObject, useRef, useState } from 'react';
+import { FoldWrapper } from './fold-wrapper';
 
 export const UserArea = () => {
   const userColQuery = useUserCollectionQuery();
@@ -26,19 +26,20 @@ export const UserArea = () => {
     );
   else
     return (
-      <div className='w-full px-2'>
-        <Divider label={'Edit Users'} />
-        {userColQuery.data?.map((user) => {
-          return (
-            <UserCard
-              uid={user.id}
-              key={user.id}
-              button={<ButtonArea uid={user.id} data={user.data()} />}
-            />
-          );
-        })}
+      <>
+        <FoldWrapper label='Edit Users'>
+          {userColQuery.data?.map((user) => {
+            return (
+              <UserCard
+                uid={user.id}
+                key={user.id}
+                button={<ButtonArea uid={user.id} data={user.data()} />}
+              />
+            );
+          })}
+        </FoldWrapper>
         <CreateUser />
-      </div>
+      </>
     );
 };
 
@@ -48,8 +49,7 @@ function CreateUser() {
   const [selected, setSelected] = useState('');
   const mutation = useProfileMutation(uidRef.current?.value ?? '');
   return (
-    <div className=''>
-      <Divider label={'Create New User'} />
+    <FoldWrapper label='Create New User'>
       <form
         action='return false'
         onSubmit={(e) => {
@@ -85,7 +85,7 @@ function CreateUser() {
           />
         </div>
       </form>
-    </div>
+    </FoldWrapper>
   );
 }
 
