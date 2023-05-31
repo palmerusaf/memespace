@@ -1002,3 +1002,11 @@ export const MEME_LIST = [
 
 export const getRandMemeIndex = () =>
   Math.floor(Math.random() * MEME_LIST.length);
+
+function genMemeMap(): Map<string, string> {
+  const map = new Map();
+  MEME_LIST.forEach((meme) => map.set(meme, meme.replace(/-/g, ' ')));
+  return map;
+}
+
+export const MEME_MAP = genMemeMap();

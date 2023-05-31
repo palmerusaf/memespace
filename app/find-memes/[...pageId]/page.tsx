@@ -1,10 +1,10 @@
 'use client';
 import { getMemeEndPoints, isInvalidPage } from '@ui/find-memes/nav/page-utils';
 import { getThumbnail } from '@ui/shared/api-meme-utils';
-import DropDown from '@ui/shared/drop-down';
 import Modal from '@ui/shared/edit-meme-modal';
-import { MEME_LIST } from '@ui/shared/meme-list';
+import { MEME_LIST, MEME_MAP } from '@ui/shared/meme-list';
 import ImageWithLoadState from '@ui/shared/next-image';
+import { Select } from '@ui/shared/select';
 import { notFound } from 'next/navigation';
 import { useState } from 'react';
 
@@ -35,10 +35,10 @@ const Page = ({ params }: Props) => {
           </h1>
         </div>
         <div className='sticky top-1 flex w-full justify-center'>
-          <DropDown
-            optionValues={MEME_LIST}
-            selectedOption={memeId}
-            setSelectedOption={setMemeId}
+          <Select
+            optionValues={MEME_MAP}
+            selectedValue={memeId}
+            setSelectedValue={setMemeId}
             placeholder='Select from DropDown'
           />
         </div>

@@ -1,12 +1,12 @@
 import { AvatarPic } from '@ui/shared/avatar-pic';
-import DropDown from '@ui/shared/drop-down';
 import {
   auth,
   ReceivingProfileData,
   useProfileMutation,
 } from '@ui/shared/firebase-utils';
-import { MEME_LIST } from '@ui/shared/meme-list';
+import { MEME_MAP } from '@ui/shared/meme-list';
 import { MutantButton } from '@ui/shared/mutant-button';
+import { Select } from '@ui/shared/select';
 import { Input, useInputValidator } from '@ui/shared/username-input';
 import assert from 'assert';
 import { serverTimestamp } from 'firebase/firestore';
@@ -97,11 +97,11 @@ export const Modal = ({
           userName={userName || undefined}
         />
         <div className='mt-3 flex w-full max-w-md flex-col items-center gap-2'>
-          <DropDown
-            optionValues={MEME_LIST}
+          <Select
+            optionValues={MEME_MAP}
             placeholder='Select Profile Meme'
-            selectedOption={profileMeme}
-            setSelectedOption={setProfileMeme}
+            selectedValue={profileMeme}
+            setSelectedValue={setProfileMeme}
           />
           <Input
             ref={inputRef}

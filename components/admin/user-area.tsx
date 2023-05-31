@@ -1,5 +1,4 @@
 import { AvatarPic } from '@ui/shared/avatar-pic';
-import DropDown from '@ui/shared/drop-down';
 import Input from '@ui/shared/edit-meme-modal/input';
 import {
   ReceivingProfileData,
@@ -7,9 +6,10 @@ import {
   useProfileMutation,
   useUserCollectionQuery,
 } from '@ui/shared/firebase-utils';
-import { MEME_LIST } from '@ui/shared/meme-list';
+import { MEME_MAP } from '@ui/shared/meme-list';
 import { MutantButton } from '@ui/shared/mutant-button';
 import { useProfileModal } from '@ui/shared/profile-modal';
+import { Select } from '@ui/shared/select';
 import { UserCard } from '@ui/shared/user-card';
 import { LoadingCard } from '@ui/shared/user-load-cards/loading-card';
 import { serverTimestamp } from 'firebase/firestore';
@@ -64,11 +64,11 @@ function CreateUser() {
       >
         <div className='flex w-20 flex-col gap-2 md:w-36'>
           <AvatarPic profileMeme={selected} />
-          <DropDown
-            optionValues={MEME_LIST}
+          <Select
+            optionValues={MEME_MAP}
             placeholder={'Meme Pic'}
-            selectedOption={selected}
-            setSelectedOption={setSelected}
+            selectedValue={selected}
+            setSelectedValue={setSelected}
           />
         </div>
         <div className='items-evenly flex flex-1 flex-col justify-around'>
