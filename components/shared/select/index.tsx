@@ -8,7 +8,7 @@ interface Props {
   setSelectedValue: Dispatch<SetStateAction<string>>;
 }
 
-const Select = ({
+export const Select = ({
   optionValues,
   placeholder,
   selectedValue = '',
@@ -41,8 +41,6 @@ const Select = ({
     </>
   );
 };
-
-export default Select;
 
 function LeftArrow({}) {
   return <div className='rotate-90 duration-500 group-hover:rotate-0'>▼</div>;
