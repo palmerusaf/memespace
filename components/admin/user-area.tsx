@@ -3,7 +3,6 @@ import Input from '@ui/shared/edit-meme-modal/input';
 import {
   ReceivingProfileData,
   useDelProfileMutation,
-  useProfileMutation,
   useUserCollectionQuery,
 } from '@ui/shared/firebase-utils';
 import { MEME_MAP } from '@ui/shared/meme-list';
@@ -15,6 +14,7 @@ import { LoadingCard } from '@ui/shared/user-load-cards/loading-card';
 import { serverTimestamp } from 'firebase/firestore';
 import { MutableRefObject, useRef, useState } from 'react';
 import { FoldWrapper } from './fold-wrapper';
+import { useCreateUserMutation } from './queries';
 
 export const UserArea = () => {
   const userColQuery = useUserCollectionQuery();
@@ -47,17 +47,22 @@ function CreateUser() {
   const uidRef: MutableRefObject<null | HTMLInputElement> = useRef(null);
   const userNameRef: MutableRefObject<null | HTMLInputElement> = useRef(null);
   const [selected, setSelected] = useState('');
-  const mutation = useProfileMutation(uidRef.current?.value ?? '');
+  const mutation = useCreateUserMutation();
   return (
     <FoldWrapper label='Create New User'>
       <form
         action='return false'
         onSubmit={(e) => {
           e.preventDefault();
+          if (!uidRef.current?.value) return;
+          const uid = uidRef.current?.value;
           mutation.mutate({
-            profileMeme: selected,
-            userName: userNameRef.current?.value ?? '',
-            createdDate: serverTimestamp(),
+            uid,
+            data: {
+              profileMeme: selected,
+              userName: userNameRef.current?.value ?? '',
+              createdDate: serverTimestamp(),
+            },
           });
         }}
         className='flex gap-2 rounded p-4 shadow-lg'
