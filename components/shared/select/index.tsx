@@ -2,24 +2,24 @@
 import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
-  optionValues: Readonly<string[]>;
+  optionValues: Map<string, string>;
   placeholder: string;
-  selectedOption: string;
-  setSelectedOption: Dispatch<SetStateAction<string>>;
+  selectedValue: string;
+  setSelectedValue: Dispatch<SetStateAction<string>>;
 }
 
 const Select = ({
   optionValues,
   placeholder,
-  selectedOption = '',
-  setSelectedOption,
+  selectedValue = '',
+  setSelectedValue,
 }: Props) => {
   return (
     <>
       <div className='group relative flex w-fit max-w-full select-none justify-center gap-1 rounded-full border-2 border-white bg-gray-300 py-1 px-3 text-center font-semibold shadow-xl'>
         <LeftArrow />
         <span className='overflow-hidden text-ellipsis whitespace-nowrap'>
-          {selectedOption?.replace(/-/g, ' ') || placeholder}
+          {optionValues.get(selectedValue) || placeholder}
         </span>
         <RightArrow />
         <select
@@ -27,14 +27,15 @@ const Select = ({
           name={placeholder}
           id={placeholder}
           onChange={({ target }) => {
-            setSelectedOption(target.value);
+            setSelectedValue(target.value);
           }}
-          value={selectedOption}
+          value={selectedValue}
         >
           <option value=''>{placeholder}</option>
-          {optionValues.map((value) => (
-            <Option key={value} value={value} />
-          ))}
+          {Array.from(optionValues.entries()).map((entry) => {
+            const [value, label] = entry;
+            return <Option key={value} value={value} label={label} />;
+          })}
         </select>
       </div>
     </>
@@ -51,10 +52,10 @@ function RightArrow({}) {
   return <div className='-rotate-90 duration-500 group-hover:rotate-0'>▼</div>;
 }
 
-function Option({ value }: { value: string }) {
+function Option({ value, label }: { value: string; label: string }) {
   return (
     <option key={value} value={value}>
-      {value.replace(/-/g, ' ')}
+      {label}
     </option>
   );
 }
