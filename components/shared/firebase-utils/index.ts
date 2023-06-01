@@ -1,15 +1,7 @@
 'use client';
 import { initializeApp } from 'firebase/app';
-import {
-  connectAuthEmulator,
-  getAuth,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import {
-  connectFirestoreEmulator,
-  DocumentReference,
-  getFirestore,
-} from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { DocumentReference, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export * from './following-queries';
@@ -30,10 +22,10 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+// connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
 
 export const db = getFirestore(app);
-connectFirestoreEmulator(db, 'localhost', 9100);
+// connectFirestoreEmulator(db, 'localhost', 9100);
 
 export const useIsOwner = (uid: string) => {
   const [isOwner, setIsOwner] = useState(false);
