@@ -1,6 +1,6 @@
 'use client';
 import { getMeme, getTitle, OriginLink } from '@ui/shared/api-meme-utils';
-import { auth, useMemeMutation } from '@ui/shared/firebase-utils';
+import { useMemeMutation } from '@ui/shared/firebase-utils';
 import { MutantButton } from '@ui/shared/mutant-button';
 import ImageWithLoadState from '@ui/shared/next-image';
 import assert from 'assert';
@@ -14,7 +14,7 @@ interface Props {
   setModalId: React.Dispatch<React.SetStateAction<string>>;
   link?: string;
   pUseMemeMutation?: typeof useMemeMutation;
-  currentUser?: { uid: string } | null;
+  currentUser: { uid: string } | null;
   topText?: string;
   bottomText?: string;
   memeUid?: string;
@@ -24,7 +24,7 @@ const Modal = ({
   pUseMemeMutation = useMemeMutation,
   modalId,
   setModalId,
-  currentUser = auth.currentUser,
+  currentUser,
   topText,
   bottomText,
   memeUid,

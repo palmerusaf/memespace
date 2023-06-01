@@ -2,6 +2,7 @@
 import { getMemeEndPoints, isInvalidPage } from '@ui/find-memes/nav/page-utils';
 import { getThumbnail } from '@ui/shared/api-meme-utils';
 import Modal from '@ui/shared/edit-meme-modal';
+import { auth } from '@ui/shared/firebase-utils';
 import { MEME_LIST, MEME_MAP } from '@ui/shared/meme-list';
 import ImageWithLoadState from '@ui/shared/next-image';
 import { Select } from '@ui/shared/select';
@@ -27,7 +28,13 @@ const Page = ({ params }: Props) => {
 
   return (
     <>
-      {memeId !== '' && <Modal setModalId={setMemeId} modalId={memeId} />}
+      {memeId !== '' && (
+        <Modal
+          currentUser={auth.currentUser}
+          setModalId={setMemeId}
+          modalId={memeId}
+        />
+      )}
       <div className='relative h-full overflow-scroll'>
         <div className='flex w-full items-center justify-center'>
           <h1 className='w-full overflow-hidden text-center text-lg font-bold'>

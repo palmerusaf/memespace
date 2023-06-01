@@ -39,6 +39,7 @@ export const MenuContent = ({
       <div className='grid w-full grid-cols-2 gap-4'>
         {modalId !== '' && (
           <Modal
+            currentUser={{ uid }}
             topText={topText}
             bottomText={bottomText}
             memeUid={memeUid}
