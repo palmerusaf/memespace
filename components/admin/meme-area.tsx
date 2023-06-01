@@ -5,6 +5,7 @@ import { OpenSvg } from '@ui/profile/meme-collection/open-svg';
 import { ViewMemeModal } from '@ui/profile/meme-collection/view-meme-modal';
 import { getMeme } from '@ui/shared/api-meme-utils';
 import { AreaEmpty } from '@ui/shared/area-empty';
+import Modal from '@ui/shared/edit-meme-modal';
 import {
   ReceivingMemeData,
   ReceivingProfileData,
@@ -12,7 +13,9 @@ import {
   useUserCollectionQuery,
 } from '@ui/shared/firebase-utils';
 import { MadBro } from '@ui/shared/imgs';
+import { MEME_MAP } from '@ui/shared/meme-list';
 import ImageWithLoadState from '@ui/shared/next-image';
+import { Select } from '@ui/shared/select';
 import { LoadingCard } from '@ui/shared/user-load-cards/loading-card';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { useState } from 'react';
@@ -47,15 +50,30 @@ function MemeEditor({
       </div>
     );
 
+  const userDataMap = new Map();
+  data.forEach((item) => userDataMap.set(item.id, item.data().userName));
+
+  const userName = userDataMap.get(userFetchInput);
+
   return (
-    <div className='pb-3'>
+    <div className='mb-12'>
       <TopControls
-        data={data}
+        userDataMap={userDataMap}
         setSelectedUser={setSelUser}
         selectedUser={selUser}
         setUserFetchInput={setUserFetchInput}
       />
-      <MemeCollection uid={userFetchInput} />
+      {userName !== undefined && (
+        <>
+          {' '}
+          <FoldWrapper label={`${userName}'s Memes`}>
+            <MemeCollection uid={userFetchInput} />
+          </FoldWrapper>
+          <FoldWrapper label={`New Meme for ${userName}`}>
+            <NewMemeArea uid={userFetchInput} />
+          </FoldWrapper>
+        </>
+      )}
     </div>
   );
 }
@@ -136,5 +154,27 @@ function Collection({
         })}
       </ul>
     </>
+  );
+}
+
+function NewMemeArea({ uid }: { uid: string }) {
+  const [modalId, setModalId] = useState('');
+  return (
+    <div className='flex w-full justify-center'>
+      <Select
+        optionValues={MEME_MAP}
+        placeholder={'Select Meme'}
+        selectedValue={modalId}
+        setSelectedValue={setModalId}
+      />
+      {modalId !== '' && (
+        <Modal
+          modalId={modalId}
+          key={uid}
+          setModalId={setModalId}
+          currentUser={{ uid }}
+        />
+      )}
+    </div>
   );
 }

@@ -40,19 +40,20 @@ const Modal = ({
   const bottomRef = useRef<HTMLInputElement>(null);
 
   const SaveButton = () => {
-    const mutation = pUseMemeMutation(memeUid);
+    assert(currentUser);
+    const { uid } = currentUser;
+    const mutation = pUseMemeMutation(uid, memeUid);
 
     const handleSave = () => {
       if (!(topRef && topRef.current)) return;
       if (!(bottomRef && bottomRef.current)) return;
-      assert(currentUser);
 
       mutation.mutate({
         createdDate: serverTimestamp(),
         topText: topRef.current.value,
         bottomText: bottomRef.current.value,
         meme: modalId,
-        createdBy: currentUser.uid,
+        createdBy: uid,
       });
     };
 

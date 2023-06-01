@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import assert from 'assert';
 import {
   addDoc,
   collection,
@@ -12,7 +11,7 @@ import {
   setDoc,
   Timestamp,
 } from 'firebase/firestore';
-import { auth, db, WithTimeLimit } from '.';
+import { db, WithTimeLimit } from '.';
 
 interface MemeData {
   topText: string;
@@ -40,10 +39,8 @@ export const useMemeCollectionQuery = (uid: string) => {
   });
 };
 
-export const useMemeMutation = (memeUid?: string) => {
+export const useMemeMutation = (uid: string, memeUid?: string) => {
   const queryClient = useQueryClient();
-  assert(auth.currentUser);
-  const uid = auth.currentUser?.uid;
   return useMutation({
     mutationFn: (data: SendingMemeData) => {
       if (!memeUid)

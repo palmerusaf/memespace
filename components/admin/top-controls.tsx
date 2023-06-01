@@ -1,11 +1,9 @@
 'use client';
-import { ReceivingProfileData } from '@ui/shared/firebase-utils';
 import { Select } from '@ui/shared/select';
-import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { Dispatch, SetStateAction } from 'react';
 
 interface TopControlsProps {
-  data: QueryDocumentSnapshot<ReceivingProfileData>[];
+  userDataMap: Map<string, string>;
   setSelectedUser: Dispatch<SetStateAction<string>>;
   selectedUser: string;
   setUserFetchInput: Dispatch<SetStateAction<string>>;
@@ -14,15 +12,13 @@ export function TopControls({
   setUserFetchInput,
   setSelectedUser,
   selectedUser,
-  data,
+  userDataMap,
 }: TopControlsProps) {
-  const selectorValues = new Map();
-  data.forEach((item) => selectorValues.set(item.id, item.data().userName));
   return (
     <span className='grid grid-cols-2 justify-center gap-2'>
       <div className='flex w-full justify-center'>
         <Select
-          optionValues={selectorValues}
+          optionValues={userDataMap}
           placeholder={'Select User'}
           selectedValue={selectedUser}
           setSelectedValue={setSelectedUser}
