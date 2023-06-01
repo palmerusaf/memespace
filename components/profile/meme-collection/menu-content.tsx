@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Modal from '@ui/shared/edit-meme-modal';
 import {
   ReceivingMemeData,
@@ -8,6 +9,7 @@ import { useState } from 'react';
 
 interface Props {
   isOwner: boolean;
+  uid: string;
   pUseDeleteMemeMutation?: typeof useDeleteMemeMutation;
   memeUid: string;
   memeData: ReceivingMemeData;
@@ -15,6 +17,7 @@ interface Props {
 export const MenuContent = ({
   isOwner,
   memeUid,
+  uid,
   pUseDeleteMemeMutation = useDeleteMemeMutation,
   memeData: { createdDate, topText, meme, bottomText },
 }: Props) => {
@@ -31,7 +34,7 @@ export const MenuContent = ({
   );
 
   function ButtonArea() {
-    const mutation = pUseDeleteMemeMutation(memeUid);
+    const mutation = pUseDeleteMemeMutation(uid, memeUid);
     return (
       <div className='grid w-full grid-cols-2 gap-4'>
         {modalId !== '' && (

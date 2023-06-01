@@ -62,10 +62,8 @@ export const useMemeMutation = (memeUid?: string) => {
   });
 };
 
-export const useDeleteMemeMutation = (memeUid: string) => {
+export const useDeleteMemeMutation = (uid: string, memeUid: string) => {
   const queryClient = useQueryClient();
-  assert(auth.currentUser);
-  const uid = auth.currentUser?.uid;
   return useMutation({
     mutationFn: () =>
       WithTimeLimit(() => deleteDoc(doc(db, 'users', uid, 'memes', memeUid))),

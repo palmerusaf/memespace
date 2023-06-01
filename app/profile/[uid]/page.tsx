@@ -39,7 +39,8 @@ const Page = ({
 
   const MemeCollection = () => {
     if (query.isLoading) return <Loading />;
-    if (query.data) return <Collection isOwner={isOwner} data={query.data} />;
+    if (query.data)
+      return <Collection uid={uid} isOwner={isOwner} data={query.data} />;
     else return <EmptyCollection isOwner={isOwner}></EmptyCollection>;
   };
 
@@ -68,14 +69,17 @@ function EmptyCollection({ isOwner }: { isOwner: boolean }) {
 function Collection({
   data,
   isOwner,
+  uid,
 }: {
   data: QueryDocumentSnapshot<ReceivingMemeData>[];
   isOwner: boolean;
+  uid: string;
 }) {
   const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
   const menuContent =
     selectedIndex !== null ? (
       <MenuContent
+        uid={uid}
         memeData={data[selectedIndex].data()}
         isOwner={isOwner}
         memeUid={data[selectedIndex].id}
