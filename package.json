@@ -1,21 +1,21 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:turbo": "next dev --turbo",
-    "dev:firebase": "firebase emulators:start",
-    "deploy:rules": "firebase deploy --only firestore:rules",
     "build": "next build",
-    "start": "next start",
-    "test": "jest --watch",
-    "test:story": "test-storybook --watch",
-    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "check-types": "tsc --noemit",
-    "lint": "npm run check-types && next lint --dir .",
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "dev": "next dev",
+    "dev:firebase": "firebase emulators:start",
+    "dev:turbo": "next dev --turbo",
     "format": "prettier --ignore-path .gitignore --write .",
     "format:staged": "pretty-quick --staged --ignore-path .gitignore",
-    "prepare": "husky install"
+    "lint": "npm run check-types && next lint --dir .",
+    "prepare": "husky install",
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "test": "jest --watch",
+    "test:story": "test-storybook --watch"
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.5",
