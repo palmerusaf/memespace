@@ -11,6 +11,9 @@ dependencies:
   '@tanstack/react-query':
     specifier: ^4.24.4
     version: 4.24.4(react-dom@18.2.0)(react@18.2.0)
+  '@types/lodash':
+    specifier: ^4.14.197
+    version: 4.14.197
   bad-words:
     specifier: ^3.0.4
     version: 3.0.4
@@ -5449,7 +5452,7 @@ packages:
       '@babel/preset-env': 7.20.2(@babel/core@7.20.7)
       '@babel/types': 7.20.7
       '@mdx-js/mdx': 1.6.22
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.197
       js-string-escape: 1.0.1
       loader-utils: 2.0.4
       lodash: 4.17.21
@@ -6281,12 +6284,11 @@ packages:
       }
     dev: true
 
-  /@types/lodash@4.14.191:
+  /@types/lodash@4.14.197:
     resolution:
       {
-        integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==,
+        integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==,
       }
-    dev: true
 
   /@types/long@4.0.2:
     resolution:
