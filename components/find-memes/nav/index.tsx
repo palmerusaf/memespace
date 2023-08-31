@@ -13,7 +13,10 @@ const Nav = ({}: Props) => {
     <nav className='flex gap-1 font-bold text-gray-900'>
       <div className='w-7'>
         {activeIndex !== 1 && (
-          <Link aria-label='Next Page' href={`/find-memes/${activeIndex - 1}`}>
+          <Link
+            aria-label='Previous Page'
+            href={`/find-memes/${activeIndex - 1}`}
+          >
             <div className='w-7 select-none rounded-full border-2 border-white bg-blue-600 text-center text-white shadow-md duration-300 hover:-translate-y-1 hover:shadow-slate-500'>{`<`}</div>
           </Link>
         )}
@@ -42,7 +45,7 @@ const Nav = ({}: Props) => {
           <Link href={`/find-memes/${activeIndex + 1}`}>
             <div
               className='w-7 select-none rounded-full border-2 border-white bg-blue-600 text-center text-white shadow-md duration-300 hover:-translate-y-1 hover:shadow-slate-500'
-              ariea-label='Previous Page'
+              ariea-label='Next Page'
             >{`>`}</div>
           </Link>
         )}
